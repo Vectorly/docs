@@ -13,7 +13,7 @@ Like with any file format, there are encoders to create .lrn files, and decoders
 
 ![Vector-Based](img/flow.svg)
 
-The video files are hosted on the cloud, and accessed via an API (see [the flow section](#flow) for details)
+The video files are hosted on the cloud, and accessed via an API (see [the flow section](#playing-videos) for details)
 
 ## Getting started
 
