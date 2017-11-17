@@ -19,9 +19,9 @@ The video files are hosted on the cloud, and accessed via an API (see [the flow 
 
 As these APIs are still a work in progress, the process is a bit manual.
 
-** Get your tokens **
+** Get your server token **
 
-First and foremost, you will need a **client token**, which you can get by contacting [our technical team](mailto:sam@dotlearn.org). The **client token** can safely be embedded in your app, html or in javascript, and will be needed in the SDKs.  Additionally, we will also provide you with a **private token**, which you should store in a safe place on your server (as an environmental variable). The **private token** will be used to for API calls to dot Learn's servers.
+First and foremost, you will need a **server token**, which you can get by contacting [our technical team](mailto:sam@dotlearn.org). You should store this server token in a safe place on your server (as an environmental variable) or in a secret file which is _not stored in version control systems_. The **server token** will be used to for API calls to dot Learn's servers.
 
 ** Import the .lrn player **
 
@@ -34,11 +34,43 @@ To play a video using our SDKs, you will need the video's unique ID. If you don'
 
 ## Playing Videos
 
-All videos are hosted on dot Learn's servers. When you want to watch a video (after importing the library), you will need to provide the _client token_ (see the examples for each platform below) as a parameter, along with the id of the video you want to load, and it will then download and play the video from the server
+All videos are hosted on dot Learn's servers. To enable users to watch your videos, you must import the .lrn library into your app/website. When you want to watch a video (after importing the library), you will need to provide an _access_token_ (see the examples for each platform below) as a parameter, along with the id of the video you want to load, and it will then download and play the video from the server
 
-1. (One time) Get a _client token_ from us
-2. Store it in your user's app/website
-3. When you want to play a video, call `lrnPlayer.play(clientToken, videoID, ...)` or the equivalent
+
+### Access tokens
+
+To start playing around with the videos, we can provide you a _sandbox token_, but for security reasons, you will need to move to the production flow before integrating it into your life product.
+
+
+#### Sandbox testing
+
+We can provide you with a _sandbox token_, which you use for development / testing purposes.
+
+
+While fast and simple for testing, this method _should not be used in production_ as it is _insecure_. If the key is stored anywhere in your production app/website, no amount of clever software engineering will prevent a sufficiently motivated hacker from retrieving this token and impersonating your organization. To prevent abuse, we limit the number of sandbox transactions per organization per day.
+
+
+#### Production flow
+
+You can provide a _temporary access token_, which will be valid for 10 min. You can obtain such a token via an API call from your server, authenticated with your server token.
+
+To get a _temporary_access_token_, submit a POST request to `https://api.dotlearn.io/auth/video`, sending as the body a JSON object, with the parameters
+
+    {
+      "server_token": ....,
+      "video_id": .....,
+      "user_id": .....
+    }
+
+
+With the id of the video you wish your end user to watch, and the user_id of the user you wish to grant access to the video to, _according to your database records_. This will return a the _temporary access token_, which you can then send to your user's device.
+
+An example flow would be:
+
+1. Your app sends a request to your server for a temporary access token
+2. Your server then makes a call to `https://api.dotlearn.io/auth/video`
+3. `https://api.dotlearn.io/auth/video` returns a temporary access token to your server
+4. Your server returns the temporary access token to your app
 
 
 ### Android
@@ -59,7 +91,7 @@ You can open the LRNPlayer in your activity, and then call the `load` function, 
 
         LRNPlayer lrnPlayer = (LRNPlayer) findViewById(R.id.lrnVideo);
 
-        lrnPlayer.load(clientToken, videoID);
+        lrnPlayer.load(accessToken, videoID);
 
         lrnPlayer.onReady(new LRNPlayer.onReadyListener(){
 
@@ -80,12 +112,14 @@ You can open the LRNPlayer in your activity, and then call the `load` function, 
             lrnPlayer.seek(1000); //millisenconds
             lrnplayer.stop;
         */
+
+
 ### iFrame
 
 To view a .lrn video on the web, the easiest way is to use an iframe. You need to provide 2 parameters - the client token, and the videoID:
 
         <iframe
-        src="https://api.dotlearn.org/embed/token/myClientToken/video/selectedVideoID"
+        src="https://api.dotlearn.org/embed/token/myAccessToken/video/selectedVideoID"
         height="600" width="800" />
 
 
@@ -102,7 +136,7 @@ Or, you can get the player via npm, or from "libraries" tab in [dashboard](https
 
 
     var options = {autoplay: true};
-    lrn.load(clientToken, 'myVideo', 'idOfDivToPlaceVideo', options, function(video){
+    lrn.load(accessToken, 'myVideo', 'idOfDivToPlaceVideo', options, function(video){
 
        /*
         video.onDownloadStart(function(){});
@@ -119,10 +153,6 @@ Or, you can get the player via npm, or from "libraries" tab in [dashboard](https
         */
     });
 
-
-### Security
-
-We use industry best-practice cryptographic protocols for encryption and security. Should you require even more (financial-institution-level) security, we will be soon releasing an additional APIs to provide more granular access to videos - such authorizing individual users and temporary download URLs. If you have questions, you can reach out to [the technical team](mailto:sam@dotlearn.org).
 
 
 ## Creating videos
