@@ -134,26 +134,59 @@ Or, you can get the player via npm, or from "libraries" tab in [dashboard](https
 
 
 
+#### Loading the video
+
+Once imported, you can access the library via the lrn namespace. The primary method is npm.load, which returns a "load promise",
+with the API as shown below.
 
     var options = {autoplay: true};
-    lrn.load(accessToken, 'myVideo', 'idOfDivToPlaceVideo', options, function(video){
+    lrn.load(accessToken, 'myVideo', 'idOfDivToPlaceVideo', options).then(function(video){
 
-       /*
-        video.onDownloadStart(function(){});
-        video.onDownloadComplete(function(){}));
-        video.onDownloadProgress(function(downloadProgress){}));
-        video.onMediaReady(function(){}));
-        video.onMetaData(function(metaData){}));
-        video.onError(function(e){}));
-        video.play();
-        video.pause();
-        video.seek(1000); //milliseconds
-        video.stop;
+    }).onError(function(err){
 
-        */
+    }).onDownloadProgress(function(progress){
+
+    }).onMetaData(function(metaData){
+
     });
 
 
+#### Video Controls
+
+The load promise returns video object, which provides methods for controlling video playback
+
+    lrn.load(accessToken, 'myVideo', 'idOfDivToPlaceVideo', options).then(function(video){
+
+
+      //Video info
+      video.getTime();
+      video.meta; //Meta data
+
+
+      //Playback Controls
+      video.play();
+      video.seek(1000); //Seek to 1s
+      video.pause();
+
+      // Event Listeners
+      video.onPlay(function(){
+
+      });
+
+      video.onPause(function(){
+
+      });
+
+      video.onSeek(function(newTime){
+
+      });
+
+
+      video.onEnd(function(){
+
+      });
+
+    });
 
 ## Creating videos
 
