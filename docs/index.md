@@ -119,7 +119,7 @@ You can open the LRNPlayer in your activity, and then call the `load` function, 
 To view a .lrn video on the web, the easiest way is to use an iframe. You need to provide 2 parameters - the client token, and the videoID:
 
         <iframe
-        src="https://api.dotlearn.org/embed/token/myAccessToken/video/selectedVideoID"
+        src="https://api.dotlearn.io/embed/token/myAccessToken/video/selectedVideoID"
         height="600" width="800" />
 
 
