@@ -2,5 +2,6 @@ site_name: dot Learn Developer Reference
 theme_dir: cinder
 pages:
 - Home: index.md
-
+- Playing Videos: playing.md
+- Licensing Content: licensing.md
 copyright: Copyright &copy; 2017 dot Learn
