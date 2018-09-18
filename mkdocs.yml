@@ -1,7 +1,10 @@
-site_name: dot Learn Developer Reference
+site_name: dot Learn Integration guide
 theme_dir: cinder
 pages:
 - Home: index.md
+- Compressing Videos: compressing.md
 - Playing Videos: playing.md
-- Licensing Content: licensing.md
-copyright: Copyright &copy; 2017 dot Learn
+- Technology: technology.md
+
+
+copyright: Copyright &copy; 2018 dot Learn

@@ -1,51 +1,18 @@
 # Playing Videos
 
-All videos are hosted on dot Learn's servers. To enable users to watch your videos, you must import the .lrn library into your app/website. When you want to watch a video (after importing the library), you will need to provide an _access_token_ (see the examples for each platform below) as a parameter, along with the id of the video you want to load, and it will then download and play the video from the server
+To enable users to watch your videos, you must import the .vvid library into your app/website, or if you use a content management system like Wordpress or Moodle, you can use a plugin. 
 
-
-## Access tokens
-
-To start playing around with the videos, we can provide you a _sandbox token_, but for security reasons, you will need to move to the production flow before integrating it into your life product.
-
-
-### Sandbox testing
-
-We can provide you with a _sandbox token_, which you use for development / testing purposes.
-
-
-While fast and simple for testing, this method _should not be used in production_ as it is _insecure_. If the key is stored anywhere in your production app/website, no amount of clever software engineering will prevent a sufficiently motivated hacker from retrieving this token and impersonating your organization. To prevent abuse, we limit the number of sandbox transactions per organization per day.
-
-
-### Production flow
-
-You can provide a _temporary access token_, which will be valid for 10 min. You can obtain such a token via an API call from your server, authenticated with your server token.
-
-To get a _temporary_access_token_, submit a POST request to `https://api.dotlearn.io/auth/video`, sending as the body a JSON object, with the parameters
-
-    {
-      "server_token": ....,
-      "video_id": .....,
-      "user_id": .....
-    }
-
-
-With the id of the video you wish your end user to watch, and the user_id of the user you wish to grant access to the video to, _according to your database records_. This will return a the _temporary access token_, which you can then send to your user's device.
-
-An example flow would be:
-
-1. Your app sends a request to your server for a temporary access token
-2. Your server then makes a call to `https://api.dotlearn.io/auth/video`
-3. `https://api.dotlearn.io/auth/video` returns a temporary access token to your server
-4. Your server returns the temporary access token to your app
 
 # Web
 
 ### iFrame
 
-To view a .lrn video on the web, the easiest way is to use an iframe. You need to provide 2 parameters - the client token, and the videoID:
+When we convert videos for you, we host a copy of the videos on our servers and provide you with a link to view the video online. The easiest way to embed them in your website is through an iframe.
+
+Just set the source of the iframe to the same link
 
         <iframe
-        src="https://api.dotlearn.io/embed/token/[token]/video/[video-id]"
+        src="https://api.dotlearn.io/embed/demo/[video-id]"
         height="600" width="800" />
 
 ** Sizing **
@@ -61,95 +28,90 @@ By default, the video will try to scale to the size of the iframe, while maintan
 Additionally, there are several other parameters you can pass via the src url, to configure playback of the video, using the following format
 
         <iframe
-        src="https://api.dotlearn.io/embed/token/[token]/video/[video-id]/parameter1/[value1]/parameter2/[value2]" />
+        src="https://api.dotlearn.io/embed/demo/[video-id]/parameter1/[value1]/parameter2/[value2]" />
 
 
 * **height** You can set the height in pixels of the video to be loaded. This will override the default sizing discussed above, and set the height of the video to the specified value. The video will be centered vertically within the iframe, regardless of whether the video is larger or smaller than the iframe
 * **width** You can set the width in pixels of the video to be loaded. This will override the default sizing discussed above, and set the width of the video to the specified value.  The video will be centered horizontally within the iframe, regardless of whether or not the video is larger or smaller than the iframe.
 * **autoplay** Whether the video plays automatically when loaded (default, false)
-* **quality** Chooses a quality for the audio track. Options include "amr_nb5" (default), "mp3_24", and "mp3_128". "amr_nb5" results in the most compact videos, but can sound fuzzy sometimes. "mp3_128" is the highest quality audio, while "mp3_24" is a medium value. For human speech, the difference between mp3_24 and mp3_128 is imperceptable.
 
 For example, you can load a video to autoplay, with height=900, width=1600, audio-quality=mp3_24 and autoplay=true with the following code:
 
         <iframe
-        src="https://api.dotlearn.io/embed/token/[token]/video/[video-id]/quality/mp3_24/width/1600/height/900/autoplay/true" />
+        src="https://api.dotlearn.io/embed/token/[token]/video/[video-id]/width/1600/height/900/autoplay/true" />
 
 
-Keep in mind that the /token and /video parameters need to be specified first, in that order. The order of the subsequent parameters doesn't matter.
+Keep in mind that the /video parameter need to be specified first.  The order of the subsequent parameters doesn't matter.
 
 
 ### Javascript
 
 As an alternative to the iframe, you can use
 
-You can download the .lrn player via CDN:
+You can download the .vvid player via CDN:
 
-    <script src="https://cdn.dotlearn.io/lrn.js">
-
-Or, you can get the player via npm, or from "libraries" tab in [dashboard](https://dashboard.dotlearn.io))
-
+    <script src="https://cdn.dotlearn.io/vv.js">
 
 
 #### Loading the video
 
-Once imported, you can access the library via the lrn namespace. The primary method is npm.load, which returns a "load promise",
-with the API as shown below.
-
-    var options = {autoplay: true};
-    lrn.load(accessToken, 'myVideo', 'idOfDivToPlaceVideo', options).then(function(video){
-
-    }).onError(function(err){
-
-    }).onDownloadProgress(function(progress){
-
-    }).onMetaData(function(metaData){
-
-    });
+You will need to access a .vvid object as a blob
 
 
-#### Video Controls
+        var oReq = new XMLHttpRequest();
 
-The load promise returns video object, which provides methods for controlling video playback
-
-    lrn.load(accessToken, 'myVideo', 'idOfDivToPlaceVideo', options).then(function(video){
-
-
-      //Video info
-      video.getTime();
-      video.meta; //Meta data
-
-
-      //Playback Controls
-      video.play();
-      video.seek(1000); //Seek to 1s
-      video.pause();
-
-      // Event Listeners
-      video.onPlay(function(){
-
-      });
-
-      video.onPause(function(){
-
-      });
-
-      video.onSeek(function(newTime){
-
-      });
+        oReq.onload = function(e) {
+            var arraybuffer = oReq.response;
+            var blob = new Blob([oReq.response], {type: "application/zip"});
+        };
+        oReq.open("GET", "demo.vvid");
+        oReq.responseType = "arraybuffer";
+        oReq.send();
 
 
-      video.onEnd(function(){
+Once you have a blob in javascript, you can load the video into a the player
 
-      });
-
-    });
+      vv.load(blob, "container", {width: 800, height:450 });
 
 
+#### Video Options  / Controls
 
-# Android
-LRNPlayerView is a simple View that you can plugin to your Android apps to quickly get vectorized video playback working.
+    vvid.load(vvidBlob, 'container-id', options);  // Load a video
 
-## Install
+**container-id** - The id of the div element you wish to place the video in
+
+**options**  - Options object, with the following parameters
+
+**width** - Width, in pixels, of the video
+**height** - Height, in pixels, of the video
+**callback** - Function to call after video is loaded. The callback will pass a video object as it's first argument
+
+    video.play() // Play the video
+
+
+    video.pause(); // Pause the video
+
+
+    video.stop(); //Stop the video
+
+
+# Desktop
+
+Coming soon. If you need a desktop player, let us know at <team@dotlearn.io> so we can prioritize releasing it.
+
+
+#Mobile
+
+## iOS
+Coming soon
+
+
+## Android (Deprecated)
+
+Please use the javascript version of the library. We are working on a new wrapper for Android and iOS.
+
+
+### Install
 The Gradle dependency is available via jCenter. jCenter is the default Maven repository used by Android Studio.
 
 Add this in your (app) module's `build.gradle` file:
@@ -157,7 +119,7 @@ Add this in your (app) module's `build.gradle` file:
     implementation 'io.dotlearn.lrnplayer:1.0.0'
 ```
 
-## Usage
+### Usage
 
 #### Layouts
 The layout for your player Activity can be very simple. You only need a LRNPlayerView, all the controls and everything else are created by the player view itself.
@@ -273,3 +235,18 @@ lrnPlayerView.debug(true)
 ```
 
 That's all. You could see all this in action in the sample project in the `app` module.
+
+
+
+#Plugins
+We are currently developing plugins for Wordpress and Moodle. If you use another content management system such as
+
+* Squarespace
+
+* Wix
+
+* Joomla
+
+* etc...
+
+Please let our team know at <team@dotlearn.io> 

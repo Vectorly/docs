@@ -4,50 +4,99 @@
 
 ## Overview
 
-dot Learn is an ed-tech company in Lagos, Nigeria and is dedicated to making online video-learning accessible in Africa through proprietary data-light (1MB/hour) video-learning technology. We have a [full library of SHS/WASSCE/JAMB data-light videos](https://docs.google.com/spreadsheets/d/1Ryfv6iYeB0e6_qdVO0xx2KAEFyJtwBWZYWN8hayl9eQ/edit#gid=1018104657), and are currently partnering with local ed-tech companies in Nigeria/Ghana to distribute our videos.
+dot Learn is a video compression startup from MIT, whose vectorization technology makes videos up to 50x smaller without quality loss. Our technology is primarily effective for animations and video-learning, and through our API video compression service, we work with video-content providers make their videos HD and data-light, reducing server costs and improving user experience.
 
 
-## Technology
+## Compression Technology
 
-dot Learn has developed a proprietary data-light video-learning technology called ".lrn", which makes video learning fast and affordable by storing hours of video-lessons in a few MB (up to 100x smaller than via comparable mp4s).
-This is possible because visual elements on the screen are stored not as streams of pixels, but rather as text-based vectors (equations, curves etc...), enabling efficient data-representation for certain kinds of videos
+dot Learn achieves "compression" through it's "vector"format, which is much more efficient than mp4 for certain kinds of video. By converting from mp4 to our vector format, 
+vectorization outperforms Google's best compression algorithms by up to 50x -making videos load much faster, using much less data, than is possible with YouTube.
 
-![Vector-Based](img/vector.svg)
 
-Given that ".lrn" is a new file format that we have developed, it requires integrating a custom library into your platform (Web/Android/iOS etc...) in order to play ".lrn" videos (see the [Playing Videos section](playing) for details).
 
-## Content
+### Vector based video
 
-Using our technology, we have built [full video courses for WASSCE/WAEC and JAMB curricula](https://docs.google.com/spreadsheets/d/1Ryfv6iYeB0e6_qdVO0xx2KAEFyJtwBWZYWN8hayl9eQ/edit#gid=1018104657) , as well as general SS1, SS2 and SS3 material, for secondary students in Nigeria and Ghana. Our courses include:
+The heart of our technology is a file format for video called ".vvid" which uses vector graphics, rather than pixels, to show what you see on the screen. 
 
-* Math
-* Physics
-* Chemistry
+".vvid" videos are up to 50x smaller than mp4 equivalents, because you need less data to show the same thing. In many cases, ".vvid" videos are also higher definition.
 
-and soon
+The content in the video determines how much smaller a ".vvid" video will be, compared to an mp4. ".vvid" files are much smaller than mp4 files, when the video is geometric - i.e. screencasts, animations and anything not recorded with a video camera. For real-life videos (your average series on Netflix), vvid files are equivalent to mp4s.
 
-* Biology
-* Economics
-* English
 
-which are available to licensing to partner companies on a revenue share basis. For more info, see the [Licensing page](licensing)
+
+### Video Vectorization
+
+dot Learn offers a video "compression service", whereby through an [upload form](https://dotlearn.io/start/) (and soon, a web platform or API), we will compress videos for free.
+
+By "compression", we specifically mean "conversion" - and our service entails converting videos to our data-light vector based format. 
+
+
+This has several implications for our service:
+
+1. On top of being smaller, the videos we return will actually be higher quality than the original, which is impossible with normal compression. 
+
+2. To include ".vvid" videos in your app, website - you would need to use a library or a plugin (see [Playing videos](playing.md)) . 
+
+3. ".vvid" videos cannot be uploaded to YouTube or other video-sharing websites (though you can just upload the mp4 versions)
+
+
+### YouTube
+
+YouTube, Vimeo and other video streaming platforms do not support ".vvid" videos yet.
+
+
+If these websites are critical to your strategy, we suggest continuing to upload mp4 versions to these websites. 
+
+
+So, for example: 
+You make and publish videos online. You have your own website, and you also publish your videos to YouTube.
+
+Let's say you have a 100MB video called "MyVideo.mp4"
+
+* You can upload "MyVideo.mp4" to YouTube
+
+* You can convert "MyVideo.mp4" to "MyVideo.vvid", which is 10MB, and put it on your website
+
+* You share the 100MB "MyVideo.mp4" video on YouTube to your YouTube users
+
+* You share the 10MB "MyVideo.vvid" with users on your website
+
+
+
+
+### What can be vectorized
+
+
+You can give us **any** video, and we can turn it into a ".vvid" file. 
+
+Our vector compression technology is, however, most effective on geometric videos such as slide lectures, screencasts and animations. Basically anything that isn't real-life video
+
+![Vectorizable](img/vectorizable.png)
+
+For full real-life videos, vectorization will be equivalent to what you would find on YouTube. See below for average benchmarks
+
+![Benchmarks](img/benchmark.png)
+
+
+### Examples
+
+Below are some examples of vector based video:
+
+* [Khan Academy Example](https://api.dotlearn.io/embed/demo/khan-academy-style)
+* [Powerpoint Slide Example](https://api.dotlearn.io/embed/demo/powerpoint-style)
+* [College Lecture Example](https://api.dotlearn.io/embed/demo/coursera)
 
 
 ## Getting started
 
+We compress videos. If you have your own website or app, or if you currently distribute videos offline to your users, we can compress your videos.
 
-### Get your server token ###
+To get started, send us your videos via an a Google Drive, Dropbox or YouTube link [here](https://dotlearn.io/start/)
 
-First and foremost, you will need a **server token**, which you can get by contacting [our technical team](mailto:sam@dotlearn.org). You should store this server token in a safe place on your server (as an environmental variable) or in a secret file which is _not stored in version control systems_. The **server token** will be used to for API calls to dot Learn's servers.
+If you have any issues, you can contact our team at <team@dotlearn.io> 
 
+### Putting videos on your app or website ###
 
-### Browse our library of content ###
-
-We have [2000+ videos](https://docs.google.com/spreadsheets/d/1Ryfv6iYeB0e6_qdVO0xx2KAEFyJtwBWZYWN8hayl9eQ/edit#gid=1018104657) for Math, Physics and Chemistry, and are releasing more every week. See the [Licensing page](licensing) for more details on how to retrieve our full curriculum programatically.
-
-
-### Import the .lrn player ###
-
-In order to let users watch .lrn videos in your app/website, you will need to import the .lrn player library into your app / website. Specific details for each platform are show in the [api section](playing) .
+In order to let users watch .vvid videos in your app or website, you will need to import the vvid player library into your app or website. Specific details for each platform are show in the [Playing videos](playing) section.
 
 
