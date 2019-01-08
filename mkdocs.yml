@@ -1,4 +1,4 @@
-site_name: dot Learn Integration guide
+site_name: Vectorly API docs
 theme_dir: cinder
 pages:
 - Home: index.md
@@ -7,4 +7,4 @@ pages:
 - Technology: technology.md
 
 
-copyright: Copyright &copy; 2018 dot Learn
+copyright: Copyright &copy; 2019 Vectorly

@@ -4,12 +4,12 @@
 
 ## Overview
 
-dot Learn is a video compression startup from MIT, whose vectorization technology makes videos up to 50x smaller without quality loss. Our technology is primarily effective for animations and video-learning, and through our API video compression service, we work with video-content providers make their videos HD and data-light, reducing server costs and improving user experience.
+Vectorly is a video compression startup from MIT, whose vectorization technology makes videos up to 50x smaller without quality loss. Our technology is primarily effective for animations and video-learning, and through our API video compression service, we work with video-content providers make their videos HD and data-light, reducing server costs and improving user experience.
 
 
 ## Compression Technology
 
-dot Learn achieves "compression" through it's "vector"format, which is much more efficient than mp4 for certain kinds of video. By converting from mp4 to our vector format, 
+Vectorly achieves "compression" through it's "vector"format, which is much more efficient than mp4 for certain kinds of video. By converting from mp4 to our vector format, 
 vectorization outperforms Google's best compression algorithms by up to 50x -making videos load much faster, using much less data, than is possible with YouTube.
 
 
@@ -26,7 +26,7 @@ The content in the video determines how much smaller a ".vvid" video will be, co
 
 ### Video Vectorization
 
-dot Learn offers a video "compression service", whereby through an [upload form](https://dotlearn.io/start/) (and soon, a web platform or API), we will compress videos for free.
+Vectorly offers a video "compression service", whereby through an [upload form](https://vectorly.io/start/) (and soon, a web platform or API), we will compress videos for free.
 
 By "compression", we specifically mean "conversion" - and our service entails converting videos to our data-light vector based format. 
 
@@ -82,18 +82,18 @@ For full real-life videos, vectorization will be equivalent to what you would fi
 
 Below are some examples of vector based video:
 
-* [Khan Academy Example](https://api.dotlearn.io/embed/demo/khan-academy-style)
-* [Powerpoint Slide Example](https://api.dotlearn.io/embed/demo/powerpoint-style)
-* [College Lecture Example](https://api.dotlearn.io/embed/demo/coursera)
+* [Khan Academy Example](https://api.vectorly.io/embed/demo/khan-academy-style)
+* [Powerpoint Slide Example](https://api.vectorly.io/embed/demo/powerpoint-style)
+* [College Lecture Example](https://api.vectorly.io/embed/demo/coursera)
 
 
 ## Getting started
 
 We compress videos. If you have your own website or app, or if you currently distribute videos offline to your users, we can compress your videos.
 
-To get started, send us your videos via an a Google Drive, Dropbox or YouTube link [here](https://dotlearn.io/start/)
+To get started, send us your videos via an a Google Drive, Dropbox or YouTube link [here](https://vectorly.io/start/)
 
-If you have any issues, you can contact our team at <team@dotlearn.io> 
+If you have any issues, you can contact our team at <team@vectorly.io> 
 
 ### Putting videos on your app or website ###
 

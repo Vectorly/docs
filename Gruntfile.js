@@ -22,8 +22,8 @@ module.exports = function (grunt) {
             },
             docs: {
                 options: {
-                    region: 'eu-west-1',
-                    bucket: 'docs.dotlearn.io',
+                    region: 'us-west-2',
+                    bucket: 'vectorly.io',
                     differential: true // Only uploads the files that have changed
                 },
                 files: [
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'site',
                         src: ['**', '!**/*~'],
-                        dest: ''
+                        dest: 'docs'
                     }
                 ]
             }

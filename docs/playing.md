@@ -106,7 +106,7 @@ Coming soon. If you need a desktop player, let us know at <team@dotlearn.io> so 
 Coming soon
 
 
-## Android (Deprecated)
+## Android vectorly
 
 Please use the javascript version of the library. We are working on a new wrapper for Android and iOS.
 

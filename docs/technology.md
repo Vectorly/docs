@@ -4,7 +4,7 @@
 
 ## Vectorization Technology
 
-dot Learn is able to achieve high levels of "compression" because of it's vector-grahics video codec, which is much more data-efficient for some kinds of video than existing formats such as mp4.
+Vectorly is able to achieve high levels of "compression" because of it's vector-grahics video codec, which is much more data-efficient for some kinds of video than existing formats such as mp4.
 
 
 ### Vector based video
@@ -49,14 +49,14 @@ Below are a 2 exmaple of videos, with MP4, VVID comparisons. If you see the file
 VVID/LRN files are just zip files, and you can unzip to explore the contents.
 
 #### Khan Academy Style
-* [MP4 file](https://www.dotlearn.io/demo/1/khan.mp4)
+* [MP4 file](https://www.vectorly.io/demo/1/khan.mp4)
 * [VVID file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/khan-academy-style.lrn)
-* [Watch the VVID file](https://api.dotlearn.io/embed/demo/khan-academy-style)
+* [Watch the VVID file](https://api.vectorly.io/embed/demo/khan-academy-style)
 
 #### College lecture style
 * [MP4 file](https://drive.google.com/file/d/19rpC2lzKPhqgQCr-XArOnl5FUGv0NGZQ/view?usp=sharing)
 * [VVID file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/coursera.lrn)
-* [Watch the VVID file](https://api.dotlearn.io/embed/demo/coursera)
+* [Watch the VVID file](https://api.vectorly.io/embed/demo/coursera)
 
 
 ### VVID Player

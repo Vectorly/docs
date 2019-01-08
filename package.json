@@ -1,7 +1,7 @@
 {
   "name": "docs",
   "version": "0.0.1",
-  "description": "Documentation generator for dot Learn",
+  "description": "Documentation generator for Vectorly",
   "main": "Gruntfile.js",
   "directories": {
     "doc": "docs"

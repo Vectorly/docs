@@ -1,4 +1,4 @@
-# dot Learn Documentation Builder
+# Vectorly Documentation Builder
 
 
 **Set up**
