@@ -42,21 +42,26 @@ The file standard is largely based off of SVG, but importantly deals heavily wit
 The file standard is really in a prototype stage right now, and will undergo massive overhauls as we bring our vectorization service to product. You can find the preliminary prototype draft specifications [here](https://docs.google.com/document/d/1z4cqAmHZnFFYAt9elYkwj1z4_dywjA78BzOmQ_0liPc/edit?usp=sharing)
 
 
-### Example VVID videos
+### What vector-graphics videos look like
 
-Below are a 2 exmaple of videos, with MP4, VVID comparisons. If you see the filetype ".lrn", it is the same as ".vvid" - we are transitioning between naming conventions.
+Below is an example of some vector graphics videos, with MP4 and vector graphics files for comparison
 
-VVID/LRN files are just zip files, and you can unzip to explore the contents.
+Vector videos are just zip files, with text files inside
 
 #### Khan Academy Style
 * [MP4 file](https://www.vectorly.io/demo/1/khan.mp4)
-* [VVID file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/khan-academy-style.lrn)
-* [Watch the VVID file](https://api.vectorly.io/embed/demo/khan-academy-style)
+* [Vector file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/khan-academy-style.lrn)
+* [Watch the vector file](https://api.vectorly.io/embed/alpha/khan-academy-style)
 
-#### College lecture style
-* [MP4 file](https://drive.google.com/file/d/19rpC2lzKPhqgQCr-XArOnl5FUGv0NGZQ/view?usp=sharing)
-* [VVID file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/coursera.lrn)
-* [Watch the VVID file](https://api.vectorly.io/embed/demo/coursera)
+#### Coding lecture Style
+* [Vector file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/coding-demo.lrn)
+* [Watch the vector file](https://api.vectorly.io/embed/alpha/coding-demo)
+
+#### Animation
+* [MP4 file](https://www.vectorly.io/demo/5/animation-demo.mp4)
+* [Vector file](https://www.vectorly.io/demo/5/archive.zip)
+* [Watch the vector file](https://www.vectorly.io/demo/5/)
+
 
 
 ### VVID Player
@@ -71,7 +76,7 @@ We are working on native Android and iOS libraries, as well as desktop players f
 
 ### Vectorization
 
-Our vectorization algorithms take MP4 videos, and convert them to our vector-based ".vvid" format. While we are in beta, you can leverage our vectorization technology by sending us our videos here.
+Our vectorization algorithms take MP4 videos, and convert them to our vector format. You can get started vectorizing videos [here](https://dashboard.vectorly.io/signup)
 
 
 

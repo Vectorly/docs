@@ -26,7 +26,7 @@ The content in the video determines how much smaller a ".vvid" video will be, co
 
 ### Video Vectorization
 
-Vectorly offers a video "compression service", whereby through an [upload form](https://vectorly.io/start/) (and soon, a web platform or API), we will compress videos for free.
+Vectorly offers a video "compression service", whereby through our [web platform](https://dashboard.vectorly.io/signup/) (and soon our API), we will compress videos.
 
 By "compression", we specifically mean "conversion" - and our service entails converting videos to our data-light vector based format. 
 
@@ -45,7 +45,7 @@ This has several implications for our service:
 YouTube, Vimeo and other video streaming platforms do not support ".vvid" videos yet.
 
 
-If these websites are critical to your strategy, we suggest continuing to upload mp4 versions to these websites. 
+If these websites are critical to your strategy, and video file size is not a concern for your end users, we suggest continuing to upload mp4 versions to these websites. 
 
 
 So, for example: 
@@ -82,16 +82,16 @@ For full real-life videos, vectorization will be equivalent to what you would fi
 
 Below are some examples of vector based video:
 
-* [Khan Academy Example](https://api.vectorly.io/embed/demo/khan-academy-style)
-* [Powerpoint Slide Example](https://api.vectorly.io/embed/demo/powerpoint-style)
-* [College Lecture Example](https://api.vectorly.io/embed/demo/coursera)
+* [Khan Academy Example](https://api.vectorly.io/embed/alpha/khan-academy-style)
+* [Powerpoint Slide Example](https://api.vectorly.io/embed/alpha/powerpoint-style)
+* [College Lecture Example](https://api.vectorly.io/embed/alpha/coursera)
 
 
 ## Getting started
 
 We compress videos. If you have your own website or app, or if you currently distribute videos offline to your users, we can compress your videos.
 
-To get started, send us your videos via an a Google Drive, Dropbox or YouTube link [here](https://vectorly.io/start/)
+To get started, sign up [here](https://dashboard.vectorly.io/signup)
 
 If you have any issues, you can contact our team at <team@vectorly.io> 
 
