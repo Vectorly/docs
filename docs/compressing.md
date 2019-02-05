@@ -7,7 +7,7 @@ You can compress videos via our API, or through our dashboard interface. To get 
 
 Once your videos are compressed, you will be able to access them via the [dashboard](https://dashboard.vectorly.io). (We will create an account for you, to login to the dashboard and access your videos)
 
-![Dashboard](img/platform-example.png)
+![Dashboard](img/embed.png)
 
 
 From the dashboard, you will be able to

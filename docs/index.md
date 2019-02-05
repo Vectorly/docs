@@ -56,7 +56,9 @@ Let's say you have a 100MB video called "MyVideo.mp4"
 * You can upload "MyVideo.mp4" to YouTube
 
 * You can convert "MyVideo.mp4" to "MyVideo.vvid", which is 10MB, and put it on your website
-
+    <iframe src="https://api.vectorly.io/embed/demo/9716efb8-f4a8-475b-a28b-4d7fa70b08bb"  
+    width="800" height="515" 
+    frameborder="0" allowfullscreen  />
 * You share the 100MB "MyVideo.mp4" video on YouTube to your YouTube users
 
 * You share the 10MB "MyVideo.vvid" with users on your website
