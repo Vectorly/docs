@@ -51,16 +51,16 @@ Vector videos are just zip files, with text files inside
 #### Khan Academy Style
 * [MP4 file](https://www.vectorly.io/demo/1/khan.mp4)
 * [Vector file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/khan-academy-style.lrn)
-* [Watch the vector file](https://api.dotlearn.io/embed/demo/khan-academy-style)
+* [Watch the vector file](https://api.dotlearn.io/embed/alpha/khan-academy-style)
 
 #### Coding lecture Style
 * [Vector file](https://s3-us-west-2.amazonaws.com/vv-lrn-dist-public/coding-demo.lrn)
-* [Watch the vector file](https://api.dotlearn.io/embed/demo/coding-demo)
+* [Watch the vector file](https://api.dotlearn.io/embed/alpha/coding-demo)
 
 #### Animation
 * [MP4 file](https://www.vectorly.io/demo/5/animation-demo.mp4)
 * [Vector file](https://www.vectorly.io/demo/5/archive.zip)
-* [Watch the vector file](https://www.vectorly.io/demo/5/)
+* [Watch the vector file](https://vectorly.io/demo/5/)
 
 
 

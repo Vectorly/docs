@@ -82,9 +82,9 @@ For full real-life videos, vectorization will be equivalent to what you would fi
 
 Below are some examples of vector based video:
 
-* [Khan Academy Example](https://api.vectorly.io/embed/alpha/khan-academy-style)
-* [Powerpoint Slide Example](https://api.vectorly.io/embed/alpha/powerpoint-style)
-* [College Lecture Example](https://api.vectorly.io/embed/alpha/coursera)
+* [Khan Academy Example](https://api.dotlearn.io/embed/alpha/khan-academy-style)
+* [Powerpoint Slide Example](https://api.dotlearn.io/embed/alpha/powerpoint-style)
+* [College Lecture Example](https://api.dotlearn.io/embed/alpha/coursera)
 
 
 ## Getting started
