@@ -4,7 +4,7 @@
 
 ## Vectorization Technology
 
-Vectorly is able to achieve high levels of "compression" because of it's vector-grahics video codec, which is much more data-efficient for some kinds of video than existing formats such as mp4.
+Vectorly is able to achieve high levels of "compression" because of it's vector-grahics video codec, which is much more data-efficient for some kinds of video than existing video codecs like h264
 
 
 ### Vector based video
@@ -20,7 +20,6 @@ In contrast, we use a concept called "vector-graphics" to render video. Instead 
 
 
 Using these mathematical equations, we can re-draw any arbitrary shape on the screen - from the letter "T" to Bart Simpson's head. Furthermore, by adding information such as color, position on the screen, and how they move or change shape over time, you can create whole videos - including entire episodes of the Simpsons, with just sequences of mathematical equations.
-
 
 
 
@@ -76,7 +75,7 @@ We are working on native Android and iOS libraries, as well as desktop players f
 
 ### Vectorization
 
-Our vectorization algorithms take MP4 videos, and convert them to our vector format. You can get started vectorizing videos [here](https://dashboard.vectorly.io/signup)
+Our vectorization algorithms take in standard video formats (mov, avi, mp4), and convert them using our encoding technology to a .vvid format. You can get started vectorizing videos [here](https://dashboard.vectorly.io/signup)
 
 
 
