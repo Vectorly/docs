@@ -1,4 +1,4 @@
-site_name: Vectorly API docs
+site_name: Vectorly docs
 theme_dir: cinder
 pages:
 - Home: index.md
