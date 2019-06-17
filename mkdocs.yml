@@ -2,7 +2,7 @@ site_name: Vectorly docs
 theme_dir: cinder
 pages:
 - Home: index.md
-- Compressing Videos: compressing.md
+- Uploading Videos: uploading.md
 - Playing Videos: playing.md
 - Technology: technology.md
 

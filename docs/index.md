@@ -4,7 +4,7 @@
 
 ## Getting started
 
-Vectorly enables fast delivery of online video over slow connections through it's patented compression technology, which can reduce bitrates and bandwidth-useage by up to 90% without reducing video quality. To get started delivering fast & data-light video, you can sign up for a a beta account [here](https://dashboard.vectorly.io/signup), or learn more  [here](compressing).
+Vectorly enables fast delivery of online video over slow connections through it's patented compression technology, which can reduce bitrates and bandwidth-useage by up to 90% without reducing video quality. To get started delivering fast & data-light video, you can sign up for a a beta account [here](https://dashboard.vectorly.io/signup), or learn more  [here](uploading).
 
 
 ## Compression Technology
