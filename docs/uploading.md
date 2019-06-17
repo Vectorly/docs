@@ -1,20 +1,65 @@
-# Compressing videos
+# Uploading Videos
 
-You can compress videos via our API, or through our dashboard interface. To get started, create an account [here](https://vectorly.io/signup)
+You can compress videos through our API, or through a dashboard web interface. 
+
+Using either interface, you can:
+
+* Upload videos from your computer, or import from a 3rd party service such as Google Drive, Dropbox or via URL (e.g for AWS S3)
+* View all videos, and their current status (e.g. processing, ready)
+* Get the embed code to playback video on your app or website
+* Get the links to download your video
+
+First, you will first need to create an account by signing up [here](https://vectorly.io/signup).
 
 
-### Dashboard
+## Dashboard
 
-Once your videos are compressed, you will be able to access them via the [dashboard](https://dashboard.vectorly.io). (We will create an account for you, to login to the dashboard and access your videos)
+The easiest way to get started uploading and compressing videos is through our [dashboard](https://dashboard.vectorly.io). Once you sign up and login, you can begin uploading videos to compress.
+
+### Uploading
+
+Once you login to the dashboard, you can access the upload by clicking the "upload" tab in the top menu. This will bring you to the upload page (below)
+
+![Dashboard](img/platform-example-2.png)
+
+Through the upload page, you can upload videos to our server from your computer, or via a 3rd party service (e.g. Dropbox or Google Drive) or via URL (e.g. AWS S3).
+
+
+![Dashboard](img/platform-example-3.png)
+
+
+Keep in mind: If you are importing from Google Drive, Dropbox or URL, **nothing is being uploaded or downloaded from your computer**. You can safely close the window, and videos will be imported in the background, and you can monitor ongoing upload process from the main dashboard library.
+
+### View video library
+
+You can view your library of videos by clicking on the "home" tab in the top menu. Here, you can see all your videos, their current status, as well as the file size reduction when videos are fully compressed. 
+
+![Dashboard](img/platform-example.png)
+
+Additionally, the library page includes basic controls for
+
+* Video privacy
+* Video downloading
+* Previewing the video
+* Obtaing the code for embedding videos
+
+
+### Download
+
+(In beta): You can click the download button for each video to download a compressed mp4.
+
+### Embed
+
+The dashboard also provides code for embedding videos into your app / website through the iframe. 
 
 ![Dashboard](img/embed.png)
 
+You can see the embed code by clicking on the "code" icon next to each video. You can copy the embed code just by clicking on the pop-up with the embed code.
 
-From the dashboard, you will be able to
+See [playing videos](playing.md) for more details.
 
-* Preview each video
-* Download your videos
-* Get code to embed the videos in your website
+
+
 
 
 ## API 
@@ -22,55 +67,98 @@ From the dashboard, you will be able to
 
 ### Authentication
 
-When you first sign up for Vectorly, you will be given an _account ID_ and a _secret token_, which are available in the settings tab on the Dashboard.
+To use the API, you'll need your Vectorly login email and password. With these, you can request an authentication token, which you can use to make other API calls. You can request an authentication token by making a JSON post request to "https://bakcend.vectorly.io/auth/login", using the same login credentials you use to log into the dashboard. Below is a CURL example
 
-You will need to provide these credentials in each request, using basic HTTP authentication, as shown below
+    curl --header "Content-Type: application/json" \
+      --request POST \
+      --data '{"username":"myloginemail@company.com","password":"mypassword123"}' \
+      https://bakcend.vectorly.io/auth/login
 
-    curl -u '[account ID]:[secret token]' https://api.vectorly.io/v1/endpoint 
-
-
-###  Compressing a video
-
-To compress a video, send a POST request to `https://api.vectorly.io/v1/upload ` with the `video` parameter and the optional `callback` parameter
-
-    curl -X POST -F 'video=@local_video_file' -F 'callback=https://my.domain.com/endpoint' \ 
-    -u '[account ID]:[secret token]'  https://api.vectorly.io/v1/status
-    
-    
-You will get back a JSON response as shows: 
+You will get back a JSON object, with a token field
 
     {
-      video_id: "12312",
-      status: "processing" 
+        "token":"eyJ23fjs2...",
+        "username":"myloginemail@company.com",
+        "bio":{
+            "first_name":"Jane",
+            "last_name":"Doe"
+        }
     }
+
+You will need this token to make subsequent API call requests. The token has a lifetime of 30 days.
+
+###  Uploading
+
+#### What You Will Need
+
+To upload videos to Vectorly programmatically,  you will need to use a tus client. Tus is an open source protocol that Vectorly uses to upload large files. This tutorial will use the tus python client, available through pip3, python 3’s package manager.
+
+    pip3 install -U tus.py
     
     
-If a callback is provided, the our server will send a POST request to the specified callback, providing the following as arguments:
+#### Uploading your video
 
-* `video_id`: Unique id of the video, corresponding to the id of the video sent in the original response from `https://api.vectorly.io/upload`
+Once tus is installed, you can upload videos using the following parameters:
 
-* `status`: Status of the video (should be `complete` or `error`)
+    tus-upload --metadata token <token>  <file.mp4> https://tus.vectorly.io/files/
+    
+    
+In the beginning of the response from tus, you’ll see the endpoint for getting information about your newly uploaded video.
 
-* `url`: URL to download the video
-
-
-
-
-### Monotiring
-
-You can also monitor the  current progress of the video by sending a POST request to `https://api.vectorly.io/v1/status ` with the `video_id` parameter
-
-    curl -X POST -F 'video_id=12312'  \ 
-    -u '[account ID]:[secret token]'  https://api.vectorly.io/v1/status
+    INFO Creating file endpoint
+    INFO Created: https://tus.vectorly.io/files/[upload-id]
+        
+Once the video is done uploading, you can see it in the list of videos (see [monitoring](#monitoring)). The name of the video will be equivalent to the original name of the video uploaded. To specify a custom name for the video, you can add a name parameter to the upload call:
 
 
-You will get back a JSON response as shows: 
+    tus-upload --metadata token <token>  --metadata name <name>  <file.mp4> https://tus.vectorly.io/files/
 
-    {
-      video_id: "12312",
-      status: "processing" ,
-      url: "https://api.vectorly.io/v1/file/[video_id]"
-    }
+You can correlate uploaded videos with the output of "https://backend.vectorly.io/video/list" either by referencing the name of the video, or the upload_id
+
+### Monitoring
+
+You can also get a full list of videos, and their current status by making a JSON post call to "https://backend.vectorly.io/video/list". See below for a curl sample:
+
+    curl --header "Content-Type: application/json" \
+      --request POST \
+      --data '{"token":"eyJ0e...."}' \
+      https://backend.vectorly.io/video/list
+    
+The output will be a JSON array of all your videos, as well as their current status 
+
+
+    [
+       {
+          "id":"a271e339-61b2-4f78-9905-a2f881698655",
+          "name":"My video",
+          "status":"ready",
+          "original":"a271e339-61b2-4f78-9905-a2f881698655.mp4",
+          "type":"video/mp4",
+          "private":true,
+          "size":1670935,
+          "upload_id": "ey234f....",
+          "default_key":"mp4_crf",
+          "original_size":4174853,
+          "token":"...",
+          "permission":"owner"
+       }
+    ]   
+    
+When videos have the status "ready", you can begin playing the video, or you can download it
+
+
+### Download
+
+Once you have the video ids and tokens, you can download the following videos using the download API
+
+    https://api.vectorly.io/file/v1/video/[video-id]/filename/video%2Fvideo.mp4/token/[video-token]
+    
+The token is only necessary if your video is private. To download the video using curl, you can use
+
+    curl -O -J -L https://api.vectorly.io/file/v1/video/[video-id]/filename/video%2Fvideo.mp4/token/[video-token] 
+
+
+
     
 <script>
     window.intercomSettings = {
