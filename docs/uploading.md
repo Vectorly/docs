@@ -96,13 +96,24 @@ To upload videos to Vectorly programmatically,  you will need to use a tus clien
     pip3 install -U tus.py
     
     
+You will also need an API key
+
+**Getting your API key ** 
+
+You can get your API key in the "Settings page", which you can view by clicking on the user icon in the top-right hand corner. 
+
+
+![APIkey](img/apikey.png) 
+
+    
+    
 #### Uploading your video
 
 Once tus is installed, you can upload videos using the following parameters:
 
-    tus-upload --metadata token <token>  <file.mp4> https://tus.vectorly.io/files/
+    tus-upload --metadata api_key <api-key>  <file.mp4> https://tus.vectorly.io/files/
     
-    
+   
 In the beginning of the response from tus, you’ll see the endpoint for getting information about your newly uploaded video.
 
     INFO Creating file endpoint
@@ -110,8 +121,7 @@ In the beginning of the response from tus, you’ll see the endpoint for getting
         
 Once the video is done uploading, you can see it in the list of videos (see [monitoring](#monitoring)). The name of the video will be equivalent to the original name of the video uploaded. To specify a custom name for the video, you can add a name parameter to the upload call:
 
-
-    tus-upload --metadata token <token>  --metadata name <name>  <file.mp4> https://tus.vectorly.io/files/
+    tus-upload --metadata api_key <api-key>   --metadata name <name>  <file.mp4> https://tus.vectorly.io/files/
 
 You can correlate uploaded videos with the output of "https://backend.vectorly.io/video/list" either by referencing the name of the video, or the upload_id
 
