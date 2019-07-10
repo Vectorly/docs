@@ -67,12 +67,12 @@ See [playing videos](playing.md) for more details.
 
 ### Authentication
 
-To use the API, you'll need your Vectorly login email and password. With these, you can request an authentication token, which you can use to make other API calls. You can request an authentication token by making a JSON post request to "https://bakcend.vectorly.io/auth/login", using the same login credentials you use to log into the dashboard. Below is a CURL example
+To use the API, you'll need your Vectorly login email and password. With these, you can request an authentication token, which you can use to make other API calls. You can request an authentication token by making a JSON post request to "https://backend.vectorly.io/auth/login", using the same login credentials you use to log into the dashboard. Below is a CURL example
 
     curl --header "Content-Type: application/json" \
       --request POST \
       --data '{"username":"myloginemail@company.com","password":"mypassword123"}' \
-      https://bakcend.vectorly.io/auth/login
+      https://backend.vectorly.io/auth/login
 
 You will get back a JSON object, with a token field
 
