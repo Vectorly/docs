@@ -159,14 +159,10 @@ When videos have the status "ready", you can begin playing the video, or you can
 
 ### Download
 
-Once you have the video ids and tokens, you can download the following videos using the download API
+Once you have the video ids and your backend token, you can download the following videos using the download API
 
-    https://api.vectorly.io/file/v1/video/[video-id]/filename/video%2Fvideo.mp4/token/[video-token]
+    https://api.vectorly.io/file/v1/video/[video-id]/token/[video-token]/download
     
-The token is only necessary if your video is private. To download the video using curl, you can use
-
-    curl -O -J -L https://api.vectorly.io/file/v1/video/[video-id]/filename/video%2Fvideo.mp4/token/[video-token] 
-
 
 
     
