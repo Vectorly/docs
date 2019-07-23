@@ -114,64 +114,98 @@ Because each token is unique, time limited and generated at runtime, a user can'
 
 As an alternative to the iframe, you can use the javascript player directly
 
-    <script src="https://cdn.vectorly.io/vvplayer.js">
+    <script src="https://cdn.dotlearn.io/vv/0.5.1.4/vv.js">
+    
+#### Loading a vectorly video
 
+To load a video, just define a video tag
 
-#### Loading the video
-
-Once imported, you can access the library via the vvplayer namespace. The primary method is vvplayer.load, which returns a load promise,
-with the API as shown below.
-
-    var options = {autoplay: true};
-    vvplayer.load(accessToken, 'vidoeID', 'id-of-div-to-place-video', options).then(function(video){
-
-    }).onError(function(err){
-
-    }).onDownloadProgress(function(progress){
-
-    }).onMetaData(function(metaData){
-
-    });
-
-
+        <video src="s3://[video-id]"  type="video/lrn"  id="myVideo" >
+ 
+ Our library (vv.js) will automatically detect the video tag, and load the video
+ 
+  
 #### Video Controls
 
-The load promise returns video object, which provides methods for controlling video playback
+You can access the video controls via the video's "onload" event. 
 
-    vvplayer.load(accessToken, 'vidoeID', 'id-of-div-to-place-video, options).then(function(video){
+    <video src="s3://[video-id]"  type="video/lrn"  id="myVideo" onload="onLoadHandler">
+    
+    onLoadHandler = function(controls){
+    ....
+    
+    }
+
+or
+    
+    document.getElementById("myVideo").onload = function(controls) {
+    
+          //Video info
+          video.getTime();
+          video.meta; //Meta data
+        
+        
+          //Playback Controls
+          video.play();
+          video.seek(1000); //Seek to 1s
+          video.pause();
+        
+          // Event Listeners
+          video.onPlay(function(){
+        
+          });
+        
+          video.onPause(function(){
+        
+          });
+        
+          video.onSeek(function(newTime){
+        
+          });
+        
+        
+          video.onEnd(function(){
+        
+          });
+    
+    
+    }
+    
+    
+You can then access more detailed controls over the video playback
 
 
-      //Video info
-      video.getTime();
-      video.meta; //Meta data
-
-
-      //Playback Controls
-      video.play();
-      video.seek(1000); //Seek to 1s
-      video.pause();
-
-      // Event Listeners
-      video.onPlay(function(){
-
-      });
-
-      video.onPause(function(){
-
-      });
-
-      video.onSeek(function(newTime){
-
-      });
-
-
-      video.onEnd(function(){
-
-      });
-
-    });
-
-
+        document.getElementById("myVideo").onload = function(controls) {
+        
+              //Video info
+              controls.getTime();
+              controls.meta; //Meta data
+            
+            
+              //Playback Controls
+              controls.play();
+              controls.seek(1000); //Seek to 1s
+              controls.pause();
+            
+              // Event Listeners
+              controls.onPlay(function(){
+            
+              });
+            
+              controls.onPause(function(){
+            
+              });
+            
+              controls.onSeek(function(newTime){
+            
+              });
+            
+            
+              controls.onEnd(function(){
+            
+              });
+        
+        
 
 
 #Android
