@@ -180,6 +180,8 @@ The load promise returns video object, which provides methods for controlling vi
 
 #Android
 
+This is our proposed API, and our Android Library is not live yet 
+
 VectorlyPlayer is a simple View that you can plugin to your Android apps to quickly get vectorized video playback working.
 
 ## Install
