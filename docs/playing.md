@@ -15,7 +15,7 @@ The easiest way to deliver videos to your users is through our embed link. When 
 An example embed code would look like this
 
     <iframe src="https://api.vectorly.io/embed/demo/9716efb8-f4a8-475b-a28b-4d7fa70b08bb"  
-    width="800" height="515" 
+    width="800" height="450" 
     frameborder="0" allowfullscreen  />
 
 
@@ -24,11 +24,7 @@ Placing the embed link in your website will load the video, if your video is pub
 
 ** Sizing **
 
-By default, the video will try to scale to the size of the iframe, while maintaning a 16:9 aspect ratio for the video. If the the aspect ratio of the iframe is greater than 16:9 (wider), then the video will occupy the full height, but center horizontally, and if the aspect ratio is less than 16:9, it will occupy the full width and center vertically
-
-<img src="../img/iframe_example.png" alt="Drawing" style="height: 350px; display: block; margin: auto;"/>
-
-<img src="../img/iframe_example_2.png" alt="Drawing" style="height: 350px; display: block; margin: auto;"/>
+By default, the video will try to scale to the size of the iframe, while maintaning the aspect ratio of the video.
 
 ** Parameters **
 
@@ -103,7 +99,7 @@ You will need to point the iframe to a new url, using the following schema
 Your embed code would then look like this:
 
        <iframe src="https://api.vectorly.io/embed/v1/video/[video-id]/token/[token]"  
-        width="800" height="515" 
+        width="800" height="450" 
         frameborder="0" allowfullscreen  />
     
 If constructed properly, your video should load. 

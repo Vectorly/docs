@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'site',
                         src: ['**', '!**/*~'],
-                        dest: 'dev-docs'
+                        dest: 'docs'
                     }
                 ]
             }
