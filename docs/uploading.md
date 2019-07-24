@@ -28,14 +28,13 @@ Through the upload page, you can upload videos to our server from your computer,
 
 How to upload to videos from your computer
 
-<iframe src="http://vectorly.io.s3-website-us-west-2.amazonaws.com/embed-staging/#/video/267b714e-d3d9-4ec0-bc4f-27a838c9f38f"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
+<iframe src="https://api.vectorly.io/embed/demo/62c78624-08a8-4251-b8ae-fea63afd89ae"  width="800" height="515" frameborder="0" allowfullscreen  ></iframe>
 
 #### From Google Drive
 
 How to import videos from Google Drive
 
-<iframe src="http://vectorly.io.s3-website-us-west-2.amazonaws.com/embed-staging/#/video/3558f195-abb2-41f3-886b-c26da6057b21"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
-
+<iframe src="https://api.vectorly.io/embed/demo/4fe2e111-3c22-442c-9d9c-f97c22609ce0"  width="800" height="515" frameborder="0" allowfullscreen ></iframe>
 
 Keep in mind: If you are importing from Google Drive  **nothing is being uploaded or downloaded from your computer**. You can safely close the window, and videos will be imported in the background, and you can monitor ongoing upload process from the main dashboard library.
 
@@ -44,7 +43,7 @@ Keep in mind: If you are importing from Google Drive  **nothing is being uploade
 
 How to upload videos from Dropbox
 
-<iframe src="http://vectorly.io.s3-website-us-west-2.amazonaws.com/embed-staging/#/video/2ad22f45-f5c8-4b07-9809-8184d102f25b"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
+<iframe src="https://api.vectorly.io/embed/demo/80e4690d-14d0-4a31-8902-31b4694045d8"  width="800" height="515" frameborder="0" allowfullscreen  ></iframe>
 
 Keep in mind: If you are importing from Dropbox  **nothing is being uploaded or downloaded from your computer**. You can safely close the window, and videos will be imported in the background, and you can monitor ongoing upload process from the main dashboard library.
 
