@@ -12,6 +12,8 @@ Vectorly enables fast delivery of online video over slow connections through it'
 Vectorly's online video platform enables content creators to upload, compress, host and deliver videos quickly, using minimal bandwidth and buffering to their audiences. Leveraging our proprietary vector-encoding technology, industry-leading algorithms and intelligent CDN selections, videos are optimized to load faster and using less data than is possible with other video platforms such as Vimeo or YouTube. We do this by leveraging proprietary ([video compression technology](technology.md)) with other optimizations designed for smooth playback of video in low-bandwidth environments.
 
 
+
+
 ## Compression Technology
 
 Vectorly's patented [compression technology](technology.md) was developed by a team of computer vision engineers from MIT, who developed this codec while working on a previous startup. Vectorly's encoding technology uses computer vision to analyze and convert video to a vector-graphics based video format, reducing video bitrates by up to 98% while actually improving the video quality. Our client-side libraries leverage native vector-graphics rendering libraries to effeciently decode video. 

@@ -24,11 +24,31 @@ Once you login to the dashboard, you can access the upload by clicking the "uplo
 
 Through the upload page, you can upload videos to our server from your computer, or via a 3rd party service (e.g. Dropbox or Google Drive) or via URL (e.g. AWS S3).
 
+#### From Your Device
 
-![Dashboard](img/platform-example-3.png)
+How to upload to videos from your computer
+
+<iframe src="http://vectorly.io.s3-website-us-west-2.amazonaws.com/embed-staging/#/video/267b714e-d3d9-4ec0-bc4f-27a838c9f38f"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
+
+#### From Google Drive
+
+How to import videos from Google Drive
+
+<iframe src="http://vectorly.io.s3-website-us-west-2.amazonaws.com/embed-staging/#/video/3558f195-abb2-41f3-886b-c26da6057b21"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
 
 
-Keep in mind: If you are importing from Google Drive, Dropbox or URL, **nothing is being uploaded or downloaded from your computer**. You can safely close the window, and videos will be imported in the background, and you can monitor ongoing upload process from the main dashboard library.
+Keep in mind: If you are importing from Google Drive  **nothing is being uploaded or downloaded from your computer**. You can safely close the window, and videos will be imported in the background, and you can monitor ongoing upload process from the main dashboard library.
+
+
+#### From Dropbox
+
+How to upload videos from Dropbox
+
+<iframe src="http://vectorly.io.s3-website-us-west-2.amazonaws.com/embed-staging/#/video/2ad22f45-f5c8-4b07-9809-8184d102f25b"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
+
+Keep in mind: If you are importing from Dropbox  **nothing is being uploaded or downloaded from your computer**. You can safely close the window, and videos will be imported in the background, and you can monitor ongoing upload process from the main dashboard library.
+
+
 
 ### View video library
 
