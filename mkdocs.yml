@@ -3,7 +3,9 @@ theme_dir: cinder
 pages:
 - Home: index.md
 - Uploading Videos: uploading.md
+- API: api.md
 - Playing Videos: playing.md
+
 - Technology: technology.md
 
 

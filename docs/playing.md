@@ -214,7 +214,7 @@ This is our proposed API, and our Android Library is not live yet
 
 VectorlyPlayer is a simple View that you can plugin to your Android apps to quickly get vectorized video playback working.
 
-## Install
+### Install
 The Gradle dependency is available via jCenter. jCenter is the default Maven repository used by Android Studio.
 
 Add this in your (app) module's `build.gradle` file:
@@ -222,7 +222,7 @@ Add this in your (app) module's `build.gradle` file:
     implementation 'io.vectorly.player:1.0.0'
 ```
 
-## Usage
+### Usage
 
 #### Layouts
 The layout for your player Activity can be very simple. You only need a VectorlyPlayerView, all the controls and everything else are created by the player view itself.
@@ -418,27 +418,62 @@ vectorlyPlayer.debug(true)
 That's all. You could see all this in action in the sample project in the `app` module.
 
 
-# iOS
-Coming soon
+
+# Other services
 
 
-# Desktop
+Our videos can be played anywhere where you can use embed codes. We're created instructions specifically for several popular plaforms, including
 
-Coming soon. If you need a desktop player, let us know at <team@vectorly.io> so we can prioritize releasing it.
+* [Wordpress](#Wordpress)
+* [Moodle](#Moodle)
+* [Teachable](#Teachable)
+
+If you use another platform and need help integrating our videos, please reach out at [team@vectorly.io](mailto:team@vectorly.io)
 
 
-#Plugins
-We are currently developing plugins for Wordpress and Moodle. If you use another content management system such as
+### Wordpress
 
-* Squarespace
+It is extremely easy to use Vectorly's videos in Wordpress or Wordpress based systems (like LearnDash)
 
-* Wix
+You would need to install Vectorly's plugin for Wordpress (in beta). Once installed, you can put Vectorly videos in your posts, pages or lessons the same way you would put in YouTube or Vimeo videos.
 
-* Joomla
+Just copy the preview link for the video in Vectorly's Dashboard
 
-* etc...
+![Embed input block](img/preview-link.png)
 
-Please let our team know at <team@vectorly.io> 
+And paste the link into the "Embed" or "Video" block in wordpress
+
+![Embed input block](img/gutenberg-video-block-add-url.jpg)
+
+If you have the wordpress plugin installed properly, you will see the video appear
+
+![Embed input block](img/wordpress-2.png)
+
+
+You can see the  [Wordpress docs](https://gogutenberg.com/blocks/video/)  for more info on embedding video content into your Wordpress site.
+
+
+### Moodle
+You can easily put Vectorly videos into Moodle using the embed function
+
+![Moodle embed](https://docs.moodle.org/37/en/images_en/9/9c/AttoEmbedCode.png)
+
+You can find detailed instructions  on the [Moodle documentation page](https://docs.moodle.org/37/en/Video#Using_embed_code_to_display_external_videos).
+
+
+
+### Teachable
+
+You can easily put Vectorly videos into your teachable courses via the "Add Code" function in the Curriculum editor.
+
+<iframe src="https://api.vectorly.io/embed/demo/616cb525-8f3a-46f1-937c-04a340aa5ee5"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
+
+You can find detailed instructions  on the [Teachable support page](https://support.teachable.com/hc/en-us/articles/222637507-Embed-Forms-and-Other-Content-into-Lectures).
+
+
+
+
+
 
 
 
