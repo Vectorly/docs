@@ -433,24 +433,17 @@ If you use another platform and need help integrating our videos, please reach o
 
 ### Wordpress
 
-It is extremely easy to use Vectorly's videos in Wordpress or Wordpress based systems (like LearnDash)
+It is extremely easy to use Vectorly's videos in Wordpress or Wordpress based systems (like LearnDash).
 
-You would need to install Vectorly's plugin for Wordpress (in beta). Once installed, you can put Vectorly videos in your posts, pages or lessons the same way you would put in YouTube or Vimeo videos.
+You can install Vectorly's wordpress plugin [here](https://cdn-dotlearn-io.s3-eu-west-1.amazonaws.com/wordpress/vectorly.zip)
 
-Just copy the preview link for the video in Vectorly's Dashboard
+When the plugin is installed, you can then put Vectorly urls directly into the the embed block in wordpress
 
-![Embed input block](img/preview-link.png)
+![Embed Block](img/gutenberg-embed-block-add-url.png)
 
-And paste the link into the "Embed" or "Video" block in wordpress
+As soon as you paste a vectorly link into the embed block, your video should appear
 
-![Embed input block](img/gutenberg-video-block-add-url.jpg)
-
-If you have the wordpress plugin installed properly, you will see the video appear
-
-![Embed input block](img/wordpress-2.png)
-
-
-You can see the  [Wordpress docs](https://gogutenberg.com/blocks/video/)  for more info on embedding video content into your Wordpress site.
+![Embed Block](img/wordpress-2.png)
 
 
 ### Moodle
