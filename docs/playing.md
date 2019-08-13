@@ -120,7 +120,7 @@ As an alternative to the iframe, you can use the javascript player directly
 
 To load a video, just define a video tag
 
-        <video src="vectorly://[video-id]"  type="video/lrn"  id="myVideo" >
+    <video src="vectorly://[video-id]"  type="video/lrn"  id="myVideo" >
  
  Make sure you specify the type of the video as "video/lrn", and our library (vv.js) will automatically detect the video tag, and load the video
  
@@ -129,41 +129,45 @@ To load a video, just define a video tag
 
 You can get more fine-grain control of the video in Javascript using the VVideo constructor. Once the video is loaded, you can programatically access video playback controls.
 
-    <video src="vectorly://[video-id]"  type="video/lrn"  id="myVideo" >
+    <video src="vectorly://[video-id]"  type="video/lrn"  id="myVideo" ></video>
     
-    var video = new VVideo("#myVideo");
+    <script> 
     
-    video.ready(function (){
-    
-          //Video info
-          video.getTime();
-          video.getDuration();
-       
-          //Playback Controls
-          video.play();
-          video.seek(1000); //Seek to 1s
-          video.pause();
+        var video = new VVideo("#myVideo");
         
-          // Event Listeners
-          video.onPlay(function(){
+        video.ready(function (){
         
-          });
+              //Video info
+              video.getTime();
+              video.getDuration();
+           
+              //Playback Controls
+              video.play();
+              video.seek(1000); //Seek to 1s
+              video.pause();
+            
+              // Event Listeners
+              video.onPlay(function(){
+            
+              });
+            
+              video.onPause(function(){
+            
+              });
+            
+              video.onSeek(function(newTime){
+            
+              });
+            
+            
+              video.onEnd(function(){
+            
+              });
         
-          video.onPause(function(){
         
-          });
+        });
         
-          video.onSeek(function(newTime){
-        
-          });
-        
-        
-          video.onEnd(function(){
-        
-          });
-    
-    
-    });
+    </script>
 
 
 #Android
