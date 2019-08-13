@@ -124,6 +124,13 @@ To load a video, just define a video tag
  
  Make sure you specify the type of the video as "video/lrn", and our library (vv.js) will automatically detect the video tag, and load the video
  
+ 
+ For private videos, you can add the "x-auth-token" property in the video tag
+ 
+     <video src="vectorly://[video-id]"  type="video/lrn"  id="myVideo"  x-auth-token="[auth-token]"  >
+  
+
+ 
   
 #### Video Controls
 
