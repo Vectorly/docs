@@ -170,6 +170,10 @@ You can get more fine-grain control of the video in Javascript using the VVideo 
               video.onEnd(function(){
             
               });
+              
+              var qualities = video.getQualities();
+              
+              video.setQuality(qualities[0]); // HD
         
         
         });
