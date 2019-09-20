@@ -90,48 +90,6 @@ You can set tags to a video, using the /videos/tags endpoint. You can define tag
                 }
             }'
 
-``` python
-""" Bubble sort """
-def bubble_sort(items):
-    for i in range(len(items)):
-        for j in range(len(items) - 1 - i):
-            if items[j] > items[j + 1]:
-                items[j], items[j + 1] = items[j + 1], items[j]
-```
-
-```Bash tab=
-#!/bin/bash
-STR="Hello World!"
-echo $STR
-```
-
-```C tab=
-#include 
-
-int main(void) {
-  printf("hello, world\n");
-}
-```
-
-```C++ tab=
-#include <iostream>
-
-int main() {
-  std::cout << "Hello, world!\n";
-  return 0;
-}
-```
-
-```C# tab=
-using System;
-
-class Program {
-  static void Main(string[] args) {
-    Console.WriteLine("Hello, world!");
-  }
-}
-```
-
 ## Privacy
 (coming soon)
 
