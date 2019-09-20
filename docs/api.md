@@ -6,9 +6,9 @@ The API lets you perform the following operations on your videos
 * [List](#listing-videos)
 * [Search](#searching-videos)
 * [Download](#listing-videos)
-* [Tags (coming soon)](#updating-videos)
-* [Privacy (coming soon)](#updating-videos)
-* [Archive (coming soon)](#updating-videos)
+* [Tags](#updating-videos)
+* [Privacy](#updating-videos)
+* [Archive](#updating-videos)
 
 While the examples here use curl, we have also developed libraries for individual languages. You can find docs for each library on github
 
@@ -73,7 +73,8 @@ If you want to download an individual video, you can use the /videos/download en
 
 ### Updating videos
 
-## Tags (coming soon)
+## Tags
+(coming soon)
 
 You can set tags to a video, using the /videos/tags endpoint. You can define tags to add and remove in the request payload before sending us your request.
 
@@ -89,7 +90,50 @@ You can set tags to a video, using the /videos/tags endpoint. You can define tag
                 }
             }'
 
-## Privacy (coming soon)
+``` python
+""" Bubble sort """
+def bubble_sort(items):
+    for i in range(len(items)):
+        for j in range(len(items) - 1 - i):
+            if items[j] > items[j + 1]:
+                items[j], items[j + 1] = items[j + 1], items[j]
+```
+
+```Bash tab=
+#!/bin/bash
+STR="Hello World!"
+echo $STR
+```
+
+```C tab=
+#include 
+
+int main(void) {
+  printf("hello, world\n");
+}
+```
+
+```C++ tab=
+#include <iostream>
+
+int main() {
+  std::cout << "Hello, world!\n";
+  return 0;
+}
+```
+
+```C# tab=
+using System;
+
+class Program {
+  static void Main(string[] args) {
+    Console.WriteLine("Hello, world!");
+  }
+}
+```
+
+## Privacy
+(coming soon)
 
 You can change the video privacy using the /videos/privacy endpoint. You can set the boolean in the request payload as true to make a video private and set it to false to make it public.
 
@@ -102,7 +146,8 @@ You can change the video privacy using the /videos/privacy endpoint. You can set
                 "is_private": <is_private-boolean (true/false)>
              }'
 
-## Archive (coming soon)
+## Archive
+(coming soon)
 
     curl -X POST 
          'https://api.vectorly.io/videos/archive'
