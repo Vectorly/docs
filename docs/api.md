@@ -95,10 +95,10 @@ You can set tags to a video, using the /videos/tags endpoint. You can define tag
 
 You can change the video privacy using the /videos/privacy endpoint. You can set the boolean in the request payload as true to make a video private and set it to false to make it public.
 
-    curl -X POST 
-         'https://api.vectorly.io/videos/privacy'
+    curl -X POST \
+         'https://api.vectorly.io/videos/privacy' \
          -H 'Content-Type: application/json' \
-         -H 'X-Api-Key: <api-key>'  
+         -H 'X-Api-Key: <api-key>' \  
          -d '{
                 "video_id":  <video-id>,
                 "is_private": <is_private-boolean (true/false)>
@@ -107,10 +107,10 @@ You can change the video privacy using the /videos/privacy endpoint. You can set
 ## Archive
 (coming soon)
 
-    curl -X POST 
-         'https://api.vectorly.io/videos/archive'
-         -H 'Content-Type: application/json' 
-         -H 'X-Api-Key: <api-key>'  
+    curl -X POST \
+         'https://api.vectorly.io/videos/archive' \
+         -H 'Content-Type: application/json' \
+         -H 'X-Api-Key: <api-key>' \
          -d '{
                 "video_id":  <video-id>
              }'
