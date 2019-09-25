@@ -15,8 +15,7 @@ While the examples here use curl, we have also developed libraries for individua
 * [NodeJS](https://github.com/Vectorly/node-client)
 * Python (coming soon)
 * PhP (coming soon)
-* Ruby (coming soon)
-* Java (coming soon)
+* [Java](https://github.com/Vectorly/vectorly-java-client)
 
 ## Authentication
 
@@ -58,6 +57,16 @@ You can list your videos using the /videos/list endpoint
     curl -H 'X-Api-Key: <api-key>' 'https://api.vectorly.io/videos/list'
 
 When videos have the status "ready", you can begin playing the video, or you can download it
+
+
+
+### Getting video by upload\_id
+
+You can get the video details using videos/get endpoint with an upload\_id
+
+    curl -H 'X-Api-Key: <api-key>' 'https://api.vectorly.io/videos/get/[upload-id]'
+
+
 
 ### Searching videos
 
