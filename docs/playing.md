@@ -203,29 +203,34 @@ The layout for your player Activity can be very simple. You only need a Vectorly
     <io.vectorly.player.VectorlyPlayer
         android:id="@+id/vectorly_player"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"/>
 ```
 
-<b>Note:</b> Ensure the `layout_height` is set to `wrap_content`. Based on the width of the view, the height is automatically calculated to maintain a 16:9 aspect ratio.
+<b>Note:</b> Make sure to set `android:configChanges="orientation"` in the main activity to enable the video to auto rotate properly
+
+```
+         <activity android:name="com.example.my.MainActivity"
+                    android:configChanges="orientation"
+                    >
+
+```
 
 #### Basic Code Setup
 
-Playing a video with the View is very simple. You just need to pass an `aceesToken`, `videoId`, `autoStart` flag and an `OnPreparedListener` that gets notified when the video is ready.
+Playing a video with the View is very simple. You just need to pass a `videoId` and an `accessToken` (see the [Security](#security) section for details) to the vectorlyPlayer.load function. `OnLoadedListener` notifies when the video is ready
 ```kotlin
     val accessToken = "accessToken"
     val videoId = "videoId"
 
-    val vectorlyPlayer = findViewById<VectorlyPlayerView>(R.id.vectorly_player)
-    vectorlyPlayer.prepare(accessToken, videoId, false, object: OnPreparedListener {
+     vectorlyPlayer.load(videoId, accessToken,true, object: OnLoadListener {
 
-        override fun onPrepared(vectorlyPlayer: VectorlyPlayerView) {
-            // The video has been prepared and is ready for playback. If you set autoStart
-            // to false, you can manually start playback here, else you don't have to do
-            // anything here
-            vectorlyPlayer.start()
-        }
+             override fun onLoaded(vectorlyPlayer: VectorlyPlayer) {
 
-    })
+                // Video Loaded
+
+             }
+
+     })
 ```
 
 You can control video playback programmatically using any of the functions below:
@@ -236,6 +241,7 @@ You can control video playback programmatically using any of the functions below
 ```
 
 Before calling any of the playback control functions above, ensure that a video has been prepared on the player view. If a video has not been prepared and no error listener was set, the control function will throw a `VectorlyPlayerNotPreparedException` exception. To set an error listener and prevent an exception from being thrown, use the code below:
+
 ```kotlin
     // Set a listener that gets called when an error occurred while working with the VectorlyPlayerView
     vectorlyPlayer.setOnErrorListener(object: OnErrorListener {
@@ -254,112 +260,72 @@ If the player view is no longer needed or the `Activity` is being destroyed, you
     vectorlyPlayer.release()
 ```
 
-To support the full screen functionality, you will need to set an `OnFullScreenToggledListener` that toggles between landscape and portrait orientation. We have provided a helper class called `FullScreenUtils` to help you toggle the phone orientation:
-```kotlin
-    // Sets a listener that gets called when the full screen button is clicked
-    vectorlyPlayer.setOnFullScreenToggledListener(object: OnFullScreenToggledListener{
-
-        override fun onFullScreenToggled(vectorlyPlayer: VectorlyPlayerView) {
-            // The full screen button was clicked, toggle the phone orientation
-            FullScreenUtils.toggleOrientation(activity)
-        }
-
-    })
-```
-
-#### Additional functionality
-
-If you want to show some information about the video, you can set an `OnMetadataLoadedListener` that gets called when the video metadata is ready (loaded):
-```kotlin
-    // Sets a listener when the video metadata is loaded
-    vectorlyPlayer.setOnMetadataLoadedListener(object: OnMetadataLoadedListener{
-
-        override fun onMetadataLoaded(vectorlyPlayer: VectorlyPlayerView, metadata: Metadata) {
-            // Do something with the video metadata
-        }
-
-    })
-```
-
-
-You can also get notified when a video playback completes by setting an `OnPlaybackCompletionListener` listener:
-```kotlin
-    // Set a listener that gets notified when the video playback completes
-    vectorlyPlayer.setOnCompletionListener(object: OnPlaybackCompletionListener {
-
-        override fun onPlaybackCompletion(vectorlyPlayer: VectorlyPlayerView) {
-            // Do something when the video completes
-        }
-
-    })
-```
 
 #### Offline Playback
 
 
-You can securely download and store videos for offline playback within the app using the VectorlyAssetManager class.
+You can securely download and store videos for offline playback. Videos are encrypted using the video access token and AES 256 encryption. First and foremost however, ensure that Storage permissions are enabled for the app.
 
 ```kotlin
-    VectorlyAssetManager.downloadEncrypted(accessToken,  videoId, object: VectorlyAssetManager.OnDownloadedListener {
-        
-          override fun onDownloadProgress(accessToken: String, videoId: String, progress: Float) {
-                    // Do something with the download progress. 
-            }
-    
-          override fun onDownloadSuccess(accessToken: String, videoId: String) {
-                    // Do something with the download progress. 
-            }
-            
-          override fun onDownloadError(accessToken: String,   videoId: String,  t: Throwable) {
-                     // An error occurred while downloading the video
-            }
-            
-    })
+
+
+         vectorlyPlayer.download(videoId,  accessToken, object: DownloadListener {
+
+              override fun onDownloadStarted(downloadTag: String) {
+
+                  println("Download started");
+
+              }
+
+              override fun onDownloadError(downloadTag: String, e: Exception) {
+                  println("Download error");
+                  println("excecption: " + e.stackTrace);
+              }
+
+              override fun onDownloadProgressUpdate(downloadTag: String, bytesTransferred: Long, totalBytes: Long) {
+
+                  println("Download progress");
+
+              }
+
+              override fun onDownloadCompleted(downloadTag: String) {
+                  println("Download copleted");
+              }
+
+
+          })
 
 
 ```
 
-To play back the downloaded video
+To play back the downloaded video, just load it as normal
 
 ```kotlin
+
     val videoId = "videoId"
+     val videoId = "accessToken"
 
-    val vectorlyPlayer = findViewById<VectorlyPlayerView>(R.id.vectorly_player)
-    vectorlyPlayer.prepareDownloaded(videoId, false, object: OnPreparedListener {
 
-        override fun onPrepared(vectorlyPlayer: VectorlyPlayerView) {
-            // The video has been prepared and is ready for playback. If you set autoStart
-            // to false, you can manually start playback here, else you don't have to do
-            // anything here
-            vectorlyPlayer.start()
-        }
-        
-        
-        override fun onPreparedError(vectorlyPlayer: VectorlyPlayerView, t: Throwable) {
-            // An issue ocurred while trying to load the video
+
+    vectorlyPlayer.load(videoId, accessToken,true, object: OnLoadListener {
+
+        override fun onLoaded(vectorlyPlayer: VectorlyPlayer) {
+
+           // Video Loaded
 
         }
 
     })
+
+
+
 ```
 
-You can also list downloaded video assets.
-
-
+You can also check if a video exists offline
 
 ```kotlin
-    VectorlyAssetManager.listDownloadedVideos(object: VectorlyAssetManager.ListCallback {
 
-                override fun onListLoaded(sections: List<Section>) {
-                    // The list of videos 
-                }
-
-                override fun onListFailed(t: Throwable) {
-                    // An error occurred while loading video list
-                }
-                
-    })
-
+     vectorlyPlayer.exists(videoId, accessToken)
 
 ```
 
@@ -368,25 +334,12 @@ And remove video assets
 
 
 ```kotlin
-    VectorlyAssetManager.removeDownloadedVideo(videoId, object: VectorlyAssetManager.ListCallback {
 
-                override fun onRemoved(videoId: String) {
-                    // Video has been removed
-                }
-
-                override fun onRemoveFailed(videoId: String t: Throwable) {
-                    // An error occurred while removing the Video
-                }
-    })
+    vectorlyPlayer.delete(videoId, accessToken)
 
 ```
 
 
-
-To debug the player and view the logs, you can enable debugging with just one line of code:
-```kotlin
-vectorlyPlayer.debug(true)
-```
 
 That's all. You could see all this in action in the sample project in the `app` module.
 
