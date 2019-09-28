@@ -13,8 +13,8 @@ The API lets you perform the following operations on your videos
 While the examples here use curl, we have also developed libraries for individual languages. You can find docs for each library on github
 
 * [NodeJS](https://github.com/Vectorly/node-client)
-* Python (coming soon)
-* PhP (coming soon)
+* [Python](https://github.com/Vectorly/python-client)
+* [PhP](https://github.com/Vectorly/PhP-Client)
 * [Java](https://github.com/Vectorly/vectorly-java-client)
 
 ## Authentication
