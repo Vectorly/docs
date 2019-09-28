@@ -59,7 +59,6 @@ You can list your videos using the /videos/list endpoint
 When videos have the status "ready", you can begin playing the video, or you can download it
 
 
-
 ### Getting video by upload\_id
 
 You can get the video details using videos/get endpoint with an upload\_id
