@@ -10,13 +10,14 @@ The API lets you perform the following operations on your videos
 * [Privacy](#updating-videos)
 * [Archive](#updating-videos)
 
+
+### Libraries
 While the examples here use curl, we have also developed libraries for individual languages. You can find docs for each library on github
 
 * [NodeJS](https://github.com/Vectorly/node-client)
-* Python (coming soon)
-* PhP (coming soon)
-* Ruby (coming soon)
-* Java (coming soon)
+* [Python](https://github.com/Vectorly/python-client)
+* [PhP](https://github.com/Vectorly/PhP-Client)
+* [Java](https://github.com/Vectorly/vectorly-java-client)
 
 ## Authentication
 
@@ -30,7 +31,7 @@ You can get your API key in the "Settings page", which you can view by clicking 
 
 ## Uploading
 
-To upload videos to Vectorly programmatically,  you will need to use a tus client. Tus is an open source protocol that Vectorly uses to upload large files. This tutorial will use the tus python client, available through pip3, python 3’s package manager.
+To upload videos to Vectorly programmatically, you can either use one of our [libraries](#libraries), or you can use a tus upload client. Tus is an open source protocol for uploading large files. Tus has [implementations](https://tus.io/implementations.html) for most major languages and frameworks. The following examples use the python tus client, but the same parameters can be used with any other tus client.
 
     pip3 install -U tus.py
 
@@ -47,7 +48,7 @@ Once the video is done uploading, you can see it in the list of videos (see [lib
 
     tus-upload --metadata api_key <api-key>   --metadata name <name>  <file.mp4> https://tus.vectorly.io/files/
 
-You can correlate uploaded videos with the output of "https://backend.vectorly.io/video/list" either by referencing the name of the video, or the upload_id
+When an upload is complete, the video will be assigned a unique video id. You can get a video's id from it's upload ID using the Get Videos up upload id call below
 
 ## Library
 
@@ -58,6 +59,15 @@ You can list your videos using the /videos/list endpoint
     curl -H 'X-Api-Key: <api-key>' 'https://api.vectorly.io/videos/list'
 
 When videos have the status "ready", you can begin playing the video, or you can download it
+
+
+### Getting video by upload\_id
+
+You can get the video details using videos/get endpoint with an upload\_id
+
+    curl -H 'X-Api-Key: <api-key>' 'https://api.vectorly.io/videos/get/[upload-id]'
+
+
 
 ### Searching videos
 
