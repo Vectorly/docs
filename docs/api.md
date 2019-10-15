@@ -84,7 +84,6 @@ If you want to download an individual video, you can use the /videos/download en
 ### Updating videos
 
 ## Tags
-(coming soon)
 
 You can set tags to a video, using the /videos/update endpoint. You can define tags to add and remove in the request payload before sending us your request.
 
@@ -106,7 +105,6 @@ You can get all the tags of your organisation, using the /videos/tags endpoint.
     curl -H 'X-Api-Key: <api-key>' 'https://api.vectorly.io/videos/tags'
 
 ## Privacy
-(coming soon)
 
 You can change the video privacy using the /videos/privacy endpoint. You can set the boolean in the request payload as true to make a video private and set it to false to make it public.
 
@@ -120,7 +118,6 @@ You can change the video privacy using the /videos/privacy endpoint. You can set
              }'
 
 ## Archive
-(coming soon)
 
     curl -X POST \
          'https://api.vectorly.io/videos/archive' \
