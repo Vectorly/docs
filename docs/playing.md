@@ -183,7 +183,7 @@ You can get more fine-grain control of the video in Javascript using the VVideo 
 
 #Android
 
-This is our proposed API, and our Android Library is not live yet 
+You can also playback Vectorly videos in Android through the Android SDK, which provides additional functionality such as offline storage, encryption and playback
 
 VectorlyPlayer is a simple View that you can plugin to your Android apps to quickly get vectorized video playback working.
 
