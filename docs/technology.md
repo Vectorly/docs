@@ -7,11 +7,11 @@
 
 Vectorly is developing a new kind of video compression technology, which uses computer vision and vector graphics to reduce bitrates for video content by an order of magnitude (or more) compared to HEVC, while **improving video** quality. 
 
-This would be primarily effective for "vector friendly" video content, which would include animations, screen-casts, many e-learning videos and potentially 3d gaming content. 
+This would be primarily effective for "vector friendly" video content, which would include animations, screen-casts, many e-learning videos and even 3d gaming content.
 
 By leveraging existing vector-graphics rendering capabilities on all devices, this codec wouldn't require end-users, OEMs or browsers to install special software to enable playback of these videos.
 
-__We are still in the early phases of developing this technology__. In late 2019, we plan to release several demos and a white paper outlining our technology and progress in more detail.
+__We are still in the early phases of developing this technology__. In early 2020, we plan to release several demos and a white paper outlining our technology and progress in more detail.
 
 
 
@@ -42,49 +42,46 @@ Using these mathematical equations, we can re-draw any arbitrary shape on the sc
 
 ### Why vectorization?
 
-The core insight behind this project was that for a certain kind of "vector-friendly" video content, storing the video using vector graphics would be much more efficient than using raster graphics (in some cases, up to 2 orders of magnitude more efficient).
-
+The core insight behind this project was that for a certain kind of "vector-friendly" video content (animations, game-streaming and e-learning), storing the video using vector graphics would be much more efficient than using raster graphics (in some cases, up to 2 orders of magnitude more efficient).
 
 This idea is not substantively different from the idea of Flash based animations about 20 years ago. Why do this now?
 
-**No need for a decoder**: Most devices now support SVG, HTML5 and/or some form of vector-graphics rendering. That lets you render vector-graphics content on any device without require end-users, OEMs or browsers to install special software to enable playback of vector-graphics content. App developers would only need to include an appropriate library or SDK in their website or app to enable playback within native or 3rd player video players.
+**No need for a decoder**: Most devices now support SVG, HTML5, WebGL, Canvas and/or some form of vector-graphics rendering. That lets you render vector-graphics content on any device without requiring end-users, OEMs or browsers to install special software to enable playback of vector-graphics content. App developers would only need to include an appropriate library or SDK in their website or app to enable playback within native or 3rd player video players.
 
-**Computer vision**: Our patented vectorization technology relies heavily on computer vision to convert raster-graphics videos to a vector format. Leveraging the advancement & commoditization of Computer Vision, and the ease of running batch computer-vision heavy tasks on the cloud, it's feasible to 'vectorize' large volumes of video at scale now, in a way that wasn't possible even 5 years ago.
+**Computer vision**: Our patented vectorization technology relies heavily on computer vision & Machine Learning to convert raster-graphics videos to a vector format. Leveraging the advancement & commoditization of Computer Vision & AI, and the ease of running batch computer-vision heavy tasks on the cloud, it's feasible to 'vectorize' large volumes of video at scale now, in a way that wasn't possible even 5 years ago.
 
  
-### Vector graphics video format
+### Vector graphics video streaming
  
-We propose developing a new, open-source file format for vector-graphics based videos ".vvid" - a "video" version of "SVG". We assert that this new file format should include the following properties:
+We propose adapting existing vector graphics formats (such as SVG, lotte.js or WebGL) for modern video streaming architectures [as proposed by the W3C](https://dev.w3.org/SVG/modules/streaming/). In such an architecture, vector data would be compiled to a vector format (e.g. SVG), which would then be chunked (by time intervals) and stored into an MPEG container. The result would be an mp4 file which uses a "vector" video codec, which could be played back in most browsers as shown below:
 
-Robust enough to capture most possible animated and visual elements that one could find in "vector friendly" videos, including animations, desktop screensharing and 3d graphics.
+    <script src="svg-video.js">
+    <video src="my-vector-video.mp4" type="video/svg+xml">
+    // This will work today on most browsers
 
-It should conform as well as possible to existing standards. Specifically, it should copy and build as much as possible from the SVG standard for vector-graphics components, while copying other relevant codec standards and container formats for aspects such as specifying tracks, etc…
+Where the "svg-video.js" javascript library enables playback of the video through the native video interface, as if SVG were a natively supported video codec.
 
-This format should be extensible, with an eye for future development version and development by 3rd parties
+#### DASH & HLS
 
-It should be playable within a video tag/player, the same way that SVG images are viewable within image tags/viewers.
+Additionally, in modern video streaming architectures (DASH, HLS etc..), this vector track could be considered one of multiple available video tracks.
 
-    <video src="myvideo.vvid" type="application/vvid+xml">
- 
-We are pragmatic, and don't want to create a standard [for the sake of creating a standard](https://xkcd.com/927/).  To that end, we've created libraries and SDKs that enable playback of our vector-graphics videos using standard / native interfaces like so
+![Vector-Based](img/Transcoding1.png)
 
-    <script src="vvid.js">
-    <video src="myvideo.vvid" type="application/vvid+xml"> 
-    // This will work on all major browsers today
+If the client supports vector-playback (via the javascript library), then the vector track will be available for playback.
 
-If our format proves popular, then we would seek to promote it as an alternative video format.
+    <script src="svg-video.js">
+    <video>
+        <source src="stream.m3u8" type="application/x-mpegURL">
+    </video>
+
+If the client doesn't support vector playback, then the client still has alternative regular video streams available for playback.
+
 
 ## Early proof of concept
 
 We proved the concept of vector-based video in 2018 by piloting an [e-learning app](https://app.mschool.xyz), with 2000 learning videos created in a vector format. This app has been used by over 100,000 students in West Africa, many on very slow connections and using low-end android devices.
 
-
-
-## Examples of what Vector Graphics video files look like
-
-Below is an example of some vector graphics videos, with MP4 and vector graphics files for comparison
-
-Vector videos are just zip files, with text files inside
+We have some further examples below:
 
 #### Khan Academy Style
 * [Watch the vector file](https://vectorly.io/demo/1/)
@@ -97,11 +94,14 @@ Vector videos are just zip files, with text files inside
 
 
 
+## Currently in Development
+
+We are still currently developing the technology, and plan to release demos and a whitepaper of the technology in early 2020, with proofs of concept for a variety of different video styles, including:
+
+* Cartoons
+* Anime
+* 3D animations
+* Video games
 
 
-<script>
-    window.intercomSettings = {
-        app_id: "g1cpn78z"
-    };
-</script>
-<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/g1cpn78z';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+
