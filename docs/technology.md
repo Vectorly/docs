@@ -77,17 +77,13 @@ If the client supports vector-playback (via the javascript library), then the ve
 If the client doesn't support vector playback, then the client still has alternative regular video streams available for playback.
 
 
-## Early proof of concept
+## Proof of concept
 
-We proved the concept of vector-based video in 2018 by piloting an [e-learning app](https://app.mschool.xyz), with 2000 learning videos created in a vector format. This app has been used by over 100,000 students in West Africa, many on very slow connections and using low-end android devices.
-
-We have some further examples below:
+Examples of vector based videos
 
 #### Khan Academy Style
 * [Watch the vector file](https://vectorly.io/demo/1/)
 
-#### Coding lecture Style
-* [Watch the vector file](https://api.dotlearn.io/embed/alpha/coding-demo)
 
 #### Animation
 * [Watch the vector file](https://vectorly.io/demo/5/)
