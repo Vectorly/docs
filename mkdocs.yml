@@ -2,11 +2,7 @@ site_name: Vectorly docs
 theme_dir: cinder
 pages:
 - Home: index.md
-- Uploading Videos: uploading.md
-- API: api.md
-- Playing Videos: playing.md
-
 - Technology: technology.md
 
 
-copyright: Copyright &copy; 2019 Vectorly
+copyright: Copyright &copy; 2020 Vectorly
