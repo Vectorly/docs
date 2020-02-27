@@ -11,8 +11,9 @@ This would be primarily effective for "vector friendly" video content, which wou
 
 By leveraging existing vector-graphics rendering capabilities on all devices, this codec wouldn't require end-users, OEMs or browsers to install special software to enable playback of these videos.
 
-__We are still in the early phases of developing this technology__. In late 2019, we plan to release several demos and a white paper outlining our technology and progress in more detail.
+__We are still in the early phases of developing this technology__.
 
+You can learn more about the technology in our [whitepaper](https://files.vectorly.io/whitepaper.pdf)
 
 
 ## The Core Idea
@@ -54,46 +55,25 @@ This idea is not substantively different from the idea of Flash based animations
  
 ### Vector graphics video format
  
-We propose developing a new, open-source file format for vector-graphics based videos ".vvid" - a "video" version of "SVG". We assert that this new file format should include the following properties:
+We are building a video-format based on the SVG standard, extending it with Javascript to enable video features such as a timeline and key-frames. We package the resulting video data within an MP4 container, which can be streamed and distributed using existing video infrastructure (such as HLS/DASH, and DRM systems).
 
-Robust enough to capture most possible animated and visual elements that one could find in "vector friendly" videos, including animations, desktop screensharing and 3d graphics.
+    <video src="vectorized.mp4" type="video/svg">
 
-It should conform as well as possible to existing standards. Specifically, it should copy and build as much as possible from the SVG standard for vector-graphics components, while copying other relevant codec standards and container formats for aspects such as specifying tracks, etc…
-
-This format should be extensible, with an eye for future development version and development by 3rd parties
-
-It should be playable within a video tag/player, the same way that SVG images are viewable within image tags/viewers.
-
-    <video src="myvideo.vvid" type="application/vvid+xml">
- 
 We are pragmatic, and don't want to create a standard [for the sake of creating a standard](https://xkcd.com/927/).  To that end, we've created libraries and SDKs that enable playback of our vector-graphics videos using standard / native interfaces like so
 
-    <script src="vvid.js">
-    <video src="myvideo.vvid" type="application/vvid+xml"> 
+    <script src="vectorly.js">
+
+    <video src="vectorized.mp4" type="video/svg">
     // This will work on all major browsers today
 
-If our format proves popular, then we would seek to promote it as an alternative video format.
 
-## Early proof of concept
+## Demos / Proof of concept
 
-We proved the concept of vector-based video in 2018 by piloting an [e-learning app](https://app.mschool.xyz), with 2000 learning videos created in a vector format. This app has been used by over 100,000 students in West Africa, many on very slow connections and using low-end android devices.
-
+Our first vectorized proof of concept / demo is a 20 second clip of the Simpsons located here.  The source video is a 1440p H264 encoded video located here.
 
 
-## Examples of what Vector Graphics video files look like
 
-Below is an example of some vector graphics videos, with MP4 and vector graphics files for comparison
 
-Vector videos are just zip files, with text files inside
-
-#### Khan Academy Style
-* [Watch the vector file](https://vectorly.io/demo/1/)
-
-#### Coding lecture Style
-* [Watch the vector file](https://api.dotlearn.io/embed/alpha/coding-demo)
-
-#### Animation
-* [Watch the vector file](https://vectorly.io/demo/5/)
 
 
 
