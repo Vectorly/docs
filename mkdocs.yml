@@ -1,5 +1,7 @@
 site_name: Vectorly docs
-theme_dir: cinder
+theme:
+  name: null
+  custom_dir: cinder
 pages:
 - Home: index.md
 - Technology: technology.md
