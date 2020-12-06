@@ -14,7 +14,7 @@ The easiest way to deliver videos to your users is through our embed link. When 
 
 An example embed code would look like this
 
-    <iframe src="https://api.vectorly.io/embed/demo/9716efb8-f4a8-475b-a28b-4d7fa70b08bb"
+    <iframe src="https://stream.vectorly.io/embed/video/9716efb8-f4a8-475b-a28b-4d7fa70b08bb"
     width="800" height="450"
     frameborder="0" allowfullscreen  />
 
@@ -31,7 +31,7 @@ By default, the video will try to scale to the size of the iframe, while maintan
 Additionally, there are several other parameters you can pass via the src url, to configure playback of the video, using the following format
 
         <iframe
-        src="https://api.vectorly.io/embed/demo/[video-id]/parameter1/[value1]/parameter2/[value2]" />
+        src="https://stream.vectorly.io/embed/video/[video-id]/parameter1/[value1]/parameter2/[value2]" />
 
 
 * **height** You can set the height in pixels of the video to be loaded. This will override the default sizing discussed above, and set the height of the video to the specified value. The video will be centered vertically within the iframe, regardless of whether the video is larger or smaller than the iframe
@@ -41,7 +41,7 @@ Additionally, there are several other parameters you can pass via the src url, t
 For example, you can load a video to autoplay, with height=900, width=1600, audio-quality=mp3_24 and autoplay=true with the following code:
 
         <iframe
-        src="https://api.vectorly.io/embed/token/[token]/video/[video-id]/width/1600/height/900/autoplay/true" />
+        src="https://stream.vectorly.io/embed/token/[token]/video/[video-id]/width/1600/height/900/autoplay/true" />
 
 
 Keep in mind that the /video parameter need to be specified first.  The order of the subsequent parameters doesn't matter.
@@ -94,11 +94,11 @@ You would then sign the token with your API key
 
 You will need to point the iframe to a new url, using the following schema
 
-    https://api.vectorly.io/embed/v1/video/[video-id]/token/[token]
+    https://stream.vectorly.io/embed/video/[video-id]/token/[token]
 
 Your embed code would then look like this:
 
-       <iframe src="https://api.vectorly.io/embed/v1/video/[video-id]/token/[token]"
+       <iframe src="https://stream.vectorly.io/embed/video/[video-id]/token/[token]"
         width="800" height="450"
         frameborder="0" allowfullscreen  />
 
@@ -432,7 +432,7 @@ You can find detailed instructions  on the [Moodle documentation page](https://d
 
 You can easily put Vectorly videos into your teachable courses via the "Add Code" function in the Curriculum editor.
 
-<iframe src="https://api.vectorly.io/embed/demo/616cb525-8f3a-46f1-937c-04a340aa5ee5"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
+<iframe src="https://stream.vectorly.io/embed/video/616cb525-8f3a-46f1-937c-04a340aa5ee5"  width="800" height="450" frameborder="0" allowfullscreen  ></iframe>
 
 You can find detailed instructions  on the [Teachable support page](https://support.teachable.com/hc/en-us/articles/222637507-Embed-Forms-and-Other-Content-into-Lectures).
 
