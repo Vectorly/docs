@@ -5,6 +5,10 @@ theme:
 nav:
 - Home: index.md
 - Technology: technology.md
+- API: api.md
+- Playing: playing.md
+- Uploading: uploading.md
+
 
 
 copyright: Copyright &copy; 2020 Vectorly
