@@ -1,106 +1,73 @@
+## AI Video Compression
 
-<img src="../img/vector-graphics.png" alt="Drawing" style="height: 350px; display: block; margin: auto;"/>
+Vectorly's AI compression technology is based on a concept called [super-resolution](https://en.wikipedia.org/wiki/Super-resolution_imaging), which uses AI to upscale, de-noise and enhance images.
 
-
-# Video Vectorization
-
-
-Vectorly is developing a new kind of video compression technology, which uses computer vision and vector graphics to reduce bitrates for video content by an order of magnitude (or more) compared to HEVC, while **improving video** quality. 
-
-This would be primarily effective for "vector friendly" video content, which would include animations, screen-casts, many e-learning videos and potentially 3d gaming content. 
-
-By leveraging existing vector-graphics rendering capabilities on all devices, this codec wouldn't require end-users, OEMs or browsers to install special software to enable playback of these videos.
-
-__We are still in the early phases of developing this technology__.
-
-You can learn more about the technology in our [whitepaper](https://files.vectorly.io/Vectorization+Whitepaper+v06.20.pdf)
+By training AI models on a variety of different kinds of video content, we're able to upscale video effectively by 2X or even 4X, acheiving good-quality 1080p video from a 240p video stream.
 
 
-## The Core Idea
+<img src="../img/ai-compression-2.svg" alt="Drawing" style="height: 350px; display: block; margin: auto;"/>
 
-The core insight behind this project was that you could use vector-graphics based animations to simulate "videos" in a way that is indistinguishable from a traditional raster-graphics based video format such as an h264 video stream in an MP4 container.
+While such AI enhancement tasks are usually computationally expensive and only used on servers, we have developed proprietary AI architectures which can upscale video content at over 100 frames per second even on low-end smartphones. We then use a standard called [WebGL](https://caniuse.com/webgl) to run our models and perform the video upscaling on a user's device as they are watching a video.
 
-
-### Raster Graphics
-
-Normal videos, like the ones you see on Netflix or YouTube, are just sequences of images which get updated quickly on the screen, to create the illusion of motion. Each image is composed of "pixels" - individual dots of color. Higher resolution means more pixels, better visual quality, and bigger file sizes.
-
-![Pixel-Based](img/pixels.png)
-
-Almost all video on the internet is of this format, known as "raster graphics". Video compression algorithms like h264 are just very efficient at using fewer data-points to reconstruct the pixels in any given frame, and at storing only the differences in pixels between frames of a video. 
+Effectively, this let's us stream a low-resolution video to the user. The AI then upscaled the SD video to HD, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (about 90% less data than for the HD video)
 
 
-### Vector Grapics video
+### How it works
 
-In contrast, we use a concept called "vector-graphics" to render video. Instead of pixels, we represent everything on the screen using shapes, lines and curves, which can be represented as mathematical equations (vector graphics).
-
-
-![Vector-Based](img/vector2.png)
+Implementing AI compression involves 2 parts: The playback, and the AI encoding
 
 
-Using these mathematical equations, we can re-draw any arbitrary shape on the screen - from the letter "T" to Bart Simpson's head. Furthermore, by adding information such as color, position on the screen, and how they move or change shape over time, you can create whole videos - including entire episodes of the Simpsons, with just sequences of mathematical equations.
+#### Playback / Upscaling
+
+We've created a javascript library which performs the AI upscaling on the user's device. It works the way that playing any web-video would, with the main difference being that you will need to supply a JSON file with the AI model / weights, via the `x-upscaler-model` attribute
+
+        <head>
+               <script src="video.js">
+               <script src="vectorly.js">
+        </head>
+
+        <body>
+               <video class="video-js">
+                     <source src="my-video.mp4" x-upscaler-model="my-video-model.json">
+               </video>
+        </body>
+
+The library works as a plugin to existing javascript players such as Video JS or JWPlayer, however we've also created our own player based on Shaka player.
 
 
-### Why vectorization?
+#### Encoding
 
-The core insight behind this project was that for a certain kind of "vector-friendly" video content, storing the video using vector graphics would be much more efficient than using raster graphics (in some cases, up to 2 orders of magnitude more efficient).
-
-
-This idea is not substantively different from the idea of Flash based animations about 20 years ago. Why do this now?
-
-**No need for a decoder**: Most devices now support SVG, HTML5, WebGL/OpenGL and/or some form of hardware-accelerated vector-graphics rendering. That lets you render vector-graphics content on any device without require end-users, OEMs or browsers to install special software to enable playback of vector-graphics content, and to achieve native-level performance by doing so. App developers would only need to include an appropriate library or SDK in their website or app to enable playback within native or 3rd player video players.
-
-**Computer vision**: Our patented vectorization technology relies heavily on computer vision to convert raster-graphics videos to a vector format. Leveraging the advancement & commoditization of Computer Vision, and the ease of running batch computer-vision heavy tasks on the cloud, it's feasible to 'vectorize' large volumes of video at scale now, in a way that wasn't possible even 5 years ago.
-
- 
-### Vector graphics video format
- 
-We are building a video-format based on existing standards (SVG, WebGL & OpenGL), extending it with Javascript to enable video features such as a timeline and key-frames. We package the resulting video data within an MP4 container, which can be streamed and distributed using existing video infrastructure (such as HLS/DASH, and DRM systems).
-
-    <video src="vectorized.mp4" type="video/svg">
-
-We are pragmatic, and don't want to create a standard [for the sake of creating a standard](https://xkcd.com/927/).  To that end, we've created libraries and SDKs that enable playback of our vector-graphics videos using standard / native interfaces like so
-
-    <script src="vectorly.js">
-
-    <video src="vectorized.mp4" type="video/svg">
-    // This will work on all major browsers today
+The AI model is obtained from the initial encoding step. In Vectorly's Stream's archicture, we've created our own AI transcoder, which both simultaneously does the transcoding of a video, as well as analysis and generation of the AI model.
 
 
-## Demos / Proof of concept
-
-Below are some early examples & tests of clips we've vectorized.  Please keep in mind that our demos and technology are *still a work in progress* and not yet commercially viable. There is still a lot of optimization work than can be done.
+<img src="../img/ai-transcoding.svg" alt="Drawing" style="height: 400px; display: block; margin: auto;"/>
 
 
-**Simpsons**
-
-Our first vectorized proof of concept for animations is a 17 second clip of the Simpsons located [here](https://files.vectorly.io/demo/resizeable/index.html).
+This model, filled with the model weights, is then stored as a JSON file along with the packaged output in cloud storage.
 
 
-**Khan Academy**
-
-Our technology also works very well for e-learning, and especially Khan Academy style content. You can find 60 second Khan Academy clip [here](https://files.vectorly.io/demo/khan-academy-5kbps/index.html?compare=true&debugsvg=true)
+### Compatibility
 
 
-Our video player has been tested on recent versions of Chrome and Firefox. We have not yet gone through extensive testing on other platforms
+For web playback, we leverage a Web standard called [WebGL](https://caniuse.com/webgl), which enables hardware-accelerated rendering of graphics and video content across devices, and which is supported by over 97% of web-enabled devices
 
+We have an Android SDK, and our WebGL player can be used in iOS via a web view. We play to relase native OpenGL based mobile SDKs in 2021.
 
-**Cable**
+Because this upscaler runs on the client side, it can be disabled by the user, or programatically on the frontend as well.
 
-We've started testing on Creative Commons content, with the goal of being able to put some public domain content on our front page.  An example is [Cable](https://files.vectorly.io/demo/cable-300kbps/index.html?compare=true), with the original work and credit to [48 Hour film](https://vimeo.com/446503274)
+### Performance
 
+The main limiting factor for AI based compression is client-side performance. Vectorly has developed proprietary AI architectures which can upscale video content to 720p at over 100 fps even on mid-tier Android smartphones, and we recommend keeping video resolutions at 720p.
 
-## Future work
+Watching higher-resolution video content (1440p or 4K) requires more computation, and can run into performance issues and increased battery consumption, especially on low-end devices.
 
-As discussed in our [whitepaper]([whitepaper](https://files.vectorly.io/Vectorization+Whitepaper+v06.20.pdf)), we are currently working on improving the following
-
-* Handling of arbitrary gradients and colors for more complex types of content such as Anime
-* Implementing "prediction" frames, to get our average bitrates to below 100kbps for standard Simpsons style cartoon content
-* Migrate our codebase from Python to C, to improve our current processing speed from ~3fps to 30+fps (for 4K content)
-* Test and troubleshoot playback of our videos across platforms and devices
+When performance runs at below 30fps, the vectorly player will drop frames to ensure smooth video playback. If performance issues persist, upscaling can be disabled and the video can revert to standard ABR logic, loading higher-bandwidth video content as needed.
 
 
 
 
 
+### Whitepaper & Demos
+
+We will be releasing a whitepaper with more detailed technical information, including performance benchmarks and quality metrics, as well as a comprenhensive set of demos in early 2021
 
