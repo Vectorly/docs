@@ -1,49 +1,49 @@
 ## AI Video Compression
 
-Vectorly's AI compression technology is based on a concept called [super-resolution](https://en.wikipedia.org/wiki/Super-resolution_imaging), which uses AI to upscale, de-noise and enhance images.
+Vectorly's AI compression technology is based on a concept called [super-resolution](https://en.wikipedia.org/wiki/Super-resolution_imaging), which uses AI to upscale and enhance images. Through Super Resolution, we can upscale and clean-up low-resolution video, making it look close to HD quality.
 
-By training AI models on a variety of different kinds of video content, we're able to upscale video effectively by 2X or even 4X, acheiving good-quality 1080p video from a 240p video stream.
+<img src="../img/ducks-720p.png" alt="Drawing" style="height: 350px; display: block; margin: auto;"/>
 
+While AI enhancement tasks normally require lots of computaiton, we've developed ultra-fast upscaling technology which can run in real time, even on low-end smartphones.
 
 <img src="../img/ai-compression-2.svg" alt="Drawing" style="height: 350px; display: block; margin: auto;"/>
 
-While such AI enhancement tasks are usually computationally expensive and only used on servers, we have developed proprietary AI architectures which can upscale video content at over 100 frames per second even on low-end smartphones. We then use a standard called [WebGL](https://caniuse.com/webgl) to run our models and perform the video upscaling on a user's device as they are watching a video.
-
-Effectively, this let's us stream a low-resolution video to the user. The AI then upscaled the SD video to HD, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (about 90% less data than for the HD video)
+This lets you stream SD video streams to users, and upscale it to HD in real time as they're watching it, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (about 90% less data than for the HD video)
 
 
 ### How it works
 
-Implementing AI compression involves 2 parts: The playback, and the AI encoding
+Implementing AI upscaling is entirely a client-side operation. For web platforms, this comes in the form of a javascript library, and requires no re-encoding of content.
 
 
 #### Playback / Upscaling
 
-We've created a javascript library which performs the AI upscaling on the user's device. It works the way that playing any web-video would, with the main difference being that you will need to supply a JSON file with the AI model / weights, via the `x-upscaler-model` attribute
-
-        <head>
-               <script src="video.js">
-               <script src="vectorly.js">
-        </head>
-
-        <body>
-               <video class="video-js">
-                     <source src="my-video.mp4" x-upscaler-model="my-video-model.json">
-               </video>
-        </body>
-
-The library works as a plugin to existing javascript players such as Video JS or JWPlayer, however we've also created our own player based on Shaka player.
+We've created a javascript library which performs the AI upscaling on the user's device. It works the way that playing any web-video would, with the main difference being that it uses an AI model (supplied in the form of a JSON file) do the upscaling.
 
 
-#### Encoding
+<img src="../img/ai-upscale-code.svg" alt="Drawing" style="height: 400px; display: block; margin: auto;"/>
 
-The AI model is obtained from the initial encoding step. In Vectorly's Stream's archicture, we've created our own AI transcoder, which both simultaneously does the transcoding of a video, as well as analysis and generation of the AI model.
+The library works as a plugin to existing javascript players such as Video JS or JWPlayer.
+
+You can think of AI upscaling as a final, optional layer at the end of the video streaming pipeline. AI upscaling upscales video content after is decoded and rendered by the browser, meaning that it is compatible with any codec, any streaming architecture (HLS/DASH etc…), and works equally well on live and video-on-demand content.
+
+We are currently working on Android and iOS mobile SDKs, to implement AI upscaling on mobile platforms as well.
 
 
-<img src="../img/ai-transcoding.svg" alt="Drawing" style="height: 400px; display: block; margin: auto;"/>
+
+#### AI Models
+
+The only real "dependency" for the AI upscaler is the upscaler model. The "AI model" is just a JSON file, containing the trained neural network parameters to be used by the upscaler. This JSON file can be loaded as a static file, just like the Javascript player.
+
+<img src="../img/ai-model-json.svg" alt="Drawing" style="height: 400px; display: block; margin: auto;"/>
 
 
-This model, filled with the model weights, is then stored as a JSON file along with the packaged output in cloud storage.
+While our Javascript player comes with a general upscaler which upscales any type of content, you can obtain better visual quality by using a model pre-trained on specific types of content (such as sports, or cartoons,  or screencasts).
+
+<img src="../img/ai-json-models.svg" alt="Drawing" style="height: 400px; display: block; margin: auto;"/>
+
+
+We generate these models by training our AI on specific thousands of videos from specific genres of content, and can train/generate new models as needed. We could conceivably train models on individual videos for very high performance, however each model requires hours of training, making it impractical to do for every video.
 
 
 ### Compatibility
@@ -51,23 +51,40 @@ This model, filled with the model weights, is then stored as a JSON file along w
 
 For web playback, we leverage a Web standard called [WebGL](https://caniuse.com/webgl), which enables hardware-accelerated rendering of graphics and video content across devices, and which is supported by over 97% of web-enabled devices
 
-We have an Android SDK, and our WebGL player can be used in iOS via a web view. We play to relase native OpenGL based mobile SDKs in 2021.
+For our Mobile SDKs, we will use OpenGL (Metal for iOS), which is compatible with all Android and iOS versions since 2011.
 
 Because this upscaler runs on the client side, it can be disabled by the user, or programatically on the frontend as well.
 
 ### Performance
 
-The main limiting factor for AI based compression is client-side performance. Vectorly has developed proprietary AI architectures which can upscale video content to 720p at over 100 fps even on mid-tier Android smartphones, and we recommend keeping video resolutions at 720p.
-
-Watching higher-resolution video content (1440p or 4K) requires more computation, and can run into performance issues and increased battery consumption, especially on low-end devices.
-
-When performance runs at below 30fps, the vectorly player will drop frames to ensure smooth video playback. If performance issues persist, upscaling can be disabled and the video can revert to standard ABR logic, loading higher-bandwidth video content as needed.
+The main limiting factor for AI based compression is client-side performance. Vectorly has developed proprietary AI architectures which can upscale video content to 720p at over 30 fps even on low-end smartphones, and at over 100fps on mid-teir phones and laptops. You can see specific performance information in our whitepaper.
 
 
+### Whitepaper
+
+Here is a preliminary version of our [whitepaper](https://docs.google.com/document/d/1pR9iaUB0i4ouhYZchKxHqMVLQ75fGqzZ_PLHohzyUIA/edit?usp=sharing) (published Feb 1st, 2021).
+
+### Demos
+
+Below are a few demos of our upscaling technology. We recommend viewing them  using a desktop version of Chrome (version 70+). We will release support for other browsers (via WebGL 1.0 and other fixes)  in early February.
 
 
+[Jellyfish](https://files.vectorly.io/demo/jellyfish-240p-001/index.html)
 
-### Whitepaper & Demos
+<img src="../img/jellyfish-demo.png" alt="Drawing" style="height: 300px; display: block; margin: auto;"/>
 
-We will be releasing a whitepaper with more detailed technical information, including performance benchmarks and quality metrics, as well as a comprenhensive set of demos in early 2021
+
+[Tractor](https://files.vectorly.io/demo/tractor-240p-001/index.html)
+
+<img src="../img/tractor-demo.png" alt="Drawing" style="height: 300px; display: block; margin: auto;"/>
+
+
+[Ducks](https://files.vectorly.io/demo/ducks-240p-001/index.html)
+
+<img src="../img/duck-demo.png" alt="Drawing" style="height: 300px; display: block; margin: auto;"/>
+
+
+[Factory](https://files.vectorly.io/demo/factory-240p-001/index.html)
+
+<img src="../img/factory-demo.png" alt="Drawing" style="height: 300px; display: block; margin: auto;"/>
 
