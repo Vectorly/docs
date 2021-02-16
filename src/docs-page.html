@@ -492,51 +492,11 @@
 				    </header>
 				     <section class="docs-section" id="item-6-1">
 						<h2 class="section-heading">Framerate</h2>
-						<p>The primary "cost" to doing super-resolution is computational complexity. While we have put a lot of work into making super resolution feasible on client devices, it is still something which needs to be managed. Here, we provide some initial performance benchmarks for the same demos shown above, in the demos sections. All numbers are listed in frames per second.</p>
+						<p>The primary "cost" to doing super-resolution is computational complexity. While we have put a lot of work into making super resolution feasible on client devices, it is still something which needs to be managed. Here, we provide some initial performance benchmarks for the same demos shown above, in the demos sections.</p>
 
-
-
-						 <div class="table-responsive my-4">
-							 <table class="table table-striped">
-
-								 <tr>
-									 <th scope="col">Demo</th>
-									 <th scope="col">GPU Desktop</th>
-									 <th scope="col">Non-GPU Laptop</th>
-									 <th scope="col">High-end smartphone</th>
-									 <th scope="col">Low-end smartphone</th>
-								 </tr>
-
-								 <tbody>
-								 <tr>
-									 <th scope="row">Jellyfish</th>
-									 <td>500+</td>
-									 <td>150</td>
-									 <td>130</td>
-									 <td>26</td>
-								 </tr>
-
-								 <tr>
-									 <th scope="row">Ducks</th>
-									 <td>500+</td>
-									 <td>160</td>
-									 <td>125</td>
-									 <td>23</td>
-								 </tr>
-
-								 <tr>
-									 <th scope="row">Tractor</th>
-									 <td>500+</td>
-									 <td>160</td>
-									 <td>135</td>
-									 <td>25</td>
-								 </tr>
-
-								 </tbody>
-							 </table>
-						 </div>
-
-
+						 <figure class="figure docs-figure py-3">
+							 <img class="figure-img img-fluid" src="assets/images/upscaler-performance.svg" alt="" style="width: 800px;">
+						 </figure>
 
 						 <div class="callout-block callout-block-info">
 
@@ -547,7 +507,7 @@
 		                            </span><!--//icon-holder-->
 									 Note
 								 </h4>
-								 <p>Runtime of upscaling can vary from frame to frame, so these results are from a 1-second moving average</p>
+								 <p>Upscaling time varies from frame to frame, so we provide average framerates. Framerates for desktop were over 500fps, but we capped the graph for clarity purposes.</p>
 							 </div><!--//content-->
 						 </div>
 
