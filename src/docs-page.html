@@ -470,7 +470,7 @@
 								<p>Our upscalers are currently based on <a href="https://caniuse.com/webgl2">WebGL 2.0</a>, and will throw an error on Safari and Internet Explorer. We are working on making our libraries backwards compatible with <a href="https://caniuse.com/webgl">WebGL 1.0</a>, which covers every major browser.</p>
 							</div><!--//content-->
 						</div>
-						</div>
+
 				    </header>
 
 			    </article><!--//docs-article-->
@@ -567,10 +567,22 @@
 					
 					<section class="docs-section" id="item-6-2">
 						<h2 class="section-heading">Quality</h2>
-						<p>We are working on releasing numerical quality results for our models, however we provide side by side visual comparisons for the moment.</p>
+						<p>The primary benefit of Super resolution is to increase video quality. Using the original high-resolution video as a reference, we can use traditional video quality metrics like VMAF to quantify the quality improvement of Super Resolution, when compared to normal bicubic upscaling of the downsampled / low-resolution video content.</p>
 
 
-						<h5>Jellyfish</h5>
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/quality-comparison.svg" alt="" style="width: 800px;">
+						</figure>
+
+
+						<p>Our general AI upscaler filter generally achieves a 5 to 10 point VMAF improvement compaed to bicubic scaling. With <a href="#item-1-3"> content-specific AI models </a>, we will likely be able to achieve further quality gains. We are currently working on releasing quality comparisons for content specific models.</p>
+
+
+						<h5>Quality visualization</h5>
+
+						<p>For reference, below are side by side comparisons of bicubic upscaling of the low-resolution original / Super resolution of the low-resolution / High resolution original </p>
+
+						<p style="text-decoration: underline">Jellyfish</p>
 						<figure class="figure docs-figure py-3">
 
 							<div class="table-responsive my-4">
@@ -594,7 +606,7 @@
 
 						</figure>
 
-						<h5>Ducks</h5>
+						<p style="text-decoration: underline">Ducks</p>
 						<figure class="figure docs-figure py-3">
 
 							<div class="table-responsive my-4">
@@ -619,7 +631,7 @@
 						</figure>
 
 
-						<h5>Tractor</h5>
+						<p style="text-decoration: underline;">Tractor</p>
 						<figure class="figure docs-figure py-3">
 
 							<div class="table-responsive my-4">
