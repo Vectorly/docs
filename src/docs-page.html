@@ -77,6 +77,7 @@
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">iOS</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Flutter</a></li>
+					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-conferencing"><span class="theme-icon-holder mr-2"><i class="fas fa-phone-alt"></i></span>Video Conferencing</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder mr-2"><i class="fas fa-chart-bar"></i></span>Benchmarks</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-1">Framerate</a></li>
@@ -440,6 +441,95 @@
 						<p>We have a Flutter SDK on our roadmap for 2021, but do not have a specific timeline yet</p>
 					</section><!--//section-->
 			    </article><!--//docs-article-->
+
+				<article class="docs-article" id="section-conferencing">
+					<header class="docs-header">
+						<h1 class="docs-heading">Video Conferencing</h1>
+						<section class="docs-intro">
+							<p>You can also use Vectorly's AI Upscaler for upscaling within Video Conferencing architectures. Here, we outline 3 different ways AI upscaling can be used to improve video quality for end users within Video Conferencing systems.</p>
+
+
+							<p>We've also put together an <a href="https://github.com/Vectorly/daily-call-object"> example repository</a>, showing how Vectorly can be integrated into <a href="https://daily.co/"> Daily.co</a>, a popular video-conferencing API service.</p>
+						</section><!--//docs-intro-->
+
+
+						<section class="docs-section" id="item-conferencing-1">
+							<h2 class="section-heading">Client Side Upscaling</h2>
+							<p>You can add Vectorly's AI upscaler directly on the client side for one or more clients, which helps improve the video experience for each individual receiver (for example, if the receiver's network speed drops). This option primarily makes sense for <a href="https://webrtchacks.com/sfu-simulcast/">Simulcast SFU</a> and <a href="https://trueconf.com/blog/wiki/mcu-video-conferencing-architecture">MCU</a> architectures, where receivers have the option of recieving multiple quality levels of video.</p>
+
+
+							<p>You'll need to feed the video tag of the video feed you want to upscale. For a real world example, you can see the <a href="https://github.com/Vectorly/daily-call-object/blob/test/daily-upscale/src/components/Tile/Tile.js#L77"> exact line </a> where the upscaler is defined (in the <a href="https://daily.co/"> Daily.co example repo</a>)</p>
+
+							<script src="https://gist.github.com/sb2702/c394e7c5fffcbd5f9cdbacb20bf1e4f7.js"></script>
+
+							<p>When you feed in the input video element to the upscaler, and the upscaler will automatically upscale the corresponding tag</p>
+
+
+						</section><!--//section-->
+
+						<section class="docs-section" id="item-conferencing-2">
+							<h2 class="section-heading">Client Side Compression</h2>
+							<p>In pure Peer to Peer architectures or regular <a href="https://webrtcglossary.com/sfu/"> SFU</a> architctures, each broadcaster is only broadcasting one video quality. In these scenarios, you would need to downscale the broadcast video quality for each broadcaster.</p>
+							<p> Doing this makes sense in scenarios where you would want to reduce bandwidth for all participants involved.</p>
+
+
+							<p>To implement this, you would need to set the output resolution for each broadcaster's video (see <a href="https://gist.github.com/sb2702/9d1ebbfdef025268757e798bf3ad85c0">example</a> ), as well as to adjust the output bitrate in WebRTC (<a href="https://webrtc.github.io/samples/src/content/peerconnection/bandwidth/">example</a>).
+							In the daily in the <a href="https://daily.co/"> Daily.co example repo</a>, the resolution is defined <a href="https://github.com/Vectorly/daily-call-object/blob/test/daily-upscale/src/components/App/App.js#L121">here </a></p>
+
+							<script src="https://gist.github.com/sb2702/83539bfa6f5bbb1cd9036892d69443a3.js"></script>
+
+							<p>This lower quality video is then broadcast to all users, which will then re-upscale it to normal resolution with the AI upscaling module.</p>
+
+							<p>For guidance, below are the following recommended encoding settings for WebRTC based video conferencing for different input resolutions of user's video cameras.</p>
+
+							<div class="table-responsive my-4">
+								<table class="table table-striped">
+
+									<tr>
+										<th scope="col">Input Resolution</th>
+										<th scope="col">H264</th>
+										<th scope="col">VP9</th>
+									</tr>
+
+									<tbody>
+
+
+									<tr>
+										<td>240x320</td>
+										<td>300kbps</td>
+										<td>200kbps</td>
+									</tr>
+
+									<tr>
+										<td>360x480</td>
+										<td>500kbps</td>
+										<td>350kbps</td>
+									</tr>
+
+									<tr>
+										<td>360x640</td>
+										<td>600kbps</td>
+										<td>450kbps</td>
+									</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+
+						</section><!--//section-->
+
+						<section class="docs-section" id="item-conferencing-3">
+							<h2 class="section-heading">Server Side Upscaling</h2>
+
+							<p>One further use case is to upscale and enhance video just from users who are broadcasting video over poor connections. This has the advantage of not having any end-user requirements, but this is only possible in architectures where server-side transcoding is possible. </p>
+
+
+							<p>While we currently don't have a server-side upscaler, it would be very easy to build, and the quality and performance would be much better than for client-side devices. If you'd like to implement server-side upscaling, we'd love to <a href="mailto: team@vectorly"> learn more about your requrements</a></p>
+						</section><!--//section-->
+
+					</header>
+				</article><!--//docs-article-->
 			    
 			    <article class="docs-article" id="section-5">
 				    <header class="docs-header">
