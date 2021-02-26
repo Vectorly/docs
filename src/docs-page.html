@@ -180,22 +180,9 @@
 						<h2 class="section-heading">Installation</h2>
 
 
-						<p>You can get our Beta HTML5 Upscaler libraries <a href="https://vectorly.io/upscaler/">here</a>, which includes a standalone upscaler, as well as the vectorly-videojs.js file used in <a href="#item-2-1">Hello world example</a>.</p>
+						<p>You can get our Beta HTML5 Upscaler libraries <a href="https://vectorly.io/upscaler/">here</a>, which provides instractions for loading the standalone upscaler, as well as the vectorly-videojs.js file used in <a href="#item-2-1">Hello world example</a>.</p>
 
-						<p>Each plugin, or the standalone upscaler, will have a number of files, including the entry file, as well as individual AI models and weights.</p>
-						<pre style="background-color: #f5f5f5">
-upscaler.js
-upscaler.vdsr.js
-upscaler.residual-3k.js
-upscaler.model-7k.js
-upscaler.cnn-demo.js
-....
-upscaler.vdsr-params0.js
-upscaler.residual-3k-params{}.js
-upscaler.7k-params0.js
-upscaler.cnn-demo-params.js					</pre>
-
-						<p>You only need to include the model(s) you plan to use. The default model is 'residual_3k', and the default version is '2'</p>
+						<p>Each upscaler relies on AI models and weights to do the upscaling. These come in the form of additional javascript files, which we've hosted on a CDN for convenience. The library will load the default model at runtime, but you can see more info for choosing additional model in the <a href="#item-3-5">Models section</a>. </p>
 
 
 					</section><!--//section-->
@@ -354,7 +341,7 @@ upscaler.cnn-demo-params.js					</pre>
 
 								<tr>
 									<td>residual_3k</td>
-									<td>2</td>
+									<td>2.1</td>
 									<td>Basic lightweight model using residuals</td>
 								</tr>
 
@@ -390,8 +377,8 @@ upscaler.cnn-demo-params.js					</pre>
 					</section>
 
 
-					<p>If you encounter any issues with these libraries, please get in touch with us.</p>
-					<a href="email:team@vectorly.io" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
+					<p>If you encounter any issues with these libraries, you can open an issue on github</p>
+					<a href="https://github.com/Vectorly/html5-upscaler-plugins/issues" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
 
 
 
