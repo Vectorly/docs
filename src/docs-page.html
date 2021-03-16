@@ -45,7 +45,7 @@
 			            <li class="list-inline-item"><a href="https://www.linkedin.com/company/vectorly"><i class="fab fa-linkedin fa-fw"></i></a></li>
 		                <li class="list-inline-item"><a href="https://angel.co/vectorly"><i class="fab fa-angellist fa-fw"></i></a></li>
 		            </ul><!--//social-list-->
-		            <a href="https://vectorly.io/contact.html" class="btn btn-primary d-none d-lg-flex">Try it out</a>
+		            <a href="https://vectorly.io/upscaler/" class="btn btn-primary d-none d-lg-flex">Try it out</a>
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->
         </div><!--//branding-->
@@ -64,15 +64,15 @@
 				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Super resolution</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Upscaling libraries</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-3">AI Models</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Getting Started</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-2-0">Installation</a></li>
+				      <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">VideoJS</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">JWPlayer</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Shaka Player</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-4">Standalone</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-5">Bugs</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">Core Upscaler</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">Plugins</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Events</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-4">Enable / Disable</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-5">AI Models</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">iOS</a></li>
@@ -169,161 +169,31 @@
 					</section><!--//section-->
 
 
-					<section class="docs-section" id="item-1-3">
-						<h2 class="section-heading">AI Models</h2>
-						<p>
-
-							Vectorly's AI Upscaler leverages trained convolutional neural-networks to perform upscaling. For convenience, we've trained a general-purpose network, and bundled it as the default network in our upscaler libraries.
-
-
-						</p>
-
-						<p>
-							You can get much better video quality, however by using
-
-						</p>
-
-
-						<ul>
-							<li><span class="mr-1">Content Specific Models</span>
-							<li><span class="mr-1">Larger / Heavier Models</span>
-						</ul>
-
-
-						<h5>Content Specific models:</h5>
-
-						<p>
-							By training neural networks on specific types of video content (e.g. Sports matches, or Screencasts). We've therefore made it possible to feed content-specific training models to library, in the form of JSON files.
-						</p>
-
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/b9d90ffa7bf5b4ac0075f1450f410e11.js"></script>
-							<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i>This example uses jQuery for convenience / readability. Our libraries accept json files, however they are loaded.</figcaption>
-						</figure>
-
-
-						<p>
-							The advantage of specifying content-specific models is overall better video quality, however this comes at the cost of added complexity of multiple networks. For convenience, we have trained a number of different content-specific models.
-						</p>
-
-
-						<div class="table-responsive my-4">
-							<table class="table table-striped">
-
-								<tr>
-									<th scope="col"></th>
-									<th scope="col">File</th>
-									<th scope="col">GZipped Size</th>
-									<th scope="col">Content types</th>
-								</tr>
-
-								<tbody>
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>general.json</td>
-									<td>56kb</td>
-									<td>Trained on everything</td>
-								</tr>
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>animations.json</td>
-									<td>43kb</td>
-									<td>2D Animations</td>
-								</tr>
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>animations3d.json</td>
-									<td>42kb</td>
-									<td>3D Animations</td>
-								</tr>
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>screencast.json</td>
-									<td>44kb</td>
-									<td>Screensharing, Powerpoint Presentations</td>
-								</tr>
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>talking-head.json</td>
-									<td>41kb</td>
-									<td>Video Conferencing & talking head lectures</td>
-								</tr>
-
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>sports.json</td>
-									<td>46kb</td>
-									<td>Sports matches</td>
-								</tr>
-
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>gaming.json</td>
-									<td>45kb</td>
-									<td>Twitch, e-sports and Cloud-gaming</td>
-								</tr>
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>surveillance.json</td>
-									<td>112kb</td>
-									<td>Security camera footage</td>
-								</tr>
-
-								<tr>
-									<th scope="row"><i class="fas fa-file-code"></i></th>
-									<td>medical-imaging.json</td>
-									<td>315kb</td>
-									<td>High resolution X-rays, Pathology slides</td>
-								</tr>
-
-								</tbody>
-							</table>
-						</div>
-
-
-
-						<h5>Lighter & Heavier models:</h5>
-
-						<p>
-							Another major factor in the performance and/or visual quality is the size of the model. In general, heavier models will result in lower framerates, but output better video quality.
-						</p>
-
-
-						<div class="callout-block callout-block-info">
-
-							<div class="content">
-								<h4 class="callout-title">
-	                                <span class="callout-icon-holder mr-1">
-		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
-		                            </span><!--//icon-holder-->
-									Note
-								</h4>
-								<p>We are currently working on adaptive systems to dynamically choose models, such as using heavier models on high-end devices and lighter models on low-end devices. See the <a class="scrollto" href="#section-6">Perfomance</a> section for more info.</p>
-							</div><!--//content-->
-						</div>
-
-					</section><!--//section-->
-
 			    </article>
 			    
 			    <article class="docs-article" id="section-2">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Getting Started</h1>
-					    <section class="docs-intro">
-							<p>Our technology is still in beta. Once you <a href="https://vectorly.io/contact.html">sign up</a>, we'll manually give you access to our libraries/SDKs, including <code>vectorly-videojs.js</code> for testing</p>
-						</section><!--//docs-intro-->
 				    </header>
 
+					<section class="docs-section" id="item-2-0">
+						<h2 class="section-heading">Installation</h2>
 
+
+						<p>You can get our Beta HTML5 Upscaler libraries <a href="https://vectorly.io/upscaler/">here</a>, which provides instractions for loading the standalone upscaler, as well as the vectorly-videojs.js file used in <a href="#item-2-1">Hello world example</a>.</p>
+
+						<p>Each upscaler relies on AI models and weights to do the upscaling. These come in the form of additional javascript files, which we've hosted on a CDN for convenience. The library will load the default model at runtime, but you can see more info for choosing additional model in the <a href="#item-3-5">Models section</a>. </p>
+
+
+					</section><!--//section-->
 
 
 				     <section class="docs-section" id="item-2-1">
 						<h2 class="section-heading">Hello World</h2>
-						 <p>The easiest way to get started with upscaling is by using our VideoJS javascript plugin. Just include <code>vectorly-videojs.js</code> in the repository, and you should be able to instantly see the video playing</p>
+						 <p>The easiest way to get started with upscaling is by using our VideoJS javascript plugin. Just include <code>vectorly-videojs.js</code> in the repository (and the model files and weights), and you should be able to instantly see the video playing</p>
 						 <figure class="figure docs-figure py-3">
 							 <script src="https://gist.github.com/sb2702/5518427ffb4cce0efa9a36da40b00294.js"></script>
 						 </figure>
-
 
 						 <p>For a more detailed API and for other players, scroll down to the <a class="scrollto" href="#section-3"> Web section</a></p>
 
@@ -368,55 +238,151 @@
 						</section><!--//docs-intro-->
 				    </header>
 				     <section class="docs-section" id="item-3-1">
-						<h2 class="section-heading">VideoJS</h2>
+						<h2 class="section-heading">Core Upscaler</h2>
 
+
+						 <p>The entry point is 'upscaler.js'. You'll need to include the model weights and files as well.</p>
 
 						 <figure class="figure docs-figure py-3">
-							 <script src="https://gist.github.com/sb2702/61674438c22faad988a3a71abe8650f9.js"></script>
+							 <script src="https://gist.github.com/sb2702/39753a067a4795893a3b51997ef4f2e0.js"></script>
 						 </figure>
 
 
 
-
-					</section><!--//section-->
+					 </section><!--//section-->
 					
 					<section class="docs-section" id="item-3-2">
-						<h2 class="section-heading">JWPlayer</h2>
+						<h2 class="section-heading">Plugins</h2>
 
+
+
+
+						<h3>VideoJS</h3>
+
+
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/61674438c22faad988a3a71abe8650f9.js"></script>
+						</figure>
+
+
+
+						<h3>JWPlayer</h3>
 						<figure class="figure docs-figure py-3">
 							<script src="https://gist.github.com/sb2702/550cdfe8c04ee81c5166ee688209eaab.js"></script>
 						</figure>
 
 
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-3-3">
-						<h2 class="section-heading">Shaka Player</h2>
+
+
+
+						<h3>Shaka Player</h3>
+
+
+
 						<figure class="figure docs-figure py-3">
 							<script src="https://gist.github.com/sb2702/2049c691948c01b5aa35ff9cd2d887a7.js"></script>
 						</figure>
 
+
+
+
+
+
+
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-3">
+						<h2 class="section-heading">Events</h2>
+
+
+						<p>Once you have instantiated the upscaler object, you can access basic upscaler events, like onload and error handling.</p>
+
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/417ecef0793515da4a2c23468ee7f712.js"></script>
+						</figure>
+
+
+
+
 					</section><!--//section-->
 
 					<section class="docs-section" id="item-3-4">
-						<h2 class="section-heading">Standalone plugin</h2>
+						<h2 class="section-heading">Enable / Disable</h2>
 
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/39753a067a4795893a3b51997ef4f2e0.js"></script>
-						</figure>
+						<p> You can also enable and disable the upscaler programatically.</p>
+
+						<script src="https://gist.github.com/sb2702/12be1e2e6af4e231e4d2a7c6d91cb3cf.js"></script>
 
 
 					</section><!--//section-->
 
 
 					<section class="docs-section" id="item-3-5">
-						<p>If you encounter any issues with these libraries, please get in touch with us.</p>
-						<a href="email:team@vectorly.io" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
+						<h2 class="section-heading">Models</h2>
+
+						<p>There are multiple AI models you can choose from. The default is 'residual_3k', but you can specify a model when instantiating the upscaler object</p>
+						<script src="https://gist.github.com/sb2702/31d262689770e55fd84bbb3672e47818.js"></script>
+
+
+
+						<p>The available models are:</p>
+
+						<div class="table-responsive my-4">
+							<table class="table table-striped">
+
+								<tr>
+									<th scope="col">Model Name</th>
+									<th scope="col">Latest Version</th>
+									<th scope="col">Description</th>
+								</tr>
+
+								<tbody>
+
+
+								<tr>
+									<td>residual_3k</td>
+									<td>2.1</td>
+									<td>Basic lightweight model using residuals</td>
+								</tr>
+
+								<tr>
+									<td>residual_5k</td>
+									<td>0</td>
+									<td>Slightly heavier residual model</td>
+								</tr>
+
+								<tr>
+									<td>vdsr</td>
+									<td>0</td>
+									<td>Old model, not as good as residual_3k</td>
+								</tr>
+
+								<tr>
+									<td>7K</td>
+									<td>0</td>
+									<td>Old model, the worst performing model, deprecated</td>
+								</tr>
+
+								<tr>
+									<td>cnn_demo</td>
+									<td>0</td>
+									<td>Demo network. Doesn't do anything, feel free to check out the source</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+
+
 
 					</section>
 
 
-			    </article><!--//docs-article-->
+					<p>If you encounter any issues with these libraries, you can send us a message</p>
+					<a href="email:team@vectorly.io" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
+
+
+
+				</article><!--//docs-article-->
 			    
 			    <article class="docs-article" id="section-4">
 				    <header class="docs-header">
@@ -446,10 +412,12 @@
 					<header class="docs-header">
 						<h1 class="docs-heading">Video Conferencing</h1>
 						<section class="docs-intro">
-							<p>You can also use Vectorly's AI Upscaler for upscaling within Video Conferencing architectures. Here, we outline 3 different ways AI upscaling can be used to improve video quality for end users within Video Conferencing systems.</p>
+							<p>You can also use Vectorly's AI Upscaler for upscaling within Video Conferencing architectures. Here, we outline 3 different ways AI upscaling can be used to improve video quality for end users within WebRTC Video Conferencing systems.</p>
 
 
-							<p>We've also put together an <a href="https://github.com/Vectorly/daily-call-object"> example repository</a>, showing how Vectorly can be integrated into <a href="https://daily.co/"> Daily.co</a>, a popular video-conferencing API service.</p>
+							<p>We've also put together an <a href="https://github.com/Vectorly/webrtc-demo"> example repository</a>, showing how Vectorly can be integrated with WebRTC.</p>
+
+							<p>You can see a full working WebRTC demo <a href="https://files.vectorly.io/demo/webrtc/index.html">here</a> </p>
 						</section><!--//docs-intro-->
 
 
@@ -458,7 +426,7 @@
 							<p>You can add Vectorly's AI upscaler directly on the client side for one or more clients, which helps improve the video experience for each individual receiver (for example, if the receiver's network speed drops). This option primarily makes sense for <a href="https://webrtchacks.com/sfu-simulcast/">Simulcast SFU</a> and <a href="https://trueconf.com/blog/wiki/mcu-video-conferencing-architecture">MCU</a> architectures, where receivers have the option of recieving multiple quality levels of video.</p>
 
 
-							<p>You'll need to feed the video tag of the video feed you want to upscale. For a real world example, you can see the <a href="https://github.com/Vectorly/daily-call-object/blob/test/daily-upscale/src/components/Tile/Tile.js#L77"> exact line </a> where the upscaler is defined (in the <a href="https://daily.co/"> Daily.co example repo</a>)</p>
+							<p>You'll need to feed the video tag of the video feed you want to upscale. For a real world example, you can see the <a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js#L140"> exact line </a> where the upscaler is defined in the WebRTC demo repo</p>
 
 							<script src="https://gist.github.com/sb2702/c394e7c5fffcbd5f9cdbacb20bf1e4f7.js"></script>
 
@@ -473,10 +441,9 @@
 							<p> Doing this makes sense in scenarios where you would want to reduce bandwidth for all participants involved.</p>
 
 
-							<p>To implement this, you would need to set the output resolution for each broadcaster's video (see <a href="https://gist.github.com/sb2702/9d1ebbfdef025268757e798bf3ad85c0">example</a> ), as well as to adjust the output bitrate in WebRTC (<a href="https://webrtc.github.io/samples/src/content/peerconnection/bandwidth/">example</a>).
-							In the daily in the <a href="https://daily.co/"> Daily.co example repo</a>, the resolution is defined <a href="https://github.com/Vectorly/daily-call-object/blob/test/daily-upscale/src/components/App/App.js#L121">here </a></p>
+							<p>To implement this, you would need to set the output resolution for each broadcaster's video (see <a href="https://gist.github.com/sb2702/9d1ebbfdef025268757e798bf3ad85c0">example</a> ), as well as to adjust the output bitrate in WebRTC (<a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js#L212">example</a>).
+							You can see the a full working version of bandwidth and bitrate selection in the <a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js"> WebRTC Demo repository</a>.
 
-							<script src="https://gist.github.com/sb2702/83539bfa6f5bbb1cd9036892d69443a3.js"></script>
 
 							<p>This lower quality video is then broadcast to all users, which will then re-upscale it to normal resolution with the AI upscaling module.</p>
 
@@ -502,14 +469,14 @@
 
 									<tr>
 										<td>360x480</td>
-										<td>500kbps</td>
-										<td>350kbps</td>
+										<td>400kbps</td>
+										<td>300kbps</td>
 									</tr>
 
 									<tr>
 										<td>360x640</td>
-										<td>600kbps</td>
-										<td>450kbps</td>
+										<td>500kbps</td>
+										<td>400kbps</td>
 									</tr>
 
 									</tbody>
@@ -539,9 +506,10 @@
 
 
 							<ul>
-								<li> <a href="https://files.vectorly.io/demo/jellyfish-240p-001/index.html">Jellyfish</a></li>
-								<li> <a href="https://files.vectorly.io/demo/ducks-240p-001/index.html">Ducks</a></li>
-								<li> <a href="https://files.vectorly.io/demo/tractor-240p-001/index.html">Tractor</a></li>
+								<li> <a href="https://files.vectorly.io/demo/docs-demos/demo.html#jellyfish" target="_blank">Jellyfish</a></li>
+								<li> <a href="https://files.vectorly.io/demo/docs-demos/demo.html#ducks" target="_blank">Ducks</a></li>
+								<li> <a href="https://files.vectorly.io/demo/docs-demos/demo.html#tractor" target="_blank">Tractor</a></li>
+								<li> <a href="https://files.vectorly.io/demo/docs-demos/demo.html#fish" target="_blank">Fish</a></li>
 
 							</ul>
 
@@ -665,7 +633,7 @@
 						</figure>
 
 
-						<p>Our general AI upscaler filter generally achieves a 5 to 10 point VMAF improvement compaed to bicubic scaling. With <a href="#item-1-3"> content-specific AI models </a>, we will likely be able to achieve further quality gains. We are currently working on releasing quality comparisons for content specific models.</p>
+						<p>Our general AI upscaler filter generally achieves a 10 to 15 point VMAF improvement compared to bicubic scaling. With <a href="#item-1-3"> content-specific AI models</a>, or heavier models, we will likely be able to achieve further quality gains. We are currently working on releasing quality comparisons for content specific models.</p>
 
 
 						<h5>Quality visualization</h5>
@@ -777,7 +745,17 @@
     <script src="assets/js/highlight-custom.js"></script> 
     <script src="assets/plugins/jquery.scrollTo.min.js"></script>
     <script src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script> 
-    <script src="assets/js/docs.js"></script> 
+    <script src="assets/js/docs.js"></script>
+
+    <script type="text/javascript">
+        window._mfq = window._mfq || [];
+        (function() {
+            var mf = document.createElement("script");
+            mf.type = "text/javascript"; mf.defer = true;
+            mf.src = "//cdn.mouseflow.com/projects/ade379db-9c1a-4bba-9bf0-a0fbf6ceb01e.js";
+            document.getElementsByTagName("head")[0].appendChild(mf);
+        })();
+    </script>
 
 </body>
 </html> 
