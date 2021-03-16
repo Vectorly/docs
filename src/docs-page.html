@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Vectorly Documentation</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="Vectorly AI Upscaler Documentation">
+    <meta name="author" content="Vectorly">    
+    <link rel="shortcut icon" href="assets/images/vectorly-logo-circle.svg">
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible mr-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon mr-2" src="assets/images/vectorly-logo-circle.svg" alt="logo"><span class="logo-text">Vectorly<span class="text-alt">&nbsp;Docs</span></span></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/Vectorly"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://www.linkedin.com/company/vectorly"><i class="fab fa-linkedin fa-fw"></i></a></li>
+		                <li class="list-inline-item"><a href="https://angel.co/vectorly"><i class="fab fa-angellist fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://vectorly.io/contact.html" class="btn btn-primary d-none d-lg-flex">Try it out</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+    <div class="docs-wrapper">
+	    <div id="docs-sidebar" class="docs-sidebar">
+		    <div class="top-search-box d-lg-none p-3">
+                <form class="search-form">
+		            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+		            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+		        </form>
+            </div>
+		    <nav id="docs-nav" class="docs-nav navbar">
+			    <ul class="section-items list-unstyled nav flex-column pb-3">
+				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Super resolution</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Upscaling libraries</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-1-3">AI Models</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Getting Started</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">VideoJS</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">JWPlayer</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Shaka Player</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-4">Standalone</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-5">Bugs</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">iOS</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Flutter</a></li>
+					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-conferencing"><span class="theme-icon-holder mr-2"><i class="fas fa-phone-alt"></i></span>Video Conferencing</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder mr-2"><i class="fas fa-chart-bar"></i></span>Benchmarks</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-1">Framerate</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-2">Quality</a></li>
+			    </ul>
+
+		    </nav><!--//docs-nav-->
+	    </div><!--//docs-sidebar-->
+	    <div class="docs-content">
+		    <div class="container">
+			    <article class="docs-article" id="section-1">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-02-11</span></h1>
+					    <section class="docs-intro" >
+						    <p>Vectorly's AI upscaler libraries convert low resolution video to HD in real-time on users' devices, enabling HD viewing experiences while using 50% to 90% less bandwidth ("AI Compression").</p>
+						</section><!--//docs-intro-->
+
+
+						<section class="docs-section" id="item-1-1">
+							<h2 class="section-heading">Super Resolution</h2>
+
+
+							<p>Vectorly's AI upscaling technology is based on a concept called <a href="https://en.wikipedia.org/wiki/Super-resolution_imaging">Super Resolution</a>, which uses AI to upscale and enhance images. Through Super Resolution, we can upscale and clean-up low-resolution video, making it look close to HD quality.</p>
+
+							<h5>Super Resolution Example:</h5>
+							<figure class="figure docs-figure py-3">
+
+								<div class="table-responsive my-4">
+									<table class="table" style="border-color: white">
+
+										<tbody >
+										<tr>
+
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/ducks-240p.png" alt="" style="height: 250px;"></td>
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/ducks-upscaled.png" alt="" style="height: 250px;"></td>
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/ducks-720p.png" alt="" style="height: 250px;"></td>
+										</tr>
+										<tr style="text-align: center">
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">240p</figcaption></td>
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">240p upscaled to 720p</figcaption></td>
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Original 720p</figcaption></td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</figure>
+
+
+							<p>While AI enhancement tasks normally require lots of computation, we've developed ultra-fast upscaling technology which can run in real time, even on low-end smartphones.</p>
+
+							<figure class="figure docs-figure py-3">
+								<img class="figure-img img-fluid" src="assets/images/ai-compression.svg" alt="" style="width: 800px;">
+								<!--<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i>Credit: the above screencast is taken from .</figcaption> -->
+							</figure>
+
+							<p>This lets you stream SD video streams to users, and upscale it to HD in real time as they're watching it, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (50 to 90% less data than for the HD video).</p>
+
+
+						</section>
+
+
+
+
+
+						
+				    </header>
+					
+					<section class="docs-section" id="item-1-2">
+						<h2 class="section-heading">Upscaling libraries</h2>
+
+						<p>Vectorly's AI Upscaling libraries run entirely on the client side, within your website or app. They work as plugins to native or HTML5 video players, up-scaling and enhancing video content as your users watch it.
+						</p>
+
+
+						<h5>Basic Web Example:</h5>
+
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/47f473d8fd2ce743d5dd6e5873c1d1a3.js"></script>
+							<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i> This is a simplified example of our VideoJS plugin.</figcaption>
+						</figure>
+
+						<p>
+							You can think of AI upscaling as a final, optional layer at the end of the video streaming pipeline. Upscaling happens after video is decoded and rendered by the browser, meaning that it is compatible with any codec, any streaming architecture (HLS/DASH etc…), and works equally well on live and video-on-demand content, as well as video conferencing.
+						</p>
+
+						<p>We are currently working on Android and iOS mobile SDKs.</p>
+						
+					</section><!--//section-->
+
+
+					<section class="docs-section" id="item-1-3">
+						<h2 class="section-heading">AI Models</h2>
+						<p>
+
+							Vectorly's AI Upscaler leverages trained convolutional neural-networks to perform upscaling. For convenience, we've trained a general-purpose network, and bundled it as the default network in our upscaler libraries.
+
+
+						</p>
+
+						<p>
+							You can get much better video quality, however by using
+
+						</p>
+
+
+						<ul>
+							<li><span class="mr-1">Content Specific Models</span>
+							<li><span class="mr-1">Larger / Heavier Models</span>
+						</ul>
+
+
+						<h5>Content Specific models:</h5>
+
+						<p>
+							By training neural networks on specific types of video content (e.g. Sports matches, or Screencasts). We've therefore made it possible to feed content-specific training models to library, in the form of JSON files.
+						</p>
+
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/b9d90ffa7bf5b4ac0075f1450f410e11.js"></script>
+							<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i>This example uses jQuery for convenience / readability. Our libraries accept json files, however they are loaded.</figcaption>
+						</figure>
+
+
+						<p>
+							The advantage of specifying content-specific models is overall better video quality, however this comes at the cost of added complexity of multiple networks. For convenience, we have trained a number of different content-specific models.
+						</p>
+
+
+						<div class="table-responsive my-4">
+							<table class="table table-striped">
+
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">File</th>
+									<th scope="col">GZipped Size</th>
+									<th scope="col">Content types</th>
+								</tr>
+
+								<tbody>
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>general.json</td>
+									<td>56kb</td>
+									<td>Trained on everything</td>
+								</tr>
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>animations.json</td>
+									<td>43kb</td>
+									<td>2D Animations</td>
+								</tr>
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>animations3d.json</td>
+									<td>42kb</td>
+									<td>3D Animations</td>
+								</tr>
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>screencast.json</td>
+									<td>44kb</td>
+									<td>Screensharing, Powerpoint Presentations</td>
+								</tr>
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>talking-head.json</td>
+									<td>41kb</td>
+									<td>Video Conferencing & talking head lectures</td>
+								</tr>
+
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>sports.json</td>
+									<td>46kb</td>
+									<td>Sports matches</td>
+								</tr>
+
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>gaming.json</td>
+									<td>45kb</td>
+									<td>Twitch, e-sports and Cloud-gaming</td>
+								</tr>
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>surveillance.json</td>
+									<td>112kb</td>
+									<td>Security camera footage</td>
+								</tr>
+
+								<tr>
+									<th scope="row"><i class="fas fa-file-code"></i></th>
+									<td>medical-imaging.json</td>
+									<td>315kb</td>
+									<td>High resolution X-rays, Pathology slides</td>
+								</tr>
+
+								</tbody>
+							</table>
+						</div>
+
+
+
+						<h5>Lighter & Heavier models:</h5>
+
+						<p>
+							Another major factor in the performance and/or visual quality is the size of the model. In general, heavier models will result in lower framerates, but output better video quality.
+						</p>
+
+
+						<div class="callout-block callout-block-info">
+
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+									Note
+								</h4>
+								<p>We are currently working on adaptive systems to dynamically choose models, such as using heavier models on high-end devices and lighter models on low-end devices. See the <a class="scrollto" href="#section-6">Perfomance</a> section for more info.</p>
+							</div><!--//content-->
+						</div>
+
+					</section><!--//section-->
+
+			    </article>
+			    
+			    <article class="docs-article" id="section-2">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Getting Started</h1>
+					    <section class="docs-intro">
+							<p>Our technology is still in beta. Once you <a href="https://vectorly.io/contact.html">sign up</a>, we'll manually give you access to our libraries/SDKs, including <code>vectorly-videojs.js</code> for testing</p>
+						</section><!--//docs-intro-->
+				    </header>
+
+
+
+
+				     <section class="docs-section" id="item-2-1">
+						<h2 class="section-heading">Hello World</h2>
+						 <p>The easiest way to get started with upscaling is by using our VideoJS javascript plugin. Just include <code>vectorly-videojs.js</code> in the repository, and you should be able to instantly see the video playing</p>
+						 <figure class="figure docs-figure py-3">
+							 <script src="https://gist.github.com/sb2702/5518427ffb4cce0efa9a36da40b00294.js"></script>
+						 </figure>
+
+
+						 <p>For a more detailed API and for other players, scroll down to the <a class="scrollto" href="#section-3"> Web section</a></p>
+
+
+
+						 <div class="callout-block callout-block-info">
+
+							 <div class="content">
+								 <h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+									 Note
+								 </h4>
+								 <p>In all the examples, we specify <code>height</code> and <code>width</code>, which is the target resolution we are upscaling to. Our libraries upscale by a factor of 3, so if you specify 720p output, the upscaler will expect a 240p input, or otherwise will first scale the input to 240p. Upscaling to higher resolutions improves video quality, but lowers framerate.</p>
+							 </div><!--//content-->
+						 </div>
+
+					</section><!--//section-->
+
+			    </article><!--//docs-article-->
+			    
+			    
+			    <article class="docs-article" id="section-3">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Web</h1>
+					    <section class="docs-intro">
+						    <p>For web environments, we've packaged our libraries as plugins to popular HTML5 players. We also have a standalone plugin, which you can configure with any HTML5 video player.</p>
+
+							<div class="callout-block callout-block-warning">
+								<div class="content">
+									<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-bullhorn fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bullhorn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M576 240c0-23.63-12.95-44.04-32-55.12V32.01C544 23.26 537.02 0 512 0c-7.12 0-14.19 2.38-19.98 7.02l-85.03 68.03C364.28 109.19 310.66 128 256 128H64c-35.35 0-64 28.65-64 64v96c0 35.35 28.65 64 64 64h33.7c-1.39 10.48-2.18 21.14-2.18 32 0 39.77 9.26 77.35 25.56 110.94 5.19 10.69 16.52 17.06 28.4 17.06h74.28c26.05 0 41.69-29.84 25.9-50.56-16.4-21.52-26.15-48.36-26.15-77.44 0-11.11 1.62-21.79 4.41-32H256c54.66 0 108.28 18.81 150.98 52.95l85.03 68.03a32.023 32.023 0 0 0 19.98 7.02c24.92 0 32-22.78 32-32V295.13C563.05 284.04 576 263.63 576 240zm-96 141.42l-33.05-26.44C392.95 311.78 325.12 288 256 288v-96c69.12 0 136.95-23.78 190.95-66.98L480 98.58v282.84z"></path></svg><!-- <i class="fas fa-bullhorn"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+										Warning
+									</h4>
+									<p>Our upscalers are currently based on <a href="https://caniuse.com/webgl2">WebGL 2.0</a>, and will throw an error on Safari and Internet Explorer. We are working on making our libraries backwards compatible with <a href="https://caniuse.com/webgl">WebGL 1.0</a>, which covers every major browser.</p>
+								</div><!--//content-->
+							</div>
+
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-3-1">
+						<h2 class="section-heading">VideoJS</h2>
+
+
+						 <figure class="figure docs-figure py-3">
+							 <script src="https://gist.github.com/sb2702/61674438c22faad988a3a71abe8650f9.js"></script>
+						 </figure>
+
+
+
+
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-2">
+						<h2 class="section-heading">JWPlayer</h2>
+
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/550cdfe8c04ee81c5166ee688209eaab.js"></script>
+						</figure>
+
+
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-3">
+						<h2 class="section-heading">Shaka Player</h2>
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/2049c691948c01b5aa35ff9cd2d887a7.js"></script>
+						</figure>
+
+					</section><!--//section-->
+
+					<section class="docs-section" id="item-3-4">
+						<h2 class="section-heading">Standalone plugin</h2>
+
+						<figure class="figure docs-figure py-3">
+							<script src="https://gist.github.com/sb2702/39753a067a4795893a3b51997ef4f2e0.js"></script>
+						</figure>
+
+
+					</section><!--//section-->
+
+
+					<section class="docs-section" id="item-3-5">
+						<p>If you encounter any issues with these libraries, please get in touch with us.</p>
+						<a href="email:team@vectorly.io" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
+
+					</section>
+
+
+			    </article><!--//docs-article-->
+			    
+			    <article class="docs-article" id="section-4">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Mobile</h1>
+					    <section class="docs-intro">
+						    <p>We are currently working on Mobile SDKs for upscaling on Android, iOS and Flutter.</p>
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-4-1">
+						<h2 class="section-heading">Android</h2>
+						<p>For Android platforms, we plan to release a plugin for ExoPlayer in February 2021.</p>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-4-2">
+						<h2 class="section-heading">iOS</h2>
+						<p>We plant to release an iOS SDK in Summer 2021</p>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-4-3">
+						<h2 class="section-heading">Flutter</h2>
+
+						<p>We have a Flutter SDK on our roadmap for 2021, but do not have a specific timeline yet</p>
+					</section><!--//section-->
+			    </article><!--//docs-article-->
+
+				<article class="docs-article" id="section-conferencing">
+					<header class="docs-header">
+						<h1 class="docs-heading">Video Conferencing</h1>
+						<section class="docs-intro">
+							<p>You can also use Vectorly's AI Upscaler for upscaling within Video Conferencing architectures. Here, we outline 3 different ways AI upscaling can be used to improve video quality for end users within Video Conferencing systems.</p>
+
+
+							<p>We've also put together an <a href="https://github.com/Vectorly/daily-call-object"> example repository</a>, showing how Vectorly can be integrated into <a href="https://daily.co/"> Daily.co</a>, a popular video-conferencing API service.</p>
+						</section><!--//docs-intro-->
+
+
+						<section class="docs-section" id="item-conferencing-1">
+							<h2 class="section-heading">Client Side Upscaling</h2>
+							<p>You can add Vectorly's AI upscaler directly on the client side for one or more clients, which helps improve the video experience for each individual receiver (for example, if the receiver's network speed drops). This option primarily makes sense for <a href="https://webrtchacks.com/sfu-simulcast/">Simulcast SFU</a> and <a href="https://trueconf.com/blog/wiki/mcu-video-conferencing-architecture">MCU</a> architectures, where receivers have the option of recieving multiple quality levels of video.</p>
+
+
+							<p>You'll need to feed the video tag of the video feed you want to upscale. For a real world example, you can see the <a href="https://github.com/Vectorly/daily-call-object/blob/test/daily-upscale/src/components/Tile/Tile.js#L77"> exact line </a> where the upscaler is defined (in the <a href="https://daily.co/"> Daily.co example repo</a>)</p>
+
+							<script src="https://gist.github.com/sb2702/c394e7c5fffcbd5f9cdbacb20bf1e4f7.js"></script>
+
+							<p>When you feed in the input video element to the upscaler, and the upscaler will automatically upscale the corresponding tag</p>
+
+
+						</section><!--//section-->
+
+						<section class="docs-section" id="item-conferencing-2">
+							<h2 class="section-heading">Client Side Compression</h2>
+							<p>In pure Peer to Peer architectures or regular <a href="https://webrtcglossary.com/sfu/"> SFU</a> architctures, each broadcaster is only broadcasting one video quality. In these scenarios, you would need to downscale the broadcast video quality for each broadcaster.</p>
+							<p> Doing this makes sense in scenarios where you would want to reduce bandwidth for all participants involved.</p>
+
+
+							<p>To implement this, you would need to set the output resolution for each broadcaster's video (see <a href="https://gist.github.com/sb2702/9d1ebbfdef025268757e798bf3ad85c0">example</a> ), as well as to adjust the output bitrate in WebRTC (<a href="https://webrtc.github.io/samples/src/content/peerconnection/bandwidth/">example</a>).
+							In the daily in the <a href="https://daily.co/"> Daily.co example repo</a>, the resolution is defined <a href="https://github.com/Vectorly/daily-call-object/blob/test/daily-upscale/src/components/App/App.js#L121">here </a></p>
+
+							<script src="https://gist.github.com/sb2702/83539bfa6f5bbb1cd9036892d69443a3.js"></script>
+
+							<p>This lower quality video is then broadcast to all users, which will then re-upscale it to normal resolution with the AI upscaling module.</p>
+
+							<p>For guidance, below are the following recommended encoding settings for WebRTC based video conferencing for different input resolutions of user's video cameras.</p>
+
+							<div class="table-responsive my-4">
+								<table class="table table-striped">
+
+									<tr>
+										<th scope="col">Input Resolution</th>
+										<th scope="col">H264</th>
+										<th scope="col">VP9</th>
+									</tr>
+
+									<tbody>
+
+
+									<tr>
+										<td>240x320</td>
+										<td>300kbps</td>
+										<td>200kbps</td>
+									</tr>
+
+									<tr>
+										<td>360x480</td>
+										<td>500kbps</td>
+										<td>350kbps</td>
+									</tr>
+
+									<tr>
+										<td>360x640</td>
+										<td>600kbps</td>
+										<td>450kbps</td>
+									</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+
+						</section><!--//section-->
+
+						<section class="docs-section" id="item-conferencing-3">
+							<h2 class="section-heading">Server Side Upscaling</h2>
+
+							<p>One further use case is to upscale and enhance video just from users who are broadcasting video over poor connections. This has the advantage of not having any end-user requirements, but this is only possible in architectures where server-side transcoding is possible. </p>
+
+
+							<p>While we currently don't have a server-side upscaler, it would be very easy to build, and the quality and performance would be much better than for client-side devices. If you'd like to implement server-side upscaling, we'd love to <a href="mailto: team@vectorly"> learn more about your requrements</a></p>
+						</section><!--//section-->
+
+					</header>
+				</article><!--//docs-article-->
+			    
+			    <article class="docs-article" id="section-5">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Demos</h1>
+					    <section class="docs-intro">
+						    <p>Below are a few demos of our upscaling technology.</p>
+
+
+							<ul>
+								<li> <a href="https://files.vectorly.io/demo/jellyfish-240p-001/index.html">Jellyfish</a></li>
+								<li> <a href="https://files.vectorly.io/demo/ducks-240p-001/index.html">Ducks</a></li>
+								<li> <a href="https://files.vectorly.io/demo/tractor-240p-001/index.html">Tractor</a></li>
+
+							</ul>
+
+
+						</section><!--//docs-intro-->
+
+
+						<div class="callout-block callout-block-warning">
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-bullhorn fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bullhorn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M576 240c0-23.63-12.95-44.04-32-55.12V32.01C544 23.26 537.02 0 512 0c-7.12 0-14.19 2.38-19.98 7.02l-85.03 68.03C364.28 109.19 310.66 128 256 128H64c-35.35 0-64 28.65-64 64v96c0 35.35 28.65 64 64 64h33.7c-1.39 10.48-2.18 21.14-2.18 32 0 39.77 9.26 77.35 25.56 110.94 5.19 10.69 16.52 17.06 28.4 17.06h74.28c26.05 0 41.69-29.84 25.9-50.56-16.4-21.52-26.15-48.36-26.15-77.44 0-11.11 1.62-21.79 4.41-32H256c54.66 0 108.28 18.81 150.98 52.95l85.03 68.03a32.023 32.023 0 0 0 19.98 7.02c24.92 0 32-22.78 32-32V295.13C563.05 284.04 576 263.63 576 240zm-96 141.42l-33.05-26.44C392.95 311.78 325.12 288 256 288v-96c69.12 0 136.95-23.78 190.95-66.98L480 98.58v282.84z"></path></svg><!-- <i class="fas fa-bullhorn"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+									Warning
+								</h4>
+								<p>Our upscalers are currently based on <a href="https://caniuse.com/webgl2">WebGL 2.0</a>, and will throw an error on Safari and Internet Explorer. We are working on making our libraries backwards compatible with <a href="https://caniuse.com/webgl">WebGL 1.0</a>, which covers every major browser.</p>
+							</div><!--//content-->
+						</div>
+
+				    </header>
+
+			    </article><!--//docs-article-->
+			    
+			    
+		        <article class="docs-article" id="section-6">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Benchmarks</h1>
+					    <section class="docs-intro">
+						    <p>	For Super Resolution, the most practical challenge is client side performance, as it requires doing large numbers of computations. This can especially become an issue when dealing with low-end devices (such as entry-level smartphones).
+							</p>
+
+							<p>	Accordingly, we have focused a great deal on making our AI models as efficient as possible, to enable good quality outputs while still maintaining good client-side rendering performance on low-end devices.
+							</p>
+
+							<p>	Below, you can see the quality and performance metrics output for the demos outlined above. All of our performance results are for our generic upscaler model. We plan to make more models for different devices, and different qualities.
+							</p>
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-6-1">
+						<h2 class="section-heading">Framerate</h2>
+						<p>The primary "cost" to doing super-resolution is computational complexity. While we have put a lot of work into making super resolution feasible on client devices, it is still something which needs to be managed. Here, we provide some initial performance benchmarks for the same demos shown above, in the demos sections.</p>
+
+						 <figure class="figure docs-figure py-3">
+							 <img class="figure-img img-fluid" src="assets/images/upscaler-performance.svg" alt="" style="width: 800px;">
+						 </figure>
+
+						 <div class="callout-block callout-block-info">
+
+							 <div class="content">
+								 <h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+									 Note
+								 </h4>
+								 <p>Upscaling time varies from frame to frame, so we provide average framerates. Framerates for desktop were over 500fps, but we capped the graph for clarity purposes.</p>
+							 </div><!--//content-->
+						 </div>
+
+						 <p>For reference, below are the specs for the devices we tested on</p>
+						 <div class="table-responsive my-4">
+							 <table class="table table-striped">
+
+								 <tr>
+									 <th scope="col"></th>
+									 <th scope="col">GPU Desktop</th>
+									 <th scope="col">Non-GPU Laptop</th>
+									 <th scope="col">High-end smartphone</th>
+									 <th scope="col">Low-end smartphone</th>
+								 </tr>
+
+								 <tbody>
+
+
+								 <tr>
+									 <th scope="row">Device</th>
+									 <td>Alientware Aurora R11</td>
+									 <td>Dell XPS 13</td>
+									 <td>Samsung Galaxy 8</td>
+									 <td>Samsung A2</td>
+								 </tr>
+
+								 <tr>
+									 <th scope="row">CPU</th>
+									 <td>Intel Core i5 x 6</td>
+									 <td>Intel Core i7  - 1.8GHz x8</td>
+									 <td>Exynos 1.9 GHz x8</td>
+									 <td>Exynos 1.6 GHz x8</td>
+								 </tr>
+
+								 <tr>
+									 <th scope="row">GPU</th>
+									 <td>NVIDIA GeForce GTX 1650</td>
+									 <td>Mesa Intel UHD Graphics 620</td>
+									 <td>Exynos Mali-G71 MP20</td>
+									 <td>ARM Mali - T830 MP1</td>
+								 </tr>
+
+								 <tr>
+									 <th scope="row">Retail Price ($ USD)</th>
+									 <td>$1200</td>
+									 <td>$1200</td>
+									 <td>$600</td>
+									 <td>$90</td>
+								 </tr>
+
+
+								 </tbody>
+							 </table>
+						 </div>
+
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-6-2">
+						<h2 class="section-heading">Quality</h2>
+						<p>The primary benefit of Super resolution is to increase video quality. Using the original high-resolution video as a reference, we can use traditional video quality metrics like VMAF to quantify the quality improvement of Super Resolution, when compared to normal bicubic upscaling of the downsampled / low-resolution video content.</p>
+
+
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/quality-comparison.svg" alt="" style="width: 800px;">
+						</figure>
+
+
+						<p>Our general AI upscaler filter generally achieves a 5 to 10 point VMAF improvement compaed to bicubic scaling. With <a href="#item-1-3"> content-specific AI models </a>, we will likely be able to achieve further quality gains. We are currently working on releasing quality comparisons for content specific models.</p>
+
+
+						<h5>Quality visualization</h5>
+
+						<p>For reference, below are side by side comparisons of bicubic upscaling of the low-resolution original / Super resolution of the low-resolution / High resolution original </p>
+
+						<p style="text-decoration: underline">Jellyfish</p>
+						<figure class="figure docs-figure py-3">
+
+							<div class="table-responsive my-4">
+								<table class="table" style="border-color: white">
+
+									<tbody >
+									<tr>
+
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/jellyfish-240p.png" alt="" style="height: 250px;"></td>
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/jellyfish-upscaled.png" alt="" style="height: 250px;"></td>
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/jellyfish-720p.png" alt="" style="height: 250px;"></td>
+									</tr>
+									<tr style="text-align: center">
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Bicubic (240p)</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">240p upscaled to 720p</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Original 720p</figcaption></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</figure>
+
+						<p style="text-decoration: underline">Ducks</p>
+						<figure class="figure docs-figure py-3">
+
+							<div class="table-responsive my-4">
+								<table class="table" style="border-color: white">
+
+									<tbody >
+									<tr>
+
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/ducks-240p.png" alt="" style="height: 250px;"></td>
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/ducks-upscaled.png" alt="" style="height: 250px;"></td>
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/ducks-720p.png" alt="" style="height: 250px;"></td>
+									</tr>
+									<tr style="text-align: center">
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Bicubic (240p)</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">240p upscaled to 720p</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Original 720p</figcaption></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</figure>
+
+
+						<p style="text-decoration: underline;">Tractor</p>
+						<figure class="figure docs-figure py-3">
+
+							<div class="table-responsive my-4">
+								<table class="table" style="border-color: white">
+
+									<tbody >
+									<tr>
+
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/tractor-240p.png" alt="" style="height: 250px;"></td>
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/tractor-upscaled.png" alt="" style="height: 250px;"></td>
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/tractor-720p.png" alt="" style="height: 250px;"></td>
+									</tr>
+									<tr style="text-align: center">
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Bicubic (240p)</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">240p upscaled to 720p</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Original 720p</figcaption></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</figure>
+
+					</section><!--//section-->
+
+			    </article><!--//docs-article-->
+
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/Vectorly"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://www.linkedin.com/company/vectorly"><i class="fab fa-linkedin fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://angel.co/vectorly"><i class="fab fa-angellist fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+    
+   
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/jquery-3.4.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="assets/js/highlight-custom.js"></script> 
+    <script src="assets/plugins/jquery.scrollTo.min.js"></script>
+    <script src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script> 
+    <script src="assets/js/docs.js"></script> 
+
+</body>
+</html> 
+

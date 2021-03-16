@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: 'site',
+                        cwd: 'src',
                         src: ['**', '!**/*~'],
                         dest: 'docs'
                     }
@@ -43,29 +43,7 @@ module.exports = function (grunt) {
 
 
 
-
-    grunt.registerTask('build', 'runs mkdocs build', function () {
-
-        var done = this.async();
-
-
-        exec('mkdocs build --clean', {}, function (err, stdout, stderr) {
-
-            if(err) return grunt.fail.warn(err);
-
-            if(stderr) grunt.log.error(stderr);
-
-            grunt.log.write(stdout);
-
-            done();
-
-        });
-
-    });
-
-
-
-    grunt.registerTask('push', ['build', 'aws_s3:docs']);
+    grunt.registerTask('push', ['aws_s3:docs']);
 
 
 
