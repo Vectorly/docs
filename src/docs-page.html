@@ -397,11 +397,10 @@
 						 <p>Our Android SDK works as a plugin to <a href="https://developer.android.com/guide/topics/media/exoplayer">ExoPlayer</a>. You will therefore need to use ExoPlayer, or an ExoPlayer derived player, in order upscale video.</p>
 
 
-						 <p>First, you'll need to include our SDK into your app's gradle file</p>
+						 <p>First, you'll need to include our SDK into your app's gradle file. You can import it by including Jitpack in your Maven sources, and including our github hosted library</p>
 
 
-						 <pre>
-							 <code>implementation 'io.vectorly.upscaler:0.1.0'</code></pre>
+						 <script src="https://gist.github.com/sb2702/66a03574ca88836e0fbeb839e3f2d19d.js"></script>
 
 						 <p>
 							 You can then add the following imports into the activity which manages your ExoPlayer view
