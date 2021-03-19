@@ -76,7 +76,6 @@
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">iOS</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Flutter</a></li>
 					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-conferencing"><span class="theme-icon-holder mr-2"><i class="fas fa-phone-alt"></i></span>Video Conferencing</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder mr-2"><i class="fas fa-chart-bar"></i></span>Benchmarks</a></li>
@@ -387,24 +386,48 @@
 			    <article class="docs-article" id="section-4">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Mobile</h1>
-					    <section class="docs-intro">
-						    <p>We are currently working on Mobile SDKs for upscaling on Android, iOS and Flutter.</p>
-						</section><!--//docs-intro-->
 				    </header>
 				     <section class="docs-section" id="item-4-1">
 						<h2 class="section-heading">Android</h2>
-						<p>For Android platforms, we plan to release a plugin for ExoPlayer in February 2021.</p>
+
+
+
+
+
+						 <p>Our Android SDK works as a plugin to <a href="https://developer.android.com/guide/topics/media/exoplayer">ExoPlayer</a>. You will therefore need to use ExoPlayer, or an ExoPlayer derived player, in order upscale video.</p>
+
+
+						 <p>First, you'll need to include our SDK into your app's gradle file</p>
+
+
+						 <pre>
+							 <code>implementation 'io.vectorly.upscaler:0.1.0'</code></pre>
+
+						 <p>
+							 You can then add the following imports into the activity which manages your ExoPlayer view
+						 </p>
+
+						 <script src="https://gist.github.com/sb2702/e0a5f12e2ff23b0dffccb046dc770a46.js"></script>
+
+						 <p>
+							 Once the ExoPlayer view is set up, you can call set up the Upscaler as in the following example
+						 </p>
+
+
+						 <script src="https://gist.github.com/sb2702/c728b71e5d9064a47fcbd0bfcf0b3c0e.js"></script>
+
+
+						 <p>
+							 You can also disable and enable the player programatically
+
+							 <script src="https://gist.github.com/sb2702/1b83bda619c96efef1f2be2e9b04088b.js"></script>
+						 </p>
+
 					</section><!--//section-->
 					
 					<section class="docs-section" id="item-4-2">
 						<h2 class="section-heading">iOS</h2>
 						<p>We plant to release an iOS SDK in Summer 2021</p>
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-4-3">
-						<h2 class="section-heading">Flutter</h2>
-
-						<p>We have a Flutter SDK on our roadmap for 2021, but do not have a specific timeline yet</p>
 					</section><!--//section-->
 			    </article><!--//docs-article-->
 
