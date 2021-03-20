@@ -34,6 +34,22 @@ module.exports = function (grunt) {
                         dest: 'docs'
                     }
                 ]
+            },
+
+            docs_staging: {
+                options: {
+                    region: 'us-west-2',
+                    bucket: 'vectorly.io',
+                    differential: true // Only uploads the files that have changed
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src',
+                        src: ['**', '!**/*~'],
+                        dest: 'docs_staging'
+                    }
+                ]
             }
 
         }
