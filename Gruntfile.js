@@ -75,7 +75,7 @@ module.exports = function (grunt) {
                 CallerReference: Date.now().toString(),
                 Paths: {
                     Quantity: 1,
-                    Items: [ '/docs-staging/*' ]
+                    Items: [ '/docs_staging/*' ]
                 }
             }
         }
