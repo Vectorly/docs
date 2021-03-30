@@ -431,22 +431,56 @@
 						 <p>First, you'll need to include our SDK into your app's gradle file. You can import it from our Maven repository, as shown below.</p>
 
 
-						 <script src="https://gist.github.com/sb2702/66a03574ca88836e0fbeb839e3f2d19d.js"></script>
+
+						 <pre>
+							 <code>
+   repositories {
+     google()
+     jcenter()
+     maven { url "http://maven.vectorly.io/artifactory/libs-release-local" }
+   }
+   dependencies {
+      implementation 'io.vectorly.glnnrender:glnnrender:0.1.1'
+   }
+							 </code>
+						 </pre>
 
 
 						 <p>
 							 You can then add the following imports into the activity which manages your ExoPlayer view
 						 </p>
 
-						 <script src="https://gist.github.com/sb2702/e0a5f12e2ff23b0dffccb046dc770a46.js"></script>
+						 <pre>
+							 <code>
+   import io.vectorly.glnnrender.GlPlayerView;
+   import io.vectorly.glnnrender.networks.NetworkTypes;
+							 </code>
+						 </pre>
 
 						 <p>
 							 Once the ExoPlayer view is set up, you can call set up the Upscaler as in the following example. You'll need to feed your API key, which you can get from the <a href="https://dashboard.vectorly.io">Vectorly dashboard</a>.
 						 </p>
 
 
-						 <script src="https://gist.github.com/sb2702/c728b71e5d9064a47fcbd0bfcf0b3c0e.js"></script>
 
+						 <pre>
+							 <code>
+   private GlPlayerView ePlayerView;
+
+   private void setupUpscalerView() {
+
+           String api_key = "...";
+           ePlayerView = new GlPlayerView(this, api_key);
+           ePlayerView.setSimpleExoPlayer(player);
+
+           ePlayerView.setNetwork(NetworkTypes.DEFAULT, getApplicationContext());
+            ePlayerView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+           ((MovieWrapperView) findViewById(R.id.layout_movie_wrapper)).addView(ePlayerView);
+           ePlayerView.onResume();
+
+    }
+</code>
+						 </pre>
 
 
                          <p>We've created a full working example using our library, which you can find below</p>
@@ -492,7 +526,13 @@
 
 							<p>You'll need to feed the video tag of the video feed you want to upscale. For a real world example, you can see the <a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js#L140"> exact line </a> where the upscaler is defined in the WebRTC demo repo</p>
 
-							<script src="https://gist.github.com/sb2702/c394e7c5fffcbd5f9cdbacb20bf1e4f7.js"></script>
+
+							<pre>
+							 <code>
+   upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {width: width, height: height});
+
+</code>
+						 </pre>
 
 							<p>When you feed in the input video element to the upscaler, and the upscaler will automatically upscale the corresponding tag</p>
 
