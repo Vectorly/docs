@@ -228,7 +228,7 @@
      &lt;/script&gt;
    &lt;/body&gt;
 						 </pre></code></p>
-						 <p>For other players, scroll down to the <a class="scrollto" href="#section-3"> web section</a> or see the full API <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">here</a> </p>
+						 <p>For other players, scroll down to the <a class="scrollto" href="#section-3"> web section</a> or see the full API <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/@vectorly-io/ai-upscaler/2.0.0-beta.0">here</a> </p>
 
 					</section><!--//section-->
 
@@ -239,9 +239,8 @@
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Web</h1>
 
-						    <p>For web environments, we've packaged our upscaler as a standalone Javascript library, as well as as plugins to several popular HTML5 video players (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">full API</a> for more detail).
-
-				    </header>
+						    <p>For web environments, we've packaged our upscaler as a standalone Javascript library, as well as as plugins to several popular HTML5 video players (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/@vectorly-io/ai-upscaler/2.0.0-beta.0">full API</a> for more detail).</p>
+					</header>
 
 						<h4 class="section-heading" id="item-3-usage">Basic usage</h4>
 
@@ -269,7 +268,7 @@
 
 
 						<h4 class="section-heading" id="item-3-plugins">Plugins</h4>
-						Besides the <code>vectorly-standalone.js</code> library, we have several plugins for specific HTML5 players. (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">full API</a> for more detail).
+						Besides the <code>vectorly-standalone.js</code> library, we have several plugins for specific HTML5 players. (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/@vectorly-io/ai-upscaler/2.0.0-beta.0">full API</a> for more detail).
 
 
 						<p>
@@ -419,67 +418,20 @@
 
 						<h2 class="section-heading" id="item-3-ai-models">Models</h2>
 
-						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object</p>
-
-						<pre>
-							 <code>
+						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
+						<pre><code>
    const upscaler = new vectorlyUpscaler(video, {token: '...', network: 'residual_3k_3x', version: '2.1'});
-							 </code>
-						 </pre>
-
-
-						<p>The available models are:</p>
-
-						<div class="table-responsive my-4">
-							<table class="table table-striped">
-
-								<tr>
-									<th scope="col">Model Name</th>
-									<th scope="col">Latest Version</th>
-									<th scope="col">Description</th>
-								</tr>
-
-								<tbody>
-
-
-								<tr>
-									<td>residual_3k_3x</td>
-									<td>2.1</td>
-									<td>Basic lightweight model, which upscales by a factor of 3</td>
-								</tr>
-
-								<tr>
-									<td>residual_4k_2x</td>
-									<td>0</td>
-									<td>Basic lightweight model, which upscales by a factor of 2</td>
-								</tr>
-
-								<tr>
-									<td>residual_5k_2x</td>
-									<td>0</td>
-									<td>Medium sized model, upscales by a factor of 2</td>
-								</tr>
-
-								<tr>
-									<td>residual_5k_3x</td>
-									<td>0</td>
-									<td>Medium sized model, upscales by a factor of 3</td>
-								</tr>
-
-								<tr>
-									<td>cnn_demo</td>
-									<td>0</td>
-									<td>Demo network. Doesn't do anything, feel free to check out the source</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
+							 </code></pre>
+						We are constantly releasing new models. You can find a comprehensive list of models <a href="hhttps://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/@vectorly-io/ai-upscaler/2.0.0-beta.0/global.html#NetworkParams" >here</a>
 
 
 
+
+					<br></br>
 
 					<p>If you encounter any issues with these libraries, you can send us a message</p>
 					<a href="email:team@vectorly.io" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
+
 
 
 
