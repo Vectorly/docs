@@ -68,11 +68,12 @@
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-2-0">Installation</a></li>
 				      <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">Core Upscaler</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">Plugins</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Events</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-4">Enable / Disable</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-5">AI Models</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-usage">Basic usage</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-plugins">Plugins</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-events">Events</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-controls">Controls</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-styling">Styling</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-ai-models">AI Models</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">iOS</a></li>
@@ -154,10 +155,14 @@
 
 						<h5>Basic Web Example:</h5>
 
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/47f473d8fd2ce743d5dd6e5873c1d1a3.js"></script>
-							<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i> This is a simplified example of our VideoJS plugin.</figcaption>
-						</figure>
+
+						<pre>
+							 <code>
+   const player = videojs('my-video')
+   videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
+   const vjsUpscaler = player.vectorlyPlugin({token: '...'});
+							 </code>
+						 </pre>
 
 						<p>
 							You can think of AI upscaling as a final, optional layer at the end of the video streaming pipeline. Upscaling happens after video is decoded and rendered by the browser, meaning that it is compatible with any codec, any streaming architecture (HLS/DASH etc…), and works equally well on live and video-on-demand content, as well as video conferencing.
@@ -175,17 +180,19 @@
 					    <h1 class="docs-heading">Getting Started</h1>
 				    </header>
 
-					<section class="docs-section" id="item-2-0">
-						<h2 class="section-heading">Installation</h2>
 
 
-						<p>You can get our Beta HTML5 Upscaler libraries <a href="https://vectorly.io/upscaler/">here</a>, which provides instractions for loading the standalone upscaler, as well as the vectorly-videojs.js file used in <a href="#item-2-1">Hello world example</a>.</p>
-
-						<p>Each upscaler relies on AI models and weights to do the upscaling. These come in the form of additional javascript files, which we've hosted on a CDN for convenience. The library will load the default model at runtime, but you can see more info for choosing additional model in the <a href="#item-3-5">Models section</a>. </p>
+					<p>First,  sign up in the <a href="https://upscaler.vectorly.io"> dashboard </a>to get a  <code>token</code> which, you will need to use the library. Next, you can install the upscaler library via NPM or via CDN</p>
 
 
-					</section><!--//section-->
+					<p> <b>NPM</b>
+					<code><pre>npm -i @vectorly-io/ai-upscaler</pre></code>
+					</p>
 
+					<p><b>CDN</b>
+					<code><pre>https://cdn.vectorly.io/upscaler/latest/vectorly-[version].js</pre></code>
+
+					There are various versions available, including the <code>vectorly-standalone.js</code> library, as well as plugins for different HTML5 video players. You can find version specific installation instructions <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">here</a>.
 
 				     <section class="docs-section" id="item-2-1">
 						<h2 class="section-heading">Hello World</h2>
@@ -194,22 +201,7 @@
 							 <script src="https://gist.github.com/sb2702/5518427ffb4cce0efa9a36da40b00294.js"></script>
 						 </figure>
 
-						 <p>For a more detailed API and for other players, scroll down to the <a class="scrollto" href="#section-3"> Web section</a></p>
-
-
-
-						 <div class="callout-block callout-block-info">
-
-							 <div class="content">
-								 <h4 class="callout-title">
-	                                <span class="callout-icon-holder mr-1">
-		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
-		                            </span><!--//icon-holder-->
-									 Note
-								 </h4>
-								 <p>In all the examples, we specify <code>height</code> and <code>width</code>, which is the target resolution we are upscaling to. Our libraries upscale by a factor of 3, so if you specify 720p output, the upscaler will expect a 240p input, or otherwise will first scale the input to 240p. Upscaling to higher resolutions improves video quality, but lowers framerate.</p>
-							 </div><!--//content-->
-						 </div>
+						 <p>For other players, scroll down to the <a class="scrollto" href="#section-3"> web section</a> or see the full API <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">here</a> </p>
 
 					</section><!--//section-->
 
@@ -219,109 +211,149 @@
 			    <article class="docs-article" id="section-3">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Web</h1>
-					    <section class="docs-intro">
-						    <p>For web environments, we've packaged our libraries as plugins to popular HTML5 players. We also have a standalone plugin, which you can configure with any HTML5 video player.</p>
 
-							<div class="callout-block callout-block-warning">
-								<div class="content">
-									<h4 class="callout-title">
-	                                <span class="callout-icon-holder mr-1">
-		                                <svg class="svg-inline--fa fa-bullhorn fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bullhorn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M576 240c0-23.63-12.95-44.04-32-55.12V32.01C544 23.26 537.02 0 512 0c-7.12 0-14.19 2.38-19.98 7.02l-85.03 68.03C364.28 109.19 310.66 128 256 128H64c-35.35 0-64 28.65-64 64v96c0 35.35 28.65 64 64 64h33.7c-1.39 10.48-2.18 21.14-2.18 32 0 39.77 9.26 77.35 25.56 110.94 5.19 10.69 16.52 17.06 28.4 17.06h74.28c26.05 0 41.69-29.84 25.9-50.56-16.4-21.52-26.15-48.36-26.15-77.44 0-11.11 1.62-21.79 4.41-32H256c54.66 0 108.28 18.81 150.98 52.95l85.03 68.03a32.023 32.023 0 0 0 19.98 7.02c24.92 0 32-22.78 32-32V295.13C563.05 284.04 576 263.63 576 240zm-96 141.42l-33.05-26.44C392.95 311.78 325.12 288 256 288v-96c69.12 0 136.95-23.78 190.95-66.98L480 98.58v282.84z"></path></svg><!-- <i class="fas fa-bullhorn"></i> Font Awesome fontawesome.com -->
-		                            </span><!--//icon-holder-->
-										Warning
-									</h4>
-									<p>Our upscalers are currently based on <a href="https://caniuse.com/webgl2">WebGL 2.0</a>, and will throw an error on Safari and Internet Explorer. We are working on making our libraries backwards compatible with <a href="https://caniuse.com/webgl">WebGL 1.0</a>, which covers every major browser.</p>
-								</div><!--//content-->
-							</div>
+						    <p>For web environments, we've packaged our upscaler as a standalone Javascript library, as well as as plugins to several popular HTML5 video players (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">full API</a> for more detail).
 
-						</section><!--//docs-intro-->
 				    </header>
-				     <section class="docs-section" id="item-3-1">
-						<h2 class="section-heading">Core Upscaler</h2>
+
+						<h4 class="section-heading" id="item-3-usage">Basic usage</h4>
 
 
-						 <p>The entry point is 'upscaler.js'. You'll need to include the model weights and files as well.</p>
-
-						 <figure class="figure docs-figure py-3">
-							 <script src="https://gist.github.com/sb2702/39753a067a4795893a3b51997ef4f2e0.js"></script>
-						 </figure>
+						 <p>For the <code>vectorly-standalone.js</code> library, the basic API involves instantiating a <code>vectorlyUpscaler</code> object, and specifying a <code>video</code> element.</p>
 
 
 
-					 </section><!--//section-->
+						 <pre>
+							 <code>
+   const video = document.getElementById("video");
+
+   const config = {
+	   token: '...'
+   };
+
+   const upscaler = new vectorlyUpscaler(video, config);
+							 </code>
+						 </pre>
+
+
+						 <p>This automatically upscales the video, by overlaying a <code>canvas</code> element with the upscaled video frames on top of the <code>video</code> element. When the <code>video</code> plays, the upscaler will automatically upscale each frame and update the <code>canvas</code> element. See the <a href="#item-3-styling"> styling</a> section for more detail.</p>
+
+
 					
-					<section class="docs-section" id="item-3-2">
-						<h2 class="section-heading">Plugins</h2>
+
+						<h4 class="section-heading" id="item-3-plugins">Plugins</h4>
+						Besides the <code>vectorly-standalone.js</code> library, we have several plugins for specific HTML5 players. (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">full API</a> for more detail).
 
 
+						<p>
 
+						<h4>VideoJS</h4>
+						<pre>
+							 <code>
+   const player = videojs('my-video')
+   videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
+   const vjsUpscaler = player.vectorlyPlugin({token: '...'})
+							 </code>
+						 </pre>
 
-						<h3>VideoJS</h3>
-
-
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/61674438c22faad988a3a71abe8650f9.js"></script>
-						</figure>
-
-
-
-						<h3>JWPlayer</h3>
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/550cdfe8c04ee81c5166ee688209eaab.js"></script>
-						</figure>
-
-
-
-
-
-						<h3>Shaka Player</h3>
-
-
-
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/2049c691948c01b5aa35ff9cd2d887a7.js"></script>
-						</figure>
+						</p>
 
 
 
 
 
+						<p>
+
+						<h4>Shaka player</h4>
+						<pre>
+							 <code>
+    async function init() {
+       const video = document.getElementById('my-video');
+       const ui = video['ui'];
+       const controls = ui.getControls();
+       const player = controls.getPlayer();
+
+       try {
+           await player.load(url);
+           // This runs if the asynchronous load is successful.
+           const upscaler = new vectorlyUpscaler.shakaPlugin(player,{
+                token: '...'
+              });
+       } catch (error) {
+          console.log(error);
+       }
+    }
+
+    document.addEventListener('shaka-ui-loaded', init);
+							 </code>
+						 </pre>
+
+						</p>
 
 
-					</section><!--//section-->
-					
-					<section class="docs-section" id="item-3-3">
-						<h2 class="section-heading">Events</h2>
+						<h2 class="section-heading" id="item-3-events">Events</h2>
 
 
 						<p>Once you have instantiated the upscaler object, you can access basic upscaler events, like onload and error handling.</p>
 
-						<figure class="figure docs-figure py-3">
-							<script src="https://gist.github.com/sb2702/417ecef0793515da4a2c23468ee7f712.js"></script>
-						</figure>
+						<pre>
+							 <code>
+   const upscaler = new vectorlyUpscaler(video, config);
+
+   upscaler.on('load', function () {
+     console.log("Upscaler initialized");
+   });
+
+   upscaler.on('start', function () {
+      console.log("Starting upscaling");
+   });
+
+   upscaler.on('stop', function () {
+      console.log("Stopping upscaling");
+   });
+
+   upscaler.on('error', function () {
+     console.log("Failed to initialize");
+   });
+							 </code>
+						 </pre>
 
 
-
-
-					</section><!--//section-->
-
-					<section class="docs-section" id="item-3-4">
-						<h2 class="section-heading">Enable / Disable</h2>
+						<h2 class="section-heading" id="item-3-controls">Controls </h2>
 
 						<p> You can also enable and disable the upscaler programatically.</p>
 
-						<script src="https://gist.github.com/sb2702/12be1e2e6af4e231e4d2a7c6d91cb3cf.js"></script>
+						<pre>
+							 <code>
+   const upscaler = new vectorlyUpscaler(video, config);
+
+   upscaler.disable();
+
+   upscaler.enable();
+							 </code>
+						 </pre>
 
 
-					</section><!--//section-->
 
 
-					<section class="docs-section" id="item-3-5">
-						<h2 class="section-heading">Models</h2>
+						<h2 class="section-heading" id="item-3-styling">Styling</h2>
+
+						<p> You can also enable and disable the upscaler programatically.</p>
+
+
+
+
+
+
+						<h2 class="section-heading" id="item-3-ai-models">Models</h2>
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object</p>
-						<script src="https://gist.github.com/sb2702/31d262689770e55fd84bbb3672e47818.js"></script>
 
+						<pre>
+							 <code>
+   const upscaler = new vectorlyUpscaler(video, {token: '...', network: 'residual_3k_3x', version: '2.1'});
+							 </code>
+						 </pre>
 
 
 						<p>The available models are:</p>
@@ -372,8 +404,6 @@
 						</div>
 
 
-
-					</section>
 
 
 					<p>If you encounter any issues with these libraries, you can send us a message</p>
