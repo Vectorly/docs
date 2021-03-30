@@ -10,6 +10,8 @@ var exec= require('child_process').exec;
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-aws-s3');
+    grunt.loadNpmTasks('grunt-cloudfront');
+
     grunt.config.init({
 
 
@@ -20,7 +22,7 @@ module.exports = function (grunt) {
                 uploadConcurrency: 5, // 5 simultaneous uploads
                 downloadConcurrency: 5 // 5 simultaneous downloads
             },
-            docs: {
+            production: {
                 options: {
                     region: 'us-west-2',
                     bucket: 'vectorly.io',
@@ -36,7 +38,7 @@ module.exports = function (grunt) {
                 ]
             },
 
-            docs_staging: {
+            staging: {
                 options: {
                     region: 'us-west-2',
                     bucket: 'vectorly.io',
@@ -52,6 +54,30 @@ module.exports = function (grunt) {
                 ]
             }
 
+        },
+
+        cloudfront: {
+            options: {
+                region:'us-west-2', // your AWS region
+                distributionId:"E2XU8J1PRAM207", // DistributionID where files are stored
+                listInvalidations:true, // if you want to see the status of invalidations
+                listDistributions:false, // if you want to see your distributions list in the console
+                version:"1.0" // if you want to invalidate a specific version (file-1.0.js)
+            },
+            production: {
+                CallerReference: Date.now().toString(),
+                Paths: {
+                    Quantity: 1,
+                    Items: [ '/docs/*' ]
+                }
+            },
+            staging: {
+                CallerReference: Date.now().toString(),
+                Paths: {
+                    Quantity: 1,
+                    Items: [ '/docs-staging/*' ]
+                }
+            }
         }
 
 
@@ -59,7 +85,8 @@ module.exports = function (grunt) {
 
 
 
-    grunt.registerTask('push', ['aws_s3:docs']);
+    grunt.registerTask('production', ['aws_s3:production', 'cloudfront:production']);
+    grunt.registerTask('staging', ['aws_s3:staging',  'cloudfront:staging']);
 
 
 
