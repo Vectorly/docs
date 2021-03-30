@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
     <title>Vectorly Documentation</title>
-    
+
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="description" content="Vectorly AI Upscaler Documentation">
-    <meta name="author" content="Vectorly">    
+    <meta name="author" content="Vectorly">
     <link rel="shortcut icon" href="assets/images/vectorly-logo-circle.svg">
-    
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
-    
+
     <!-- FontAwesome JS-->
     <script defer src="assets/fontawesome/js/all.min.js"></script>
-    
+
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
 
-    <!-- Theme CSS -->  
+    <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
 
-</head> 
+</head>
 
-<body class="docs-page">    
-    <header class="header fixed-top">	    
+<body class="docs-page">
+    <header class="header fixed-top">
         <div class="branding docs-branding">
             <div class="container-fluid position-relative py-2">
                 <div class="docs-logo-wrapper">
@@ -50,7 +50,7 @@
             </div><!--//container-->
         </div><!--//branding-->
     </header><!--//header-->
-    
+
     <div class="docs-wrapper">
 	    <div id="docs-sidebar" class="docs-sidebar">
 		    <div class="top-search-box d-lg-none p-3">
@@ -72,7 +72,7 @@
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-plugins">Plugins</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-events">Events</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-controls">Controls</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-styling">Styling</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-styling">Styling and Scaling</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-ai-models">AI Models</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
@@ -143,9 +143,9 @@
 
 
 
-						
+
 				    </header>
-					
+
 					<section class="docs-section" id="item-1-2">
 						<h2 class="section-heading">Upscaling libraries</h2>
 
@@ -169,12 +169,12 @@
 						</p>
 
 						<p>We are currently working on Android and iOS mobile SDKs.</p>
-						
+
 					</section><!--//section-->
 
 
 			    </article>
-			    
+
 			    <article class="docs-article" id="section-2">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Getting Started</h1>
@@ -197,17 +197,44 @@
 				     <section class="docs-section" id="item-2-1">
 						<h2 class="section-heading">Hello World</h2>
 						 <p>The easiest way to get started with upscaling is by using our VideoJS javascript plugin. Just include <code>vectorly-videojs.js</code> in the repository (and the model files and weights), and you should be able to instantly see the video playing</p>
-						 <figure class="figure docs-figure py-3">
-							 <script src="https://gist.github.com/sb2702/5518427ffb4cce0efa9a36da40b00294.js"></script>
-						 </figure>
+						<p><code><pre>
 
+   &lt;head&gt;
+       &lt;link href=&quot;https://vjs.zencdn.net/7.10.2/video-js.css&quot; rel=&quot;stylesheet&quot; /&gt;
+       &lt;script src=&quot;https://vjs.zencdn.net/7.10.2/video.min.js&quot;&gt;&lt;/script&gt;
+     &lt;script src=&quot;https://cdn.vectorly.io/upscaler/latest/vectorly-videojs.js&quot;&gt;&lt;/script&gt;
+   &lt;/head&gt;
+
+   &lt;body&gt;
+   &lt;video id=&quot;my-video&quot; class=&quot;video-js&quot;  controls width=&quot;1280&quot;  height=&quot;720&quot;   data-setup=&quot;{}&quot; crossorigin=&quot;anonymous&quot;&gt;
+       &lt;source src=&quot;https://files.vectorly.io/demo/high-quality-240p/jellyfish-240p.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+   &lt;/video&gt;
+     &lt;script&gt;
+
+         videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
+
+         const player = videojs('my-video');
+
+         const upscaler = player.vectorlyPlugin({token: '...'});
+
+         upscaler.addEventListener('load', function () {
+             console.log(&quot;Upscaler initialized&quot;);
+         });
+
+         upscaler.addEventListener('error', function () {
+             console.log(&quot;Failed to initialize&quot;);
+         });
+
+     &lt;/script&gt;
+   &lt;/body&gt;
+						 </pre></code></p>
 						 <p>For other players, scroll down to the <a class="scrollto" href="#section-3"> web section</a> or see the full API <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">here</a> </p>
 
 					</section><!--//section-->
 
 			    </article><!--//docs-article-->
-			    
-			    
+
+
 			    <article class="docs-article" id="section-3">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Web</h1>
@@ -239,7 +266,7 @@
 						 <p>This automatically upscales the video, by overlaying a <code>canvas</code> element with the upscaled video frames on top of the <code>video</code> element. When the <code>video</code> plays, the upscaler will automatically upscale each frame and update the <code>canvas</code> element. See the <a href="#item-3-styling"> styling</a> section for more detail.</p>
 
 
-					
+
 
 						<h4 class="section-heading" id="item-3-plugins">Plugins</h4>
 						Besides the <code>vectorly-standalone.js</code> library, we have several plugins for specific HTML5 players. (see the <a href="https://deploy-preview-40--vectorly-html5-upscaler.netlify.app/js-docs/">full API</a> for more detail).
@@ -336,9 +363,54 @@
 
 
 
-						<h2 class="section-heading" id="item-3-styling">Styling</h2>
+						<h2 class="section-heading" id="item-3-styling">Styling and Scaling</h2>
 
-						<p> You can also enable and disable the upscaler programatically.</p>
+						<p>
+
+							Let's say you have a video element, inside of a basic container div.
+
+							<code><pre>
+
+   &lt;div id=&quot;container&quot;&gt;
+      &lt;video src="video.mp4" &gt;&lt;/video&gt;
+   &lt;/div&gt;
+				</pre></code>
+</p>
+
+
+					<p>
+					When you feed that  <code>video</code> element to the Upcaler instantiation function, it will create a <code>canvas</code> element as a sibling node, with the same parent node as the <code>video</code> element.
+
+						<code><pre>
+
+     &lt;div id=&quot;container&quot;&gt;
+         &lt;video src=&quot;video.mp4&quot;  style=&quot;visibility: hidden&quot;&gt;&lt;/video&gt;
+         &lt;canvas  id=&quot;output&quot; &gt;&lt;/canvas&gt;  // Where the upscaled frames are drawn
+      &lt;/div&gt;
+				</pre></code>
+					The upscaler library styles this canvas to occupy 100% of the width and height of the parent element, which in practice, covers the video element in most HTML5 video player interfaces.
+
+					</p>
+
+					<p>
+							To have more control over the styling and position of the output, you can use the <code>container</code>option, to specify a div element to place the destination canvas.
+							<code>
+								<pre>
+
+
+   const video = document.getElementById("video");
+   const div = document.getElementById("my-div");
+
+   const config = {
+	   token: '...',
+	   container:  div //Any div element,
+   };
+
+   const upscaler = new vectorlyUpscaler(video, config);
+				</pre></code>
+
+					The output canvas will occupy the exact dimensions of the container div, and will dynamically resize and re-position whenever the container div is moved, resized or changed. To dynamically style and position the output therefore, you should style and position the container element.
+						</p>
 
 
 
@@ -412,7 +484,7 @@
 
 
 				</article><!--//docs-article-->
-			    
+
 			    <article class="docs-article" id="section-4">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Mobile</h1>
@@ -489,17 +561,10 @@
                              <a href="https://github.com/Vectorly/android-demo" class="btn btn-success"><svg class="svg-inline--fa fa-file-code fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>Example Repo</a>
                          </p>
 
-<!--
-						 <p>
-							 You can also disable and enable the player programatically
 
-							 <script src="https://gist.github.com/sb2702/1b83bda619c96efef1f2be2e9b04088b.js"></script>
-						 </p>
-
-						 -->
 
 					</section><!--//section-->
-					
+
 					<section class="docs-section" id="item-4-2">
 						<h2 class="section-heading">iOS</h2>
 						<p>We plant to release an iOS SDK in Summer 2021</p>
@@ -601,7 +666,7 @@
 
 					</header>
 				</article><!--//docs-article-->
-			    
+
 			    <article class="docs-article" id="section-5">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Demos</h1>
@@ -636,8 +701,8 @@
 				    </header>
 
 			    </article><!--//docs-article-->
-			    
-			    
+
+
 		        <article class="docs-article" id="section-6">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Benchmarks</h1>
@@ -726,7 +791,7 @@
 						 </div>
 
 					</section><!--//section-->
-					
+
 					<section class="docs-section" id="item-6-2">
 						<h2 class="section-heading">Quality</h2>
 						<p>The primary benefit of Super resolution is to increase video quality. Using the original high-resolution video as a reference, we can use traditional video quality metrics like VMAF to quantify the quality improvement of Super Resolution, when compared to normal bicubic upscaling of the downsampled / low-resolution video content.</p>
@@ -832,23 +897,23 @@
 				        </ul><!--//social-list-->
 				    </div>
 			    </footer>
-		    </div> 
+		    </div>
 	    </div>
     </div><!--//docs-wrapper-->
-    
-   
-       
-    <!-- Javascript -->          
+
+
+
+    <!-- Javascript -->
     <script src="assets/plugins/jquery-3.4.1.min.js"></script>
     <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-    
-    
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+
     <!-- Page Specific JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-    <script src="assets/js/highlight-custom.js"></script> 
+    <script src="assets/js/highlight-custom.js"></script>
     <script src="assets/plugins/jquery.scrollTo.min.js"></script>
-    <script src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script> 
+    <script src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>
     <script src="assets/js/docs.js"></script>
 
     <script type="text/javascript">
@@ -862,5 +927,5 @@
     </script>
 
 </body>
-</html> 
+</html>
 
