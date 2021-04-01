@@ -56,6 +56,7 @@ module.exports = function (grunt) {
 
         },
 
+
         cloudfront: {
             options: {
                 region:'us-west-2', // your AWS region
@@ -78,7 +79,8 @@ module.exports = function (grunt) {
                     Items: [ '/docs_staging/*' ]
                 }
             }
-        }
+        },
+
 
 
     });
@@ -87,8 +89,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('production', ['aws_s3:production', 'cloudfront:production']);
     grunt.registerTask('staging', ['aws_s3:staging',  'cloudfront:staging']);
-
-
 
 
 
