@@ -604,7 +604,41 @@
 						<section class="docs-section" id="conferencing-twilio">
 							<h2 class="section-heading">Twilio</h2>
 
-							<p>Coming soon</p>
+							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
+
+
+
+								<p>If you use the <code>track.attach()</code> method to create a <code>video</code> element:</p>
+
+
+							<pre><code>
+   const Video = require('twilio-video');
+
+   Video.createLocalVideoTrack().then(function(videoTrack) {
+     const videoElement = videoTrack.attach();
+     document.body.appendChild(videoElement);
+     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+   });
+							</code></pre>
+
+
+
+<p>If you specify your own <code>video</code> element:</p>
+
+
+							<pre><code>
+   const Video = require('twilio-video');
+
+   const videoElement = document.createElement('video');
+   document.body.appendChild(videoElement);
+
+   Video.createLocalVideoTrack().then(function(videoTrack) {
+     videoTrack.attach(videoElement);
+     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+   });
+							</code></pre>
+
+
 						</section><!--//section-->
 
 						<section class="docs-section" id="conferencing-daily">
