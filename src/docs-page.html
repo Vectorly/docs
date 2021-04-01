@@ -545,88 +545,64 @@
 					<header class="docs-header">
 						<h1 class="docs-heading">Video Conferencing</h1>
 						<section class="docs-intro">
-							<p>You can also use Vectorly's AI Upscaler for upscaling within Video Conferencing architectures. Here, we outline 3 different ways AI upscaling can be used to improve video quality for end users within WebRTC Video Conferencing systems.</p>
-
-
-							<p>We've also put together an <a href="https://github.com/Vectorly/webrtc-demo"> example repository</a>, showing how Vectorly can be integrated with WebRTC.</p>
-
-							<p>You can see a full working WebRTC demo <a href="https://files.vectorly.io/demo/webrtc/index.html">here</a> </p>
+							<p>You can also use Vectorly's AI Upscaler for upscaling video streams in any WebRTC video conferencing system.</p>
 						</section><!--//docs-intro-->
 
 
 						<section class="docs-section" id="conferencing-webrtc">
-							<h2 class="section-heading">Integration</h2>
-							<p>You can add Vectorly's AI upscaler directly on the client side for one or more clients, which helps improve the video experience for each individual receiver (for example, if the receiver's network speed drops). This option primarily makes sense for <a href="https://webrtchacks.com/sfu-simulcast/">Simulcast SFU</a> and <a href="https://trueconf.com/blog/wiki/mcu-video-conferencing-architecture">MCU</a> architectures, where receivers have the option of recieving multiple quality levels of video.</p>
+							<h2 class="section-heading">General WebRTC</h2>
 
 
-							<p>You'll need to feed the video tag of the video feed you want to upscale. For a real world example, you can see the <a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js#L140"> exact line </a> where the upscaler is defined in the WebRTC demo repo</p>
+							<p>The <code>vectorlyUpscaler</code> object works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
 
 
-							<pre>
-							 <code>
-   upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {width: width, height: height});
+							<pre><code>
+   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {width: width, height: height});
 
-</code>
-						 </pre>
+</code></pre>
 
-							<p>When you feed in the input video element to the upscaler, and the upscaler will automatically upscale the corresponding tag</p>
+							<p>We have an <a href="https://github.com/Vectorly/webrtc-demo"> example repository</a>, showing how Vectorly can be integrated with WebRTC, as well as a full working general WebRTC demo <a href="https://files.vectorly.io/demo/webrtc/index.html">here.</a> </p>
+
+
+<p>
+	Integrating the upscaler with any specific Video Conferencing API or service just requires finding the video element associated with video stream you want to upscale.
+</p>
+
 
 
 						</section><!--//section-->
 
 						<section class="docs-section" id="conferencing-agora">
-							<h2 class="section-heading">Compression</h2>
-							<p>In pure Peer to Peer architectures or regular <a href="https://webrtcglossary.com/sfu/"> SFU</a> architctures, each broadcaster is only broadcasting one video quality. In these scenarios, you would need to downscale the broadcast video quality for each broadcaster.</p>
-							<p> Doing this makes sense in scenarios where you would want to reduce bandwidth for all participants involved.</p>
+							<h2 class="section-heading">Agora</h2>
 
 
-							<p>To implement this, you would need to set the output resolution for each broadcaster's video (see <a href="https://gist.github.com/sb2702/9d1ebbfdef025268757e798bf3ad85c0">example</a> ), as well as to adjust the output bitrate in WebRTC (<a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js#L212">example</a>).
-							You can see the a full working version of bandwidth and bitrate selection in the <a href="https://github.com/Vectorly/webrtc-demo/blob/vectorly-webrtc/demo/js/main.js"> WebRTC Demo repository</a>.
+							<p>For Web deployments using <a href="https://www.agora.io">Agora</a>, you can find the <code>video</code> element of the stream you want to upscale by using the stream's ID.</p>
 
+							<p>
+								<pre><code>
+    let stream = AgoraRTC.createStream({
+        streamID: uid,
+        audio: true,
+        video: true,
+        screen: false
+    });
 
-							<p>This lower quality video is then broadcast to all users, which will then re-upscale it to normal resolution with the AI upscaling module.</p>
+    stream.init(function() {
 
-							<p>For guidance, below are the following recommended encoding settings for WebRTC based video conferencing for different input resolutions of user's video cameras.</p>
+        stream.play('target-div');
+        const video = document.getElementById("video" + stream.getId());
+        const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
 
-							<div class="table-responsive my-4">
-								<table class="table table-striped">
+        client.publish(stream, handleFail);
 
-									<tr>
-										<th scope="col">Input Resolution</th>
-										<th scope="col">H264</th>
-										<th scope="col">VP9</th>
-									</tr>
-
-									<tbody>
-
-
-									<tr>
-										<td>240x320</td>
-										<td>300kbps</td>
-										<td>200kbps</td>
-									</tr>
-
-									<tr>
-										<td>360x480</td>
-										<td>400kbps</td>
-										<td>300kbps</td>
-									</tr>
-
-									<tr>
-										<td>360x640</td>
-										<td>500kbps</td>
-										<td>400kbps</td>
-									</tr>
-
-									</tbody>
-								</table>
-							</div>
-
+    },handleFail);
+						</code></pre>
+							</p>
 
 						</section><!--//section-->
 
 						<section class="docs-section" id="conferencing-twilio">
-							<h2 class="section-heading">Performance</h2>
+							<h2 class="section-heading">Twilio</h2>
 
 							<p>One further use case is to upscale and enhance video just from users who are broadcasting video over poor connections. This has the advantage of not having any end-user requirements, but this is only possible in architectures where server-side transcoding is possible. </p>
 
@@ -635,7 +611,7 @@
 						</section><!--//section-->
 
 						<section class="docs-section" id="conferencing-daily">
-							<h2 class="section-heading">Performance</h2>
+							<h2 class="section-heading">Daily.co</h2>
 
 							<p>One further use case is to upscale and enhance video just from users who are broadcasting video over poor connections. This has the advantage of not having any end-user requirements, but this is only possible in architectures where server-side transcoding is possible. </p>
 
@@ -643,15 +619,6 @@
 							<p>While we currently don't have a server-side upscaler, it would be very easy to build, and the quality and performance would be much better than for client-side devices. If you'd like to implement server-side upscaling, we'd love to <a href="mailto: team@vectorly"> learn more about your requrements</a></p>
 						</section><!--//section-->
 
-
-						<section class="docs-section" id="conferencing-daily">
-							<h2 class="section-heading">Performance</h2>
-
-							<p>One further use case is to upscale and enhance video just from users who are broadcasting video over poor connections. This has the advantage of not having any end-user requirements, but this is only possible in architectures where server-side transcoding is possible. </p>
-
-
-							<p>While we currently don't have a server-side upscaler, it would be very easy to build, and the quality and performance would be much better than for client-side devices. If you'd like to implement server-side upscaling, we'd love to <a href="mailto: team@vectorly"> learn more about your requrements</a></p>
-						</section><!--//section-->
 
 					</header>
 				</article><!--//docs-article-->
