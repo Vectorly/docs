@@ -609,7 +609,24 @@
 
 						<section class="docs-section" id="conferencing-daily">
 							<h2 class="section-heading">Daily.co</h2>
-							<p>Coming soon</p>
+							<p>You can integrate Vectorly's AI upscaler with <a href="daily.co">Daily.co</a> if you're building a custom <a href="https://docs.daily.co/docs/build-a-custom-video-chat-interface">custom video chat interface </a>. Using the default React code sample from Daily, we've built a full working <a href="https://github.com/Vectorly/daily-call-object/">demo reference</a> </p>
+
+							<pre><code>
+   useEffect(() => {
+	videoEl.current &&
+	(videoEl.current.srcObject = new MediaStream([videoTrack]));
+	if (videoEl.current && props.isLarge) {
+	window.upscalers = window.upscalers || {}
+	window.upscalers[videoTrack.id] = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+	}
+   }, [videoTrack]);
+							</code></pre>
+
+							<p>You just need to make sure you intercept the <code>video</code> element associated with the video track you want to upscale.</p>
+
+							<p>Vectorly's API upscaler is not compatible with the pre-built UI from Daily.co, as the pre-built UI is loaded via iframe, making it impossible to access the <code>video</code> element through a third party application.</p>
+
+
 						</section><!--//section-->
 
 
