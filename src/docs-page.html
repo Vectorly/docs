@@ -455,7 +455,7 @@
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
 						<pre><code>
-   const upscaler = new vectorlyUpscaler(video, {token: '...', network: 'residual_3k_3x', version: '2.1'});
+   const upscaler = new vectorlyUpscaler(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
 							 </code></pre>
 						We are constantly releasing new models. You can find a comprehensive list of models <a href="https://cdn.vectorly.io/upscaler/docs/latest/global.html#NetworkParams" >here</a>
 
@@ -581,7 +581,7 @@
 
 
 							<pre><code>
-   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {width: width, height: height});
+   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), , {token: 'insert-vectorly-token-here'}, {width: width, height: height});
 
 </code></pre>
 
