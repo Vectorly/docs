@@ -106,6 +106,7 @@
 					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-conferencing"><span class="theme-icon-holder mr-2"><i class="fas fa-phone-alt"></i></span>Video Conferencing</a></li>
 
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-webrtc">WebRTC</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-jitsi">Jitsi</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-agora">Agora</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-twilio">Twilio</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-daily">Daily.co</a></li>
@@ -596,6 +597,29 @@
 
 
 						</section><!--//section-->
+
+						<section class="docs-section" id="conferencing-jitsi">
+							<h2 class="section-heading">Jitsi</h2>
+
+							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
+
+
+<pre><code>
+   const room = connection.initJitsiConference('conference', confOptions);
+   room.on(JitsiMeetJS.events.conference.TRACK_ADDED, function(track){
+
+      const videoElement = document.createElement('video');
+      document.body.appendChild(videoElement);
+      track.attach(videoElement);
+
+      const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+
+   });
+</code></pre>
+
+
+						</section><!--//section-->
+
 
 						<section class="docs-section" id="conferencing-agora">
 							<h2 class="section-heading">Agora</h2>
