@@ -666,7 +666,7 @@
    Video.createLocalVideoTrack().then(function(videoTrack) {
      const videoElement = videoTrack.attach();
      document.body.appendChild(videoElement);
-     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+     const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
