@@ -438,7 +438,10 @@
 					</p>
 
 
-					<p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-3-controls">disable upscaling</a>  if the fps gets too low.</p>
+					<p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
+
+						<p>
+						It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-3-controls">disable upscaling</a>  if the fps gets too low.</p>
 
 
 
