@@ -356,6 +356,49 @@
 						</p>
 
 
+					<p id="item-3-custom-plugins">
+
+					<h4>Custom plugin</h4>
+
+					You can easily build a plugin for Vectorly for any HTML5 video player. All you really need is the <code>video</code> tag, and the video container <code>div</code>, which contains the video UI elements and which is used for <a href="#item-3-styling">styling and layout</a>. See a demo plugin code, off of which our other HMTL5 Player plugins are based
+					<pre>
+							 <code>
+   import vectorlyUpscaler from '@vectorly-io/ai-upscaler';
+
+   class myPlugin {
+
+     constructor(videoElement, config){
+
+       const container = videoElement.parentNode; // Or whatever the video container div is
+       const upscaler = new vectorlyUpscaler(videoElement, config);
+       this.upscaler = upscaler;
+
+     }
+
+     on(event, callback){
+       this.upscaler.on(event, callback)
+     }
+
+     enable(){
+       this.upscaler.enable();
+     }
+
+     disable(){
+       this.upscaler.disable();
+     }
+
+     changeNetwork(networkParams) {
+         this.upscaler.changeNetwork(networkParams)
+     }
+   }
+
+   export default myPlugin
+							 </code>
+						 </pre>
+
+					</p>
+
+
 					<h4 class="section-heading" id="item-3-electron">Electron</h4>
 					<p>If you're building an electron app, the Vectorly library is fairly plug and play, and will work with either CDN or NPM installation. </p>
 
