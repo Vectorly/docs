@@ -612,7 +612,52 @@
 
 					<h2 class="section-heading" id="item-3-low-level">Low level controls</h2>
 
-					<p>Coming soon</p>
+					<p>For use cases where lower level control is needed, such as upscaling indidual frames or images, using a custom decoder or upscaling as part of a broader image processing pipeline, you can use the <a href="https://cdn.vectorly.io/upscaler/docs/latest/vectorlyUpscalerCore.html">vectorly-core library</a>.</p>
+
+					<p>With the low level upscaling API, you have control over</p>
+					<ul>
+						<li>The Input source</li>
+						<li>The destination</li>
+						<li>When rendering happens</li>
+					</ul>
+					<p><strong>Setting a destination</strong></p>
+					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
+					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
+					<pre><code>    const upscaler = new vectorlyUpscaler.core({
+        token:  "your-token",
+        canvas: document.getElementById('your-canvas-element'),
+        w: 640,
+        h: 360
+    });
+</code></pre>
+					<p>If you want to upscale multiple streams to different canvases, you will need to define a seperate upscaler for each <code>canvas</code> element.</p>
+					<p><strong>Setting an input</strong></p>
+					<p>At any time, you can set the input of the upscaler via the <code>upscaler.setInput()</code> method</p>
+					<pre><code> upscaler.setInput(source); // Sets input element
+</code></pre>
+					<p>Accepted sources include</p>
+					<ul>
+						<li><code>HTMLImageElement</code></li>
+						<li><code>HTMLCanvasElement</code></li>
+						<li><code>HTMLVideoElement</code></li>
+						<li><code>ImageData</code></li>
+						<li><code>ImageBitmap</code></li>
+						<li>Anything else that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/texImage2D" rel="nofollow">texImage2d</a> function accepts</li>
+					</ul>
+					<p><strong>Rendering</strong></p>
+					<p>Finally, you can render using</p>
+					<pre><code>upscaler.render();
+</code></pre>
+					<p>Which will run the AI upscaling process on the canvas</p>
+					<p><strong>Styling &amp; Scaling</strong></p>
+					<p>You need to set the input width and height of your input image or video streaming using the <code>w</code> and <code>h</code> properties in the constructor.</p>
+					<p>Based on whether you are using  a 2X network, or 3X network, it will set the canvas.width and canvas.height property to 2x or 3x the specified <code>w</code> and <code>h</code>.</p>
+					<p>If you want your canvas to be displayed at anything other than <code>2*w</code>by <code>2*h</code> on the screen, you should use CSS styling.</p>
+					<pre><code>canas.style.width = desiredWidth + "px";
+canas.style.height = desiredheight + "px";
+</code></pre>
+					<p>The browser will still upscale the image from <code>wxh</code> to  <code>2*w x 2*h</code>, but will then use CSS styling &amp; scaling (bicubic scaling) to scale the final output to the  height/width you specify via CSS.</p>
+
 
 					<br></br>
 
