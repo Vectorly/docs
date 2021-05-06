@@ -623,13 +623,15 @@
 					<p><strong>Setting a destination</strong></p>
 					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
 					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
-					<pre><code>    const upscaler = new vectorlyUpscaler.core({
-        token:  "your-token",
-        canvas: document.getElementById('your-canvas-element'),
-        w: 640,
-        h: 360
-    });
-</code></pre>
+					<pre><code>
+const upscaler = new vectorlyUpscaler.core();
+upscaler.load({w: videoWidth,
+	       h: videoHeight,
+	       renderSize: {w: videoWidth*2, h: videoHeight*2},
+	       canvas: document.getElementById('your-canvas-element'),
+	       networkParams : {name: 'model-name', tag: 'model-tag', version: 'model-version'},
+	       token: "your-token"});
+					</code></pre>
 					<p>If you want to upscale multiple streams to different canvases, you will need to define a seperate upscaler for each <code>canvas</code> element.</p>
 					<p><strong>Setting an input</strong></p>
 					<p>At any time, you can set the input of the upscaler via the <code>upscaler.setInput()</code> method</p>
