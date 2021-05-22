@@ -111,6 +111,7 @@
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-jitsi">Jitsi</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-agora">Agora</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-twilio">Twilio</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-vonage">Vonage / OpenTok</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-daily">Daily.co</a></li>
 
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
@@ -877,6 +878,40 @@ canvas.style.height = desiredheight + "px";
    });
 							</code></pre>
 
+
+						</section><!--//section-->
+
+
+						<section class="docs-section" id="conferencing-vonage">
+							<h2 class="section-heading">Vonage / Open Tok</h2>
+
+							<p>When a <code>Subscriber</code> or <code>Publisher</code> creates a <code>video</code> element you can intercept it and feed that video to the Vectorly Upscaler.
+
+
+
+							<p>You can use the <code>subscriber.element</code> property to intercept the video element</p>
+
+
+							<pre><code>
+    session.on('streamCreated', function(event) {
+
+        const subscriber = session.subscribe(event.stream, 'subscriber', {
+            insertMode: 'append',
+            width: '100%',
+            height: '100%'
+        }, handleError);
+
+        subscriber.on('videoElementCreated', function (){
+            const video = subscriber.element.querySelector('video');
+            const upscaler  = new vectorlyUpscaler(video, {token: '..your-token....'});
+
+        });
+
+    });
+							</code></pre>
+
+
+							<p>This also works with a publisher object. Refer to the <a href="https://tokbox.com/developer/guides/customize-ui/js/">Vonage documentation</a>  for styling - Vectorly's upscaler will fit within the styling defined by OpenTok.</p>
 
 						</section><!--//section-->
 
