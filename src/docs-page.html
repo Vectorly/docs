@@ -510,8 +510,8 @@
 
 
 
-						<h4 class="section-heading" id="item-3-plugins">Plugins</h4>
-						Besides the <code>vectorly-upscaler.js</code> library, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
+						<h4 class="section-heading" id="item-upscale-ott">Plugins</h4>
+						Besides the <code>UpscaleFilter</code> module, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
 
 
 						<p>
@@ -560,21 +560,20 @@
 						</p>
 
 
-					<p id="item-3-custom-plugins">
 
 					<h4>Custom plugin</h4>
 
 					You can easily build a plugin for Vectorly for any HTML5 video player. All you really need is the <code>video</code> tag, and the video container <code>div</code>, which contains the video UI elements and which is used for <a href="#item-3-styling">styling and layout</a>. See a demo plugin code, off of which our other HMTL5 Player plugins are based
 					<pre>
 							 <code>
-   import vectorlyUpscaler from '@vectorly-io/ai-upscaler';
+   import UpscaleFilter from '@vectorly-io/ai-filters';
 
    class myPlugin {
 
      constructor(videoElement, config){
 
        const container = videoElement.parentNode; // Or whatever the video container div is
-       const upscaler = new vectorlyUpscaler(videoElement, config);
+       const upscaler = new UpscalerFilter(videoElement, config);
        this.upscaler = upscaler;
 
      }
@@ -608,100 +607,9 @@
 
 					<p>You can see a demo electron app repostory <a href="https://github.com/Vectorly/vectorly-electron-demo">here</a></p>
 
-					<h4 class="section-heading" id="item-3-performance">Performance Considerations</h4>
-
-					<p>AI Upscaling does require some computational effort, however it is mostly on the graphics card, so AI Upscaling's impact on CPU is limited. The amount of computation (and therefore the framerate / performance) depends on the size of input video you are upscaling</p>
-
-					<p>The following table should give a rough idea performance for different input video resolutions. These results are only for Web environments. Our mobile SDKs will have access to more powerful native libraries, enabling significantly better performance.</p>
-
-					<div class="table-responsive my-4">
-						<table class="table table-striped">
-
-							<tr>
-								<th scope="col"></th>
-								<th scope="col">240p -> 480p/720p</th>
-								<th scope="col">360p -> 720p/1080p</th>
-								<th scope="col">480p -> 960p/1440p</th>
-							</tr>
-
-							<tbody>
 
 
-							<tr>
-								<th scope="row">High End Smartphone</th>
-								<td>120 fps</td>
-								<td>40 fps</td>
-								<td>14fps</td>
-							</tr>
-
-							<tr>
-								<th scope="row">Mid-range Smartphone</th>
-
-								<td>80 fps</td>
-								<td>28 fps</td>
-								<td>9 fps</td>
-							</tr>
-
-							<tr>
-								<th scope="row">Low-End Smartphone</th>
-
-								<td>20fps</td>
-								<td>6fps</td>
-								<td>3fps</td>
-							</tr>
-
-							<tr>
-
-								<th scope="row">Mid-range Laptop</th>
-
-								<td>100fps</td>
-								<td>35fps</td>
-								<td>8fps</td>
-							</tr>
-
-							<tr>
-
-								<th scope="row">GPU Desktop</th>
-
-								<td>200+fps</td>
-								<td>200+fps</td>
-								<td>80 fps</td>
-							</tr>
-
-
-							</tbody>
-						</table>
-					</div>
-
-
-					<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
-
-
-					<pre>
-							 <code>
-  const config = {
-	   token: '...',
-	   analyticsEnabled: true
-   };
-
-   const upscaler = new vectorlyUpscaler(video, config);
-							 </code>
-						 </pre>
-
-					</p>
-
-
-					<p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
-
-						<p>
-						It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-3-controls">disable upscaling</a>  if the fps gets too low.</p>
-
-
-
-
-					<p></p>
-
-						<h2 class="section-heading" id="item-3-events">Events</h2>
+						<h2 class="section-heading" id="item-upscale-events">Events</h2>
 
 
 						<p>Once you have instantiated the upscaler object, you can access basic upscaler events, like onload and error handling.</p>
@@ -729,7 +637,7 @@
 						 </pre>
 
 
-						<h2 class="section-heading" id="item-3-controls">Controls </h2>
+						<h2 class="section-heading" id="item-upscale-controls">Controls </h2>
 
 						<p> You can also enable and disable the upscaler programatically.</p>
 
@@ -746,7 +654,7 @@
 
 
 
-						<h2 class="section-heading" id="item-3-styling">Styling and Scaling</h2>
+						<h2 class="section-heading" id="item-upscale-styling">Styling and Scaling</h2>
 
 						<p>
 
@@ -800,7 +708,7 @@
 
 
 
-						<h2 class="section-heading" id="item-3-ai-models">Models</h2>
+						<h2 class="section-heading" id="item-upscale-models">Models</h2>
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
 						<pre><code>
@@ -814,7 +722,7 @@
 					<br></br>
 
 
-					<h2 class="section-heading" id="item-3-low-level">Low level controls</h2>
+					<h2 class="section-heading" id="item-upscale-low-level">Low level controls</h2>
 
 					<p>For use cases where lower level control is needed, such as upscaling indidual frames or images, using a custom decoder or upscaling as part of a broader image processing pipeline, you can use the <a href="https://cdn.vectorly.io/upscaler/docs/latest/vectorlyUpscalerCore.html">vectorly-core library</a>.</p>
 
@@ -828,13 +736,13 @@
 					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
 					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
 					<pre><code>
-const upscaler = new vectorlyUpscaler.core();
-upscaler.load({w: videoWidth,
-	       h: videoHeight,
-	       renderSize: {w: videoWidth*2, h: videoHeight*2},
-	       canvas: document.getElementById('your-canvas-element'),
-	       networkParams : {name: 'model-name', tag: 'model-tag', version: 'model-version'},
-	       token: "your-token"});
+   const upscaler = new vectorlyUpscaler.core();
+   upscaler.load({w: videoWidth,
+	          h: videoHeight,
+	          renderSize: {w: videoWidth*2, h: videoHeight*2},
+	          canvas: document.getElementById('your-canvas-element'),
+	          networkParams : {name: 'model-name', tag: 'model-tag', version: 'model-version'},
+	          token: "your-token"});
 					</code></pre>
 					<p>If you want to upscale multiple streams to different canvases, you will need to define a seperate upscaler for each <code>canvas</code> element.</p>
 					<p><strong>Setting an input</strong></p>
@@ -1256,7 +1164,108 @@ canvas.style.height = desiredheight + "px";
 							 </table>
 						 </div>
 
+
+
+
+
 					</section><!--//section-->
+
+					<section id="performance-considerations">
+
+						<h4 class="section-heading" id="item-3-performance">Performance Considerations</h4>
+
+						<p>AI Upscaling does require some computational effort, however it is mostly on the graphics card, so AI Upscaling's impact on CPU is limited. The amount of computation (and therefore the framerate / performance) depends on the size of input video you are upscaling</p>
+
+						<p>The following table should give a rough idea performance for different input video resolutions. These results are only for Web environments. Our mobile SDKs will have access to more powerful native libraries, enabling significantly better performance.</p>
+
+						<div class="table-responsive my-4">
+							<table class="table table-striped">
+
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">240p -> 480p/720p</th>
+									<th scope="col">360p -> 720p/1080p</th>
+									<th scope="col">480p -> 960p/1440p</th>
+								</tr>
+
+								<tbody>
+
+
+								<tr>
+									<th scope="row">High End Smartphone</th>
+									<td>120 fps</td>
+									<td>40 fps</td>
+									<td>14fps</td>
+								</tr>
+
+								<tr>
+									<th scope="row">Mid-range Smartphone</th>
+
+									<td>80 fps</td>
+									<td>28 fps</td>
+									<td>9 fps</td>
+								</tr>
+
+								<tr>
+									<th scope="row">Low-End Smartphone</th>
+
+									<td>20fps</td>
+									<td>6fps</td>
+									<td>3fps</td>
+								</tr>
+
+								<tr>
+
+									<th scope="row">Mid-range Laptop</th>
+
+									<td>100fps</td>
+									<td>35fps</td>
+									<td>8fps</td>
+								</tr>
+
+								<tr>
+
+									<th scope="row">GPU Desktop</th>
+
+									<td>200+fps</td>
+									<td>200+fps</td>
+									<td>80 fps</td>
+								</tr>
+
+
+								</tbody>
+							</table>
+						</div>
+
+
+						<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
+
+
+						<pre>
+							 <code>
+  const config = {
+	   token: '...',
+	   analyticsEnabled: true
+   };
+
+   const upscaler = new vectorlyUpscaler(video, config);
+							 </code>
+						 </pre>
+
+						</p>
+
+
+						<p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
+
+						<p>
+							It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-3-controls">disable upscaling</a>  if the fps gets too low.</p>
+
+
+
+
+						<p></p>
+
+					</section>
 
 					<section class="docs-section" id="item-6-2">
 						<h2 class="section-heading">Quality</h2>
