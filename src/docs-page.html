@@ -121,7 +121,7 @@
 		    <div class="container">
 			    <article class="docs-article" id="section-intro">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-02-11</span></h1>
+					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-06-11</span></h1>
 					    <section class="docs-intro" >
 							<p>Vectorly's client-side SDK makes it easy to integrate AI filters, such as Background Filters (virtual backgrounds, background blur) as well as AI Upscaling, into WebRTC streaming applications</p>
 						</section><!--//docs-intro-->
@@ -518,11 +518,11 @@
 						<p ><b>General WebRTC</b></p>
 
 
-							<p>The <code>vectorlyUpscaler</code> object works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
+							<p>The <code>UpscaleFilter</code> works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
 
 
 							<pre><code>
-   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
+   const upscaler  = new UpscaleFilter(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
 
 </code></pre>
 
@@ -547,7 +547,7 @@
       document.body.appendChild(videoElement);
       track.attach(videoElement);
 
-      const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+      const upscaler = new UpscaleFilter(videoElement.current, {token: 'insert-vectorly-token'});
 
    });
 </code></pre>
@@ -571,7 +571,7 @@
 
         stream.play('target-div');
         const video = document.getElementById("video" + stream.getId());
-        const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
+        const upscaler = new UpscaleFilter(video, {token: 'insert-vectorly-token-here'});
 
         client.publish(stream, handleFail);
 
@@ -595,7 +595,7 @@
    Video.createLocalVideoTrack().then(function(videoTrack) {
      const videoElement = videoTrack.attach();
      document.body.appendChild(videoElement);
-     const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+     const upscaler = new UpscaleFilter(videoElement.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
@@ -612,7 +612,7 @@
 
    Video.createLocalVideoTrack().then(function(videoTrack) {
      videoTrack.attach(videoElement);
-     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+     const upscaler = new UpscaleFilter(videoEl.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
@@ -638,7 +638,7 @@
 
         subscriber.on('videoElementCreated', function (){
             const video = subscriber.element.querySelector('video');
-            const upscaler  = new vectorlyUpscaler(video, {token: '..your-token....'});
+            const upscaler  = new UpscaleFilter(video, {token: '..your-token....'});
 
         });
 
@@ -660,14 +660,22 @@
 	(videoEl.current.srcObject = new MediaStream([videoTrack]));
 	if (videoEl.current && props.isLarge) {
 	window.upscalers = window.upscalers || {}
-	window.upscalers[videoTrack.id] = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+	window.upscalers[videoTrack.id] = new UpscaleFilter(videoEl.current, {token: 'insert-vectorly-token'});
 	}
    }, [videoTrack]);
 							</code></pre>
 
 							<p>You just need to make sure you intercept the <code>video</code> element associated with the video track you want to upscale.</p>
 
-							<p>Vectorly's API upscaler is not compatible with the pre-built UI from Daily.co, as the pre-built UI is loaded via iframe, making it impossible to access the <code>video</code> element through a third party application.</p>
+							<p>Vectorly's AI upscaler is not compatible with the pre-built UI from Daily.co, as the pre-built UI is loaded via iframe, making it impossible to access the <code>video</code> element through a third party application.</p>
+
+
+						<p><b>Electron</b></p>
+
+
+						<p>If you're building an electron app, the Vectorly library is fairly plug and play, and will work with either CDN or NPM installation. </p>
+
+						<p>You can see a demo electron app repostory <a href="https://github.com/Vectorly/vectorly-electron-demo">here</a></p>
 
 
 
@@ -737,7 +745,7 @@
      constructor(videoElement, config){
 
        const container = videoElement.parentNode; // Or whatever the video container div is
-       const upscaler = new UpscalerFilter(videoElement, config);
+       const upscaler = new UpscaleFilter(videoElement, config);
        this.upscaler = upscaler;
 
      }
@@ -764,12 +772,6 @@
 						 </pre>
 
 					</p>
-
-
-					<h4 class="section-heading" id="item-3-electron">Electron</h4>
-					<p>If you're building an electron app, the Vectorly library is fairly plug and play, and will work with either CDN or NPM installation. </p>
-
-					<p>You can see a demo electron app repostory <a href="https://github.com/Vectorly/vectorly-electron-demo">here</a></p>
 
 
 
