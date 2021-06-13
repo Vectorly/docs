@@ -92,11 +92,7 @@
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-background"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Background Filters</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-loading">Installation</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-basic-usage">Basic Usage</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-webrtc">General WebRTC</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-jitsi">Jitsi</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-agora">Agora</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-twilio">Twilio</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-vonage">Vonage</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-integration">Integration</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-events">Events</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-controls">Controls</a></li>
 
@@ -312,18 +308,22 @@
 						</p>
 
 
+
+
+
+					</section>
+
+					<section class="docs-section" id="item-background-integration">
+						<h2 class="section-heading">Integration</h2>
+
 						<p>
 							Integrating the filter with any specific Video Conferencing API or service just requires finding the <code>MediaStream</code> element associated with video stream you want to filter. The following sub-sections discuss how to integrate the filter with various conferencing services.
 						</p>
 
 
 
-					</section>
 
-					<section class="docs-section" id="item-background-webrtc">
-						<h2 class="section-heading">General WebRTC</h2>
-
-
+						<p><b>Vanilla WebRTC</b></p>
 						<p>As shown above, the API for basic/general WebRTC is:</p>
 
 
@@ -340,11 +340,7 @@
 
 
 
-
-					</section><!--//section-->
-
-					<section class="docs-section" id="item-background-jitsi">
-						<h2 class="section-heading">Jitsi</h2>
+						<p><b>Jitsi</b></p>
 
 						<p>You can enable filters on any <code>VideoTrack</code> object by feeding into the Filter's Jitsi Plugin (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
 
@@ -361,11 +357,8 @@
 </code></pre>
 
 
-					</section><!--//section-->
 
-
-					<section class="docs-section" id="item-background-agora">
-						<h2 class="section-heading">Agora</h2>
+						<p><b>Agora</b></p>
 
 
 						<p>For Web deployments using <a href="https://www.agora.io">Agora</a> (specifically the 4.x API), you can just feed the video track to the Background filter, which will return a filtered video track which you can publish.</p>
@@ -382,10 +375,9 @@
 						</code></pre>
 						</p>
 
-					</section><!--//section-->
 
-					<section class="docs-section" id="item-background-twilio">
-						<h2 class="section-heading">Twilio</h2>
+
+						<p><b>Twilio</b></p>
 
 						<p>You can enable filters on any <code>VideoTrack</code> object by feeding it to the Twilio plugin (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
 
@@ -402,11 +394,9 @@
 
 
 
-					</section><!--//section-->
 
 
-					<section class="docs-section" id="item-background-vonage">
-						<h2 class="section-heading">Vonage / Open Tok</h2>
+						<p><b>Vonage / OpenTok</b></p>
 
 						<p>When you create a <code>Publisher</code> object, just feed that to the OpenTok plugin.
 
