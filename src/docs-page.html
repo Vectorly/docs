@@ -1053,84 +1053,89 @@ canvas.style.height = desiredheight + "px";
 
 		        <article class="docs-article" id="section-performance">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Benchmarks</h1>
+					    <h1 class="docs-heading">Performance</h1>
 					    <section class="docs-intro">
-						    <p>	For Super Resolution, the most practical challenge is client side performance, as it requires doing large numbers of computations. This can especially become an issue when dealing with low-end devices (such as entry-level smartphones).
+						    <p>When running AI filters on client-devices, the most practical challenge is client side performance, as it requires doing large numbers of computations. This can especially become an issue when dealing with low-end devices (such as entry-level smartphones).
 							</p>
 
 							<p>	Accordingly, we have focused a great deal on making our AI models as efficient as possible, to enable good quality outputs while still maintaining good client-side rendering performance on low-end devices.
 							</p>
-
-							<p>	Below, you can see the quality and performance metrics output for the demos outlined above. All of our performance results are for our generic upscaler model. We plan to make more models for different devices, and different qualities.
-							</p>
 						</section><!--//docs-intro-->
 				    </header>
-				     <section class="docs-section" id="item-6-1">
-						<h2 class="section-heading">Framerate</h2>
+
+					<section class="docs-section" id="item-background-performance">
+
+
+					</section><!--//section-->
+				     <section class="docs-section" id="item-upscale-performance">
+
+						 <h2 class="section-heading">Upscaler</h2>
+
 						<p>The primary "cost" to doing super-resolution is computational complexity. While we have put a lot of work into making super resolution feasible on client devices, it is still something which needs to be managed. Here, we provide some initial performance benchmarks for the same demos shown above, in the demos sections.</p>
 
 						 <figure class="figure docs-figure py-3">
 							 <img class="figure-img img-fluid" src="assets/images/upscaler-performance.svg" alt="" style="width: 800px;">
 						 </figure>
 
-						 <div class="callout-block callout-block-info">
 
-							 <div class="content">
-								 <h4 class="callout-title">
-	                                <span class="callout-icon-holder mr-1">
-		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
-		                            </span><!--//icon-holder-->
-									 Note
-								 </h4>
-								 <p>Upscaling time varies from frame to frame, so we provide average framerates. Framerates for desktop were over 500fps, but we capped the graph for clarity purposes.</p>
-							 </div><!--//content-->
-						 </div>
+						 <h4  id="item-upscale-performance-considerations">Performance Considerations</h4>
 
-						 <p>For reference, below are the specs for the devices we tested on</p>
+						 <p>AI Upscaling does require some computational effort, however it is mostly on the graphics card, so AI Upscaling's impact on CPU is limited. The amount of computation (and therefore the framerate / performance) depends on the size of input video you are upscaling</p>
+
+						 <p>The following table should give a rough idea performance for different input video resolutions. These results are only for Web environments. Our mobile SDKs will have access to more powerful native libraries, enabling significantly better performance.</p>
+
 						 <div class="table-responsive my-4">
 							 <table class="table table-striped">
 
 								 <tr>
 									 <th scope="col"></th>
-									 <th scope="col">GPU Desktop</th>
-									 <th scope="col">Non-GPU Laptop</th>
-									 <th scope="col">High-end smartphone</th>
-									 <th scope="col">Low-end smartphone</th>
+									 <th scope="col">240p -> 480p/720p</th>
+									 <th scope="col">360p -> 720p/1080p</th>
+									 <th scope="col">480p -> 960p/1440p</th>
 								 </tr>
 
 								 <tbody>
 
 
 								 <tr>
-									 <th scope="row">Device</th>
-									 <td>Alientware Aurora R11</td>
-									 <td>Dell XPS 13</td>
-									 <td>Samsung Galaxy 8</td>
-									 <td>Samsung A2</td>
+									 <th scope="row">High End Smartphone</th>
+									 <td>120 fps</td>
+									 <td>40 fps</td>
+									 <td>14fps</td>
 								 </tr>
 
 								 <tr>
-									 <th scope="row">CPU</th>
-									 <td>Intel Core i5 x 6</td>
-									 <td>Intel Core i7  - 1.8GHz x8</td>
-									 <td>Exynos 1.9 GHz x8</td>
-									 <td>Exynos 1.6 GHz x8</td>
+									 <th scope="row">Mid-range Smartphone</th>
+
+									 <td>80 fps</td>
+									 <td>28 fps</td>
+									 <td>9 fps</td>
 								 </tr>
 
 								 <tr>
-									 <th scope="row">GPU</th>
-									 <td>NVIDIA GeForce GTX 1650</td>
-									 <td>Mesa Intel UHD Graphics 620</td>
-									 <td>Exynos Mali-G71 MP20</td>
-									 <td>ARM Mali - T830 MP1</td>
+									 <th scope="row">Low-End Smartphone</th>
+
+									 <td>20fps</td>
+									 <td>6fps</td>
+									 <td>3fps</td>
 								 </tr>
 
 								 <tr>
-									 <th scope="row">Retail Price ($ USD)</th>
-									 <td>$1200</td>
-									 <td>$1200</td>
-									 <td>$600</td>
-									 <td>$90</td>
+
+									 <th scope="row">Mid-range Laptop</th>
+
+									 <td>100fps</td>
+									 <td>35fps</td>
+									 <td>8fps</td>
+								 </tr>
+
+								 <tr>
+
+									 <th scope="row">GPU Desktop</th>
+
+									 <td>200+fps</td>
+									 <td>200+fps</td>
+									 <td>80 fps</td>
 								 </tr>
 
 
@@ -1139,110 +1144,30 @@ canvas.style.height = desiredheight + "px";
 						 </div>
 
 
+						 <p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
 
 
-
-					</section><!--//section-->
-
-					<section id="performance-considerations">
-
-						<h4 class="section-heading" id="item-3-performance">Performance Considerations</h4>
-
-						<p>AI Upscaling does require some computational effort, however it is mostly on the graphics card, so AI Upscaling's impact on CPU is limited. The amount of computation (and therefore the framerate / performance) depends on the size of input video you are upscaling</p>
-
-						<p>The following table should give a rough idea performance for different input video resolutions. These results are only for Web environments. Our mobile SDKs will have access to more powerful native libraries, enabling significantly better performance.</p>
-
-						<div class="table-responsive my-4">
-							<table class="table table-striped">
-
-								<tr>
-									<th scope="col"></th>
-									<th scope="col">240p -> 480p/720p</th>
-									<th scope="col">360p -> 720p/1080p</th>
-									<th scope="col">480p -> 960p/1440p</th>
-								</tr>
-
-								<tbody>
-
-
-								<tr>
-									<th scope="row">High End Smartphone</th>
-									<td>120 fps</td>
-									<td>40 fps</td>
-									<td>14fps</td>
-								</tr>
-
-								<tr>
-									<th scope="row">Mid-range Smartphone</th>
-
-									<td>80 fps</td>
-									<td>28 fps</td>
-									<td>9 fps</td>
-								</tr>
-
-								<tr>
-									<th scope="row">Low-End Smartphone</th>
-
-									<td>20fps</td>
-									<td>6fps</td>
-									<td>3fps</td>
-								</tr>
-
-								<tr>
-
-									<th scope="row">Mid-range Laptop</th>
-
-									<td>100fps</td>
-									<td>35fps</td>
-									<td>8fps</td>
-								</tr>
-
-								<tr>
-
-									<th scope="row">GPU Desktop</th>
-
-									<td>200+fps</td>
-									<td>200+fps</td>
-									<td>80 fps</td>
-								</tr>
-
-
-								</tbody>
-							</table>
-						</div>
-
-
-						<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
-
-
-						<pre>
+						 <pre>
 							 <code>
   const config = {
 	   token: '...',
 	   analyticsEnabled: true
    };
 
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = UpscaleFilter(video, config);
 							 </code>
 						 </pre>
 
-						</p>
+						 </p>
 
 
-						<p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
+						 <p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
 
-						<p>
-							It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-3-controls">disable upscaling</a>  if the fps gets too low.</p>
-
-
+						 <p>
+							 It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-upscale-controls">disable upscaling</a>  if the fps gets too low.</p>
 
 
-						<p></p>
-
-					</section>
-
-					<section class="docs-section" id="item-6-2">
-						<h2 class="section-heading">Quality</h2>
+						<h4 >Quality</h4>
 						<p>The primary benefit of Super resolution is to increase video quality. Using the original high-resolution video as a reference, we can use traditional video quality metrics like VMAF to quantify the quality improvement of Super Resolution, when compared to normal bicubic upscaling of the downsampled / low-resolution video content.</p>
 
 
