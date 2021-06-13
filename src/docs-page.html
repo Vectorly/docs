@@ -616,7 +616,7 @@
 
 						<pre>
 							 <code>
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 
    upscaler.on('load', function () {
      console.log("Upscaler initialized");
@@ -643,7 +643,7 @@
 
 						<pre>
 							 <code>
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 
    upscaler.disable();
 
@@ -697,7 +697,7 @@
 	   container:  div //Any div element,
    };
 
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 				</pre></code>
 
 					The output canvas will occupy the exact dimensions of the container div, and will dynamically resize and re-position whenever the container div is moved, resized or changed. To dynamically style and position the output therefore, you should style and position the container element.
@@ -712,7 +712,7 @@
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
 						<pre><code>
-   const upscaler = new vectorlyUpscaler(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
+   const upscaler = new UpscaleFilter(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
 							 </code></pre>
 						We are constantly releasing new models. You can find a comprehensive list of models <a href="https://cdn.vectorly.io/upscaler/docs/latest/global.html#NetworkParams" >here</a>
 
@@ -736,7 +736,7 @@
 					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
 					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
 					<pre><code>
-   const upscaler = new vectorlyUpscaler.core();
+   const upscaler = new UpscaleFilter.core();
    upscaler.load({w: videoWidth,
 	          h: videoHeight,
 	          renderSize: {w: videoWidth*2, h: videoHeight*2},
