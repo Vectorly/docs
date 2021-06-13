@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Vectorly: AI Upscaling Documentation</title>
+    <title>Vectorly: AI Filters Documentation</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta content="Vectorly: AI Upscaling Documentation" property="og:title">
+	<meta content="Vectorly: AI Filters Documentation" property="og:title">
 	<meta
-			content="Vectorly's AI upscaler upscalens and your app's video content on users' devices as they watch it, letting them stream low resolution video and watch it in high definition."
+			content="Vectorly's SDK makes it easy to deploy AP Filters into WebRTC and video streaming applications"
 			name="description">
 	<meta content="https://vectorly.io/images/new/ai-compression-temporary.png" property="og:image">
 
-	<meta content="Vectorly: Realtime AI Upscaling" property="twitter:title">
+	<meta content="Vectorly: Realtime AI Filters" property="twitter:title">
 	<meta
-			content="Vectorly's AI enhancer upscales your app's video content on users' devices as they watch it, letting them stream low resolution video and watch it in high definition."
+			content="Vectorly's SDK makes it easy to deploy AP Filters into WebRTC and video streaming applications"
 			property="twitter:description">
 	<meta content="https://vectorly.io/images/new/ai-compression-temporary.png" property="twitter:image">
 
@@ -86,13 +86,13 @@
             </div>
 		    <nav id="docs-nav" class="docs-nav navbar">
 			    <ul class="section-items list-unstyled nav flex-column pb-3">
-				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Super resolution</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Upscaling libraries</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Getting Started</a></li>
+				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-intro"><span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-installation">Installation</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-available-filters">Available Filters</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-background"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Background Filters</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-2-0">Installation</a></li>
 				      <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-upscaling"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>AI Upscaling</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-usage">Basic usage</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-plugins">Plugins</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-electron">Electron</a></li>
@@ -124,21 +124,75 @@
 	    </div><!--//docs-sidebar-->
 	    <div class="docs-content">
 		    <div class="container">
-			    <article class="docs-article" id="section-1">
+			    <article class="docs-article" id="section-intro">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-02-11</span></h1>
 					    <section class="docs-intro" >
-						    <p>Vectorly's AI upscaler libraries convert low resolution video to HD in real-time on users' devices, enabling HD viewing experiences while using 50% to 90% less bandwidth ("AI Compression").</p>
+							<p>Vectorly's client-side SDK makes it easy to integrate AI filters, such as Background Filters (virtual backgrounds, background blur) as well as AI Upscaling, into WebRTC streaming architectures</p>
 						</section><!--//docs-intro-->
 
 
-						<section class="docs-section" id="item-1-1">
-							<h2 class="section-heading">Super Resolution</h2>
+
+						<section class="docs-section" id="item-installation">
+							<h2 class="section-heading">Installation</h2>
 
 
-							<p>Vectorly's AI upscaling technology is based on a concept called <a href="https://en.wikipedia.org/wiki/Super-resolution_imaging">Super Resolution</a>, which uses AI to upscale and enhance images. Through Super Resolution, we can upscale and clean-up low-resolution video, making it look close to HD quality.</p>
 
-							<h5>Super Resolution Example:</h5>
+
+							<p>When you get started, you'll get a <code>token</code> which, you will need to use the library. Next, you can install the ai-filters library via NPM or via CDN</p>
+
+
+							<p> <b>NPM</b>
+								<code><pre>npm -i @vectorly/ai-filters</pre></code>
+							</p>
+
+							<p><b>CDN</b>
+								<code><pre>https://cdn.vectorly.io/v2/latest/ai-filters.js</pre></code>
+						</section>
+
+
+						<section class="docs-section" id="item-available-filters">
+							<h2 class="section-heading">Available Filters</h2>
+							<p>We've compiled a set of AI filters from research & Academia, open source projects as well as our own custom AI filters, all of which are able to be accessed through the same Vectorly interface.</p>
+							<h4>Background Filter</h4>
+
+
+
+							<p>By using the Background Filter, you can implement features like Virtual Backgrounds or Background Blur, to give users additional privacy when calling from home. The AI model used for running background segmentation is the <code>meet</code> model, used by Google Meet.</p>
+
+							<div style="text-decoration: underline">Background Filters example:</div>
+							<figure class="figure docs-figure py-3">
+
+
+								<div class="table-responsive my-4">
+									<table class="table" style="border-color: white">
+
+										<tbody >
+										<tr>
+
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/videocall-original.png" alt="" style="width: 320px;"></td>
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/background-blur.png" alt="" style="width: 320px;"></td>
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/virtual-background.png" alt="" style="width: 320px;"></td>
+										</tr>
+										<tr style="text-align: center">
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Original Video Stream</figcaption></td>
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Background Blur</figcaption></td>
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Virtual Background</figcaption></td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</figure>
+
+							<p>See the <a href="#section-background"> Background Filters section</a> for more details</p>
+
+
+							<h4>Upscaling Filter</h4>
+							<p>Vectorly has built it's own AI Upscaling filter based on a technique called <a href="https://en.wikipedia.org/wiki/Super-resolution_imaging">Super Resolution</a>, which uses AI to upscale and enhance images. Through Super Resolution, we can upscale and clean-up low-resolution video, making it look close to HD quality.</p>
+
+
+							<div style="text-decoration: underline">Super Resolution Example:</div>
 							<figure class="figure docs-figure py-3">
 
 								<div class="table-responsive my-4">
@@ -162,58 +216,43 @@
 
 							</figure>
 
-
-							<p>While AI enhancement tasks normally require lots of computation, we've developed ultra-fast upscaling technology which can run in real time, even on low-end smartphones.</p>
+							<p>With AI Upscaling, you can improve the clarity & quality of video streams when the source resolution is of low quality.
+							</p>
 
 							<figure class="figure docs-figure py-3">
 								<img class="figure-img img-fluid" src="assets/images/ai-compression.svg" alt="" style="width: 800px;">
 								<!--<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i>Credit: the above screencast is taken from .</figcaption> -->
 							</figure>
 
-							<p>This lets you stream SD video streams to users, and upscale it to HD in real time as they're watching it, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (50 to 90% less data than for the HD video).</p>
+
+								<p>You can also stream SD content to users and upscale it to HD in real time as they're watching it, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (50 to 90% less data than for the HD video).</p>
+							<p>See the <a href="#section-upscaling"> AI Upscaling section</a> for more details</p>
 
 
-						</section>
+							<h4>Audio Denoise</h4>
 
 
+							<p>In Development</p>
+							<h4>Video Denoise</h4>
+
+							<p>In Development</p>
+
+							<h4>Lighting Correction</h4>
+
+							<p>In Development</p>
 
 
+						</section><!--//section-->
 
 
 				    </header>
 
-					<section class="docs-section" id="item-1-2">
-						<h2 class="section-heading">Upscaling libraries</h2>
-
-						<p>Vectorly's AI Upscaling libraries run entirely on the client side, within your website or app. They work as plugins to native or HTML5 video players, up-scaling and enhancing video content as your users watch it.
-						</p>
-
-
-						<h5>Basic Web Example:</h5>
-
-
-						<pre>
-							 <code>
-   const player = videojs('my-video')
-   videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
-   const vjsUpscaler = player.vectorlyPlugin({token: '...'});
-							 </code>
-						 </pre>
-
-						<p>
-							You can think of AI upscaling as a final, optional layer at the end of the video streaming pipeline. Upscaling happens after video is decoded and rendered by the browser, meaning that it is compatible with any codec, any streaming architecture (HLS/DASH etc…), and works equally well on live and video-on-demand content, as well as video conferencing.
-						</p>
-
-						<p>We are currently working on Android and iOS mobile SDKs.</p>
-
-					</section><!--//section-->
-
 
 			    </article>
 
-			    <article class="docs-article" id="section-2">
+			    <article class="docs-article" id="section-background">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Getting Started</h1>
+					    <h1 class="docs-heading">Background Filters</h1>
 				    </header>
 
 
@@ -275,9 +314,9 @@
 			    </article><!--//docs-article-->
 
 
-			    <article class="docs-article" id="section-3">
+			    <article class="docs-article" id="section-upscaling">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Web</h1>
+					    <h1 class="docs-heading">AI Upscaling</h1>
 
 						    <p>For web environments, we've packaged our upscaler as a standalone Javascript library, as well as as plugins to several popular HTML5 video players (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).</p>
 					</header>
