@@ -1065,18 +1065,60 @@ canvas.style.height = desiredheight + "px";
 
 					<section class="docs-section" id="item-background-performance">
 
+						<h2 class="section-heading">Background Segmentation</h2>
+						<p>Our background filter is based on the <a href="https://drive.google.com/file/d/1lnP1bRi9CSqQQXUHa13159vLELYDgDu0/preview">Google Meet model</a>, and run using <a href="https://google.github.io/mediapipe/" >Media Pipe</a> the same way it is run in Google Meet. Google Meet's background-segmentation model runs entirely on the CPU, which does require performance considerations.</p>
+
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/framerate-background.svg" alt="" style="width: 800px;">
+						</figure>
+
+
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
+						</figure>
+
+						<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
+
+
+						<pre>
+							 <code>
+  const config = {
+	   token: '...',
+	   type: 'blur',
+	   analyticsEnabled: true
+   };
+
+   const filter = BackgroundFilter(video, config);
+							 </code>
+						 </pre>
+
+						</p>
+						<h4  id="item-background-performance-considerations">Performance Considerations</h4>
+						<p>We recommend only running the Web Background filters library for desktop users. The performance is considerably worse on Mobile because because the overhead of communicating between the browser and GPU is much higher on mobile devices.</p>
+
+						<p>We expect the performance to rival or exceed desktop clients with a Native Android SDK, as is the case for our <a href="#item-upscale-performance" >AI Upscaler Android SDK</a>. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
+						<p>Additionally, we are working on a fully WebGL/OpenGL implementation of the Background Filter, which should greatly exceed the performance of Google's Meet model.</p>
+
+
+
+
+
 
 					</section><!--//section-->
 				     <section class="docs-section" id="item-upscale-performance">
 
-						 <h2 class="section-heading">Upscaler</h2>
+						 <h2 class="section-heading">AI Upscaling</h2>
 
 						<p>The primary "cost" to doing super-resolution is computational complexity. While we have put a lot of work into making super resolution feasible on client devices, it is still something which needs to be managed. Here, we provide some initial performance benchmarks for the same demos shown above, in the demos sections.</p>
 
 						 <figure class="figure docs-figure py-3">
-							 <img class="figure-img img-fluid" src="assets/images/upscaler-performance.svg" alt="" style="width: 800px;">
+							 <img class="figure-img img-fluid" src="assets/images/framerate-upscaling.svg" alt="" style="width: 800px;">
 						 </figure>
 
+
+						 <figure class="figure docs-figure py-3">
+							 <img class="figure-img img-fluid" src="assets/images/cpu-usage-upscaling.svg" alt="" style="width: 800px;">
+						 </figure>
 
 						 <h4  id="item-upscale-performance-considerations">Performance Considerations</h4>
 
