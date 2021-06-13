@@ -90,8 +90,16 @@
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-installation">Installation</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-available-filters">Available Filters</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-background"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Background Filters</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-2-0">Installation</a></li>
-				      <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-loading">Installation</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-basic-usage">Basic Usage</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-webrtc">General WebRTC</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-jitsi">Jitsi</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-agora">Agora</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-twilio">Twilio</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-vonage">Vonage</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-events">Events</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-controls">Controls</a></li>
+
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-upscaling"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>AI Upscaling</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-usage">Basic usage</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-plugins">Plugins</a></li>
@@ -128,7 +136,7 @@
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-02-11</span></h1>
 					    <section class="docs-intro" >
-							<p>Vectorly's client-side SDK makes it easy to integrate AI filters, such as Background Filters (virtual backgrounds, background blur) as well as AI Upscaling, into WebRTC streaming architectures</p>
+							<p>Vectorly's client-side SDK makes it easy to integrate AI filters, such as Background Filters (virtual backgrounds, background blur) as well as AI Upscaling, into WebRTC streaming applications</p>
 						</section><!--//docs-intro-->
 
 
@@ -251,13 +259,36 @@
 			    </article>
 
 			    <article class="docs-article" id="section-background">
-				    <header class="docs-header">
-					    <h1 class="docs-heading">Background Filters</h1>
-				    </header>
-					<section class="docs-section" id="background-load">
 
+					<h1 class="docs-heading">Background Filters</h1>
+
+
+
+						<h4 class="section-heading"  id="item-background-loading">Loading</h4>
+
+						<p>The basic API for loading the background filter via NPM is:
+							<code><pre>
+
+     import BackgroundFilter from @vectorly-io/ai-filters;
+					</pre></code>
+
+						</p>
+
+
+						<p>For loading via CDN, you can access the background filter from the <code>vectorly</code> object
+
+
+							<code><pre>
+
+     const BackgroundFilter = vectorly.BackgroundFilter;
+					</pre></code>
+
+					<section class="docs-section"  id="item-background-basic-usage">
+
+						<h4 class="section-heading">Basic Usage</h4>
 
 						<p>Vectorly's Background Filter takes as an input any  <code>MediaStream</code>  or <code>MediaStreamTrack</code> element, so for a WebRTC application, all you need to do is to instantiate the filter object with the  <code>MediaStream</code> or <code>MediaStreamTrack</code>  element you want to filter. The output is a <code>MediaStreamTrack</code>, which can be sent via WebRTC or loaded locally into a <code>video</code> element</p>
+
 
 
 
@@ -265,7 +296,6 @@
 
 							<code><pre>
 
-   import BackgroundFilter from @vectorly-io/ai-filters;
    const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
    const filter = new BackgroundFilter(stream, {token: 'subpixel-token', {type: 'blur'});
    const outputStream =  filter.getOutput();
@@ -287,10 +317,10 @@
 						</p>
 
 
+
 					</section>
 
-
-					<section class="docs-section" id="web-webrtc">
+					<section class="docs-section" id="item-background-webrtc">
 						<h2 class="section-heading">General WebRTC</h2>
 
 
@@ -300,7 +330,7 @@
 						<pre><code>
    navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
 
-      const filter = new BackgroundFilter(stream, {token: 'insert-subpixel-token-here', blur: true});
+      const filter = new BackgroundFilter(stream, {token: 'insert-subpixel-token-here', type: 'blur'});
       const outputStream =  filter.getOutput();  //Video Stream Track
    });
 
@@ -313,7 +343,7 @@
 
 					</section><!--//section-->
 
-					<section class="docs-section" id="web-jitsi">
+					<section class="docs-section" id="item-background-jitsi">
 						<h2 class="section-heading">Jitsi</h2>
 
 						<p>You can enable filters on any <code>VideoTrack</code> object by feeding into the Filter's Jitsi Plugin (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
@@ -323,7 +353,7 @@
    const room = connection.initJitsiConference('conference', confOptions);
 
    JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
-      const filter = new BackgroundFilter(tracks[0], {token: 'insert-subpixel-token', blur: true});
+      const filter = new BackgroundFilter(tracks[0], {token: 'insert-subpixel-token', type: 'blur'});
       room.addTrack(filter.getOutput());
    });
 
@@ -334,32 +364,27 @@
 					</section><!--//section-->
 
 
-					<section class="docs-section" id="web-agora">
+					<section class="docs-section" id="item-background-agora">
 						<h2 class="section-heading">Agora</h2>
 
 
-						<p>For Web deployments using <a href="https://www.agora.io">Agora</a>, you can just replace apply the filter to the  Agora <code>stream</code>  object.</p>
+						<p>For Web deployments using <a href="https://www.agora.io">Agora</a> (specifically the 4.x API), you can just feed the video track to the Background filter, which will return a filtered video track which you can publish.</p>
 
 						<p>
 						<pre><code>
-    let stream = AgoraRTC.createStream({
-        streamID: uid,
-        audio: true,
-        video: true,
-        screen: false
-    });
+    let videoTrack = AgoraRTC.createCameraVideoTrack();
+    let audioTrack = AgoraRTC.createMicrophoneAudioTrack();
 
-    const filter = new BackgroundFilter.Agora(stream, {token: 'insert-subpixel-token-here', blur: true});
 
-    stream.init(function() {
-        client.publish(stream, handleFail);
-    },handleFail);
+    const filter = new BackgroundFilter(videoTrack, {token: 'insert-subpixel-token-here', type: 'blur'});
+    const filteredTrack = filter.getOutput();
+    client.publish([filtedredTrack, audioTrack], handleFail);
 						</code></pre>
 						</p>
 
 					</section><!--//section-->
 
-					<section class="docs-section" id="web-twilio">
+					<section class="docs-section" id="item-background-twilio">
 						<h2 class="section-heading">Twilio</h2>
 
 						<p>You can enable filters on any <code>VideoTrack</code> object by feeding it to the Twilio plugin (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
@@ -369,8 +394,9 @@
    const Video = require('twilio-video');
 
    Video.createLocalVideoTrack().then(function(videoTrack) {
-     const filter = new BackgroundFilter.Twilio(videoTrack, {token: 'insert-subpixel-token', blur: true});
-	//publish videoTrack
+     const filter = new BackgroundFilter(videoTrack, {token: 'insert-subpixel-token', type: 'blur'});
+	 const filteredTrack = filter.getOutput();
+	//publish filteredTrack
    });
 							</code></pre>
 
@@ -379,7 +405,7 @@
 					</section><!--//section-->
 
 
-					<section class="docs-section" id="web-vonage">
+					<section class="docs-section" id="item-background-vonage">
 						<h2 class="section-heading">Vonage / Open Tok</h2>
 
 						<p>When you create a <code>Publisher</code> object, just feed that to the OpenTok plugin.
@@ -392,14 +418,14 @@
       height: '100%'
    }, handleError);
 
-   const filter = new BackgroundFilter.OpenTok(publisher, {token: 'insert-subpixel-token', blur: true});
-
+   const filter = new BackgroundFilter(publisher.getVideoSource(), {token: 'insert-subpixel-token', type: 'blur'});
+   publisher.setVideoSource(filter.getOutput());
 							</code></pre>
 
 					</section><!--//section-->
 
 
-					<h2 class="section-heading" id="web-events">Events</h2>
+					<h2 class="section-heading" id="item-background-events">Events</h2>
 
 
 					<p>Once you have instantiated the filter object, you can access basic filter events, like onload and error handling.</p>
@@ -429,7 +455,7 @@
 					<p>If the filter fails to load, then it will pass through the original video stream</p>
 
 
-					<h2 class="section-heading" id="web-controls">Controls </h2>
+					<h2 class="section-heading" id="item-background-controls">Controls </h2>
 
 					<p> You can also enable and disable the filter programatically.</p>
 
