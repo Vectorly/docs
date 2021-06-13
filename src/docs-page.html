@@ -257,7 +257,7 @@
 					<section class="docs-section" id="background-load">
 
 
-						<p>Vectorly's Background Filter takes as an input any  <code>MediaStream</code> element, so for a WebRTC application, all you need to do is to instantiate the filter object with the  <code>MediaStream</code>  element you want to filter. The output is a <code>VideoStreamTrack</code>, which can be sent via WebRTC or loaded locally into a <code>video</code> element</p>
+						<p>Vectorly's Background Filter takes as an input any  <code>MediaStream</code>  or <code>MediaStreamTrack</code> element, so for a WebRTC application, all you need to do is to instantiate the filter object with the  <code>MediaStream</code> or <code>MediaStreamTrack</code>  element you want to filter. The output is a <code>MediaStreamTrack</code>, which can be sent via WebRTC or loaded locally into a <code>video</code> element</p>
 
 
 
@@ -306,7 +306,7 @@
 
 </code></pre>
 
-						<p>You can find a demo repository <a href="https://files.vectorly.io/demo/background/webrtc/index.html">here</a></p>
+						<p>You can find a demo repository for vanilla WebRTC background filtering <a href="https://files.vectorly.io/demo/background/webrtc/index.html">here</a></p>
 
 
 
@@ -323,8 +323,8 @@
    const room = connection.initJitsiConference('conference', confOptions);
 
    JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
-      const filter = new BackgroundFilter.Jitsi(tracks[0], {token: 'insert-subpixel-token', blur: true});
-      room.addTrack(tracks[0]);
+      const filter = new BackgroundFilter(tracks[0], {token: 'insert-subpixel-token', blur: true});
+      room.addTrack(filter.getOutput());
    });
 
 
