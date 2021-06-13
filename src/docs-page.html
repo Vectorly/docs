@@ -254,62 +254,195 @@
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Background Filters</h1>
 				    </header>
+					<section class="docs-section" id="background-load">
+
+
+						<p>Vectorly's Background Filter takes as an input any  <code>MediaStream</code> element, so for a WebRTC application, all you need to do is to instantiate the filter object with the  <code>MediaStream</code>  element you want to filter. The output is a <code>VideoStreamTrack</code>, which can be sent via WebRTC or loaded locally into a <code>video</code> element</p>
 
 
 
-					<p id="item-2-0">First,  sign up in the <a href="https://upscaler.vectorly.io"> dashboard </a>to get a  <code>token</code> which, you will need to use the library. Next, you can install the upscaler library via NPM or via CDN</p>
+						<p>The basic API for loading the background filter is:
+
+							<code><pre>
+
+   import BackgroundFilter from @vectorly-io/ai-filters;
+   const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+   const filter = new BackgroundFilter(stream, {token: 'subpixel-token', {type: 'blur'});
+   const outputStream =  filter.getOutput();
+					</pre></code>
+						</p>
 
 
-					<p> <b>NPM</b>
-					<code><pre>npm -i @vectorly-io/ai-upscaler</pre></code>
-					</p>
+						<p>The above example is for a Background Blur filter. For virtual backgrounds, where you replace the background with an image, the API is:
 
-					<p><b>CDN</b>
-					<code><pre>https://cdn.vectorly.io/upscaler/v2/latest/vectorly-upscaler.js</pre></code>
+							<code><pre>
 
-					There are various versions available, including the <code>vectorly-upscaler.js</code> library, as well as plugins for different HTML5 video players. You can find version specific installation instructions <a href="https://cdn.vectorly.io/upscaler/docs/latest/">here</a>.
-
-				     <section class="docs-section" id="item-2-1">
-						<h2 class="section-heading">Hello World</h2>
-						 <p>The fastest way to get upscaling that "Just works" is to use the <code>vectorly-videojs.js</code> videoJS plugin. If you load the following code and you should be able to instantly see the video playing
-
-						<code><pre>
-
-   &lt;head&gt;
-       &lt;link href=&quot;https://vjs.zencdn.net/7.10.2/video-js.css&quot; rel=&quot;stylesheet&quot; /&gt;
-       &lt;script src=&quot;https://vjs.zencdn.net/7.10.2/video.min.js&quot;&gt;&lt;/script&gt;
-     &lt;script src=&quot;https://cdn.vectorly.io/upscaler/v2/latest/vectorly-videojs.js&quot;&gt;&lt;/script&gt;
-   &lt;/head&gt;
-
-   &lt;body&gt;
-   &lt;video id=&quot;my-video&quot; class=&quot;video-js&quot;  controls width=&quot;1280&quot;  height=&quot;720&quot;   data-setup=&quot;{}&quot; crossorigin=&quot;anonymous&quot;&gt;
-       &lt;source src=&quot;https://files.vectorly.io/demo/high-quality-240p/jellyfish-240p.mp4&quot; type=&quot;video/mp4&quot; /&gt;
-   &lt;/video&gt;
-     &lt;script&gt;
-
-         videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
-
-         const player = videojs('my-video');
-
-         const upscaler = player.vectorlyPlugin({token: '...'});
-
-         upscaler.addEventListener('load', function () {
-             console.log(&quot;Upscaler initialized&quot;);
-         });
-
-         upscaler.addEventListener('error', function () {
-             console.log(&quot;Failed to initialize&quot;);
-         });
-
-     &lt;/script&gt;
-   &lt;/body&gt;
-						 </pre></code></p>
-						 <p>Make sure you add your token, and verify that "Upscaler initialized" is being displayed in the console.log, in order to know that it's working. You can see a working example on <a href="https://codepen.io/sb2702/pen/ExZNLZG">Code Pen</a>.  </p>
+   const filter = new BackgroundFilter(stream, {token: 'subpixel-token', {type: 'virtual', 'image': 'my-image-url.png'});
+					</pre></code>
+						</p>
 
 
-						 <p>For other players, scroll down to the <a class="scrollto" href="#section-3"> web section</a> or see the full API <a href="https://cdn.vectorly.io/upscaler/docs/latest/">here</a> </p>
+						<p>
+							Integrating the filter with any specific Video Conferencing API or service just requires finding the <code>MediaStream</code> element associated with video stream you want to filter. The following sub-sections discuss how to integrate the filter with various conferencing services.
+						</p>
+
+
+					</section>
+
+
+					<section class="docs-section" id="web-webrtc">
+						<h2 class="section-heading">General WebRTC</h2>
+
+
+						<p>As shown above, the API for basic/general WebRTC is:</p>
+
+
+						<pre><code>
+   navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
+
+      const filter = new BackgroundFilter(stream, {token: 'insert-subpixel-token-here', blur: true});
+      const outputStream =  filter.getOutput();  //Video Stream Track
+   });
+
+</code></pre>
+
+						<p>You can find a demo repository <a href="https://files.vectorly.io/demo/background/webrtc/index.html">here</a></p>
+
+
+
 
 					</section><!--//section-->
+
+					<section class="docs-section" id="web-jitsi">
+						<h2 class="section-heading">Jitsi</h2>
+
+						<p>You can enable filters on any <code>VideoTrack</code> object by feeding into the Filter's Jitsi Plugin (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
+
+
+						<pre><code>
+   const room = connection.initJitsiConference('conference', confOptions);
+
+   JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
+      const filter = new BackgroundFilter.Jitsi(tracks[0], {token: 'insert-subpixel-token', blur: true});
+      room.addTrack(tracks[0]);
+   });
+
+
+</code></pre>
+
+
+					</section><!--//section-->
+
+
+					<section class="docs-section" id="web-agora">
+						<h2 class="section-heading">Agora</h2>
+
+
+						<p>For Web deployments using <a href="https://www.agora.io">Agora</a>, you can just replace apply the filter to the  Agora <code>stream</code>  object.</p>
+
+						<p>
+						<pre><code>
+    let stream = AgoraRTC.createStream({
+        streamID: uid,
+        audio: true,
+        video: true,
+        screen: false
+    });
+
+    const filter = new BackgroundFilter.Agora(stream, {token: 'insert-subpixel-token-here', blur: true});
+
+    stream.init(function() {
+        client.publish(stream, handleFail);
+    },handleFail);
+						</code></pre>
+						</p>
+
+					</section><!--//section-->
+
+					<section class="docs-section" id="web-twilio">
+						<h2 class="section-heading">Twilio</h2>
+
+						<p>You can enable filters on any <code>VideoTrack</code> object by feeding it to the Twilio plugin (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
+
+
+						<pre><code>
+   const Video = require('twilio-video');
+
+   Video.createLocalVideoTrack().then(function(videoTrack) {
+     const filter = new BackgroundFilter.Twilio(videoTrack, {token: 'insert-subpixel-token', blur: true});
+	//publish videoTrack
+   });
+							</code></pre>
+
+
+
+					</section><!--//section-->
+
+
+					<section class="docs-section" id="web-vonage">
+						<h2 class="section-heading">Vonage / Open Tok</h2>
+
+						<p>When you create a <code>Publisher</code> object, just feed that to the OpenTok plugin.
+
+
+						<pre><code>
+   var publisher = OT.initPublisher('publisher', {
+      insertMode: 'append',
+      width: '100%',
+      height: '100%'
+   }, handleError);
+
+   const filter = new BackgroundFilter.OpenTok(publisher, {token: 'insert-subpixel-token', blur: true});
+
+							</code></pre>
+
+					</section><!--//section-->
+
+
+					<h2 class="section-heading" id="web-events">Events</h2>
+
+
+					<p>Once you have instantiated the filter object, you can access basic filter events, like onload and error handling.</p>
+
+					<pre>
+							 <code>
+   const filter = new BackgroundFilter(stream, config);
+
+   filter.on('load', function () {
+     console.log("filter initialized");
+   });
+
+   filter.on('start', function () {
+      console.log("Starting filter");
+   });
+
+   filter.on('stop', function () {
+      console.log("Stopping filter");
+   });
+
+   filter.on('error', function () {
+     console.log("Filter failed to initialize");
+   });
+							 </code>
+						 </pre>
+
+					<p>If the filter fails to load, then it will pass through the original video stream</p>
+
+
+					<h2 class="section-heading" id="web-controls">Controls </h2>
+
+					<p> You can also enable and disable the filter programatically.</p>
+
+					<pre>
+							 <code>
+   const filter = new BackgroundFilter(video, config);
+
+   filter.disable();
+
+   filter.enable();
+							 </code>
+						 </pre>
+
 
 			    </article><!--//docs-article-->
 
