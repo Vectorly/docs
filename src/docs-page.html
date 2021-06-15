@@ -461,20 +461,13 @@
 						<p>The basic API for loading the background filter via NPM is:
 							<code><pre>
 
-     import UpscaleFilter from @vectorly-io/ai-filters;
+     import vectorlyUpscaler from @vectorly-io/ai-upscaler;
 					</pre></code>
 
 						</p>
 
 
-						<p>For loading via CDN, you can access the background filter from the <code>vectorly</code> object
-
-
-							<code><pre>
-
-     const UpscaleFilter = vectorly.UpscaleFilter;
-					</pre></code>
-
+						<p>For loading via CDN, you can access the upscaling filter as the <code>vectorlyUpscaler</code> object, which will be available in the global scope
 
 
 
@@ -486,7 +479,7 @@
 						<h4 class="section-heading" id="item-upscale-usage">Basic usage</h4>
 
 
-						 <p>For the <code>UpscaleFilter</code>, the basic API involves instantiating an <code>UpscaleFilter</code> object, and specifying a <code>video</code> element.</p>
+						 <p>For the <code>vectorlyUpscaler</code>, the basic API involves instantiating an <code>vectorlyUpscaler</code> object, and specifying a <code>video</code> element.</p>
 
 
 
@@ -498,7 +491,7 @@
 	   token: '...'
    };
 
-   const upscaler = new UpscaleFilter(video, config);
+   const upscaler = new vectorlyUpscaler(video, config);
 							 </code>
 						 </pre>
 
@@ -516,11 +509,11 @@
 						<p ><b>General WebRTC</b></p>
 
 
-							<p>The <code>UpscaleFilter</code> works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
+							<p>The <code>vectorlyUpscaler</code> works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
 
 
 							<pre><code>
-   const upscaler  = new UpscaleFilter(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
+   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
 
 </code></pre>
 
@@ -545,7 +538,7 @@
       document.body.appendChild(videoElement);
       track.attach(videoElement);
 
-      const upscaler = new UpscaleFilter(videoElement.current, {token: 'insert-vectorly-token'});
+      const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
 
    });
 </code></pre>
@@ -569,7 +562,7 @@
 
         stream.play('target-div');
         const video = document.getElementById("video" + stream.getId());
-        const upscaler = new UpscaleFilter(video, {token: 'insert-vectorly-token-here'});
+        const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
 
         client.publish(stream, handleFail);
 
@@ -593,7 +586,7 @@
    Video.createLocalVideoTrack().then(function(videoTrack) {
      const videoElement = videoTrack.attach();
      document.body.appendChild(videoElement);
-     const upscaler = new UpscaleFilter(videoElement.current, {token: 'insert-vectorly-token'});
+     const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
@@ -610,7 +603,7 @@
 
    Video.createLocalVideoTrack().then(function(videoTrack) {
      videoTrack.attach(videoElement);
-     const upscaler = new UpscaleFilter(videoEl.current, {token: 'insert-vectorly-token'});
+     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
@@ -636,7 +629,7 @@
 
         subscriber.on('videoElementCreated', function (){
             const video = subscriber.element.querySelector('video');
-            const upscaler  = new UpscaleFilter(video, {token: '..your-token....'});
+            const upscaler  = new vectorlyUpscaler(video, {token: '..your-token....'});
 
         });
 
@@ -658,7 +651,7 @@
 	(videoEl.current.srcObject = new MediaStream([videoTrack]));
 	if (videoEl.current && props.isLarge) {
 	window.upscalers = window.upscalers || {}
-	window.upscalers[videoTrack.id] = new UpscaleFilter(videoEl.current, {token: 'insert-vectorly-token'});
+	window.upscalers[videoTrack.id] = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
 	}
    }, [videoTrack]);
 							</code></pre>
@@ -681,7 +674,7 @@
 					</section>
 
 						<h4 class="section-heading" id="item-upscale-ott">Plugins</h4>
-						Besides the <code>UpscaleFilter</code> module, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
+						Besides the <code>vectorlyUpscaler</code> module, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
 
 
 						<p>
@@ -736,14 +729,14 @@
 					You can easily build a plugin for Vectorly for any HTML5 video player. All you really need is the <code>video</code> tag, and the video container <code>div</code>, which contains the video UI elements and which is used for <a href="#item-upscale-styling">styling and layout</a>. See a demo plugin code, off of which our other HMTL5 Player plugins are based
 					<pre>
 							 <code>
-   import UpscaleFilter from '@vectorly-io/ai-filters';
+   import vectorlyUpscaler from '@vectorly-io/ai-upscaler';
 
    class myPlugin {
 
      constructor(videoElement, config){
 
        const container = videoElement.parentNode; // Or whatever the video container div is
-       const upscaler = new UpscaleFilter(videoElement, config);
+       const upscaler = new vectorlyUpscaler(videoElement, config);
        this.upscaler = upscaler;
 
      }
@@ -780,7 +773,7 @@
 
 						<pre>
 							 <code>
-   const upscaler = new UpscaleFilter(video, config);
+   const upscaler = new vectorlyUpscaler(video, config);
 
    upscaler.on('load', function () {
      console.log("Upscaler initialized");
@@ -807,7 +800,7 @@
 
 						<pre>
 							 <code>
-   const upscaler = new UpscaleFilter(video, config);
+   const upscaler = new vectorlyUpscaler(video, config);
 
    upscaler.disable();
 
@@ -861,7 +854,7 @@
 	   container:  div //Any div element,
    };
 
-   const upscaler = new UpscaleFilter(video, config);
+   const upscaler = new vectorlyUpscaler(video, config);
 				</pre></code>
 
 					The output canvas will occupy the exact dimensions of the container div, and will dynamically resize and re-position whenever the container div is moved, resized or changed. To dynamically style and position the output therefore, you should style and position the container element.
@@ -876,7 +869,7 @@
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
 						<pre><code>
-   const upscaler = new UpscaleFilter(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
+   const upscaler = new vectorlyUpscaler(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
 							 </code></pre>
 						We are constantly releasing new models. You can find a comprehensive list of models <a href="https://cdn.vectorly.io/upscaler/docs/latest/global.html#NetworkParams" >here</a>
 
@@ -900,7 +893,7 @@
 					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
 					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
 					<pre><code>
-   const upscaler = new UpscaleFilter.core();
+   const upscaler = new vectorlyUpscaler.core();
    upscaler.load({w: videoWidth,
 	          h: videoHeight,
 	          renderSize: {w: videoWidth*2, h: videoHeight*2},
@@ -1196,7 +1189,7 @@ canvas.style.height = desiredheight + "px";
 	   analyticsEnabled: true
    };
 
-   const upscaler = UpscaleFilter(video, config);
+   const upscaler = vectorlyUpscaler(video, config);
 							 </code>
 						 </pre>
 
