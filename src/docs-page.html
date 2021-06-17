@@ -494,7 +494,7 @@
 
 					<h2 class="section-heading" id="item-background-controls">Controls </h2>
 
-					<p> You can also enable and disable the filter programatically.</p>
+					<p> You can enable and disable the filter programatically.</p>
 
 					<pre>
 							 <code>
@@ -506,6 +506,27 @@
 							 </code>
 						 </pre>
 
+
+					<p> You can also change the inputs to the background filter dynamically</p>
+
+
+					<pre>
+							 <code>
+    //Change the background image, or set to "blur" to set a background blur
+   await filter.changeBackground("new-background-image.png");
+
+
+   //Change the source media stream
+   const devices = await navigator.mediaDevices.enumerateDevices();
+   const alternateWebCam = devices[1]; //Just an example, don't literally copy/paste this
+   const alternateWebCamStream  = navigator.getUserMedia({video: {deviceId: alternateWebCam.deviceId}});
+   await filter.changeInput(alternateWebCamStream);
+
+							 </code>
+						 </pre>
+
+
+					<p>You can see a full set of available methods in the <a href="https://cdn.vectorly.io/ai-filters/docs/latest/BackgroundFilter.html">API documentation</a> </p>
 
 			    </article><!--//docs-article-->
 
