@@ -364,10 +364,16 @@
     let videoTrack = AgoraRTC.createCameraVideoTrack();
     let audioTrack = AgoraRTC.createMicrophoneAudioTrack();
 
+    const inputStream = new MediaStream([videoTrack._mediaStreamTrack]);
 
-    const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token-here', background: 'blur'});
+
+    const filter = new BackgroundFilter(inputStream, {token: 'insert-vectorly-token-here', background: 'blur'});
     filter.getOutput().then(function(filteredTrack ){
-      client.publish([filteredTrack, audioTrack], handleFail);
+
+       const filteredAgoraTrack = AgoraRTC.createCustomVideoTrack({
+         mediaStreamTrack: filteredStream.getVideoTracks()[0],
+       });
+      client.publish([filteredAgoraTrack, audioTrack], handleFail);
     });
 
 						</code></pre>
