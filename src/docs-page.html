@@ -284,7 +284,7 @@
 
    const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
    const filter = new BackgroundFilter(stream, {token: 'vectorly-token', type: 'blur'});
-   const outputStream =  filter.getOutput();
+   const outputStream =  await filter.getOutput();
 					</pre></code>
 						</p>
 
@@ -321,7 +321,9 @@
    navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
 
       const filter = new BackgroundFilter(stream, {token: 'insert-vectorly-token-here', type: 'blur'});
-      const outputStream =  filter.getOutput();  //Video Stream Track
+      filter.getOutput(function(filteredStream){
+            //Video Stream Track
+      });
    });
 
 </code></pre>
@@ -340,7 +342,11 @@
 
    JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
       const filter = new BackgroundFilter(tracks[0], {token: 'insert-vectorly-token', type: 'blur'});
-      room.addTrack(filter.getOutput());
+
+	filter.getOutput(function(filteredStream){
+            room.addTrack(filteredStream);
+        });
+
    });
 
 
@@ -360,8 +366,10 @@
 
 
     const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token-here', type: 'blur'});
-    const filteredTrack = filter.getOutput();
-    client.publish([filtedredTrack, audioTrack], handleFail);
+    filter.getOutput(function(filteredTrack ){
+      client.publish([filtedredTrack, audioTrack], handleFail);
+    });
+
 						</code></pre>
 						</p>
 
@@ -377,8 +385,11 @@
 
    Video.createLocalVideoTrack().then(function(videoTrack) {
      const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token', type: 'blur'});
-	 const filteredTrack = filter.getOutput();
-	//publish filteredTrack
+
+	 filter.getOutput(function(filteredTrack){
+						//publish filteredTrack
+	 });
+
    });
 							</code></pre>
 
@@ -399,7 +410,10 @@
    }, handleError);
 
    const filter = new BackgroundFilter(publisher.getVideoSource(), {token: 'insert-vectorly-token', type: 'blur'});
-   publisher.setVideoSource(filter.getOutput());
+   filter.getOutput(function(filteredTrack){
+      publisher.setVideoSource(filteredTrack);
+   });
+
 							</code></pre>
 
 					</section><!--//section-->
