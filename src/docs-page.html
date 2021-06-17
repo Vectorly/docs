@@ -283,7 +283,7 @@
 							<code><pre>
 
    const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
-   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', type: 'blur'});
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur'});
    const outputStream =  await filter.getOutput();
 					</pre></code>
 						</p>
@@ -320,7 +320,7 @@
 						<pre><code>
    navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
 
-      const filter = new BackgroundFilter(stream, {token: 'insert-vectorly-token-here', type: 'blur'});
+      const filter = new BackgroundFilter(stream, {token: 'insert-vectorly-token-here', background: 'blur'});
       filter.getOutput().then(function(filteredStream){
             //Video Stream Track
       });
@@ -341,7 +341,7 @@
    const room = connection.initJitsiConference('conference', confOptions);
 
    JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
-      const filter = new BackgroundFilter(tracks[0], {token: 'insert-vectorly-token', type: 'blur'});
+      const filter = new BackgroundFilter(tracks[0], {token: 'insert-vectorly-token', background: 'blur'});
 
 	filter.getOutput().then(function(filteredStream){
             room.addTrack(filteredStream);
@@ -365,7 +365,7 @@
     let audioTrack = AgoraRTC.createMicrophoneAudioTrack();
 
 
-    const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token-here', type: 'blur'});
+    const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token-here', background: 'blur'});
     filter.getOutput().then(function(filteredTrack ){
       client.publish([filteredTrack, audioTrack], handleFail);
     });
@@ -384,7 +384,7 @@
    const Video = require('twilio-video');
 
    Video.createLocalVideoTrack().then(function(videoTrack) {
-     const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token', type: 'blur'});
+     const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token', background: 'blur'});
 
 	 filter.getOutput().then(function(filteredTrack){
 						//publish filteredTrack
@@ -404,7 +404,7 @@
 
 						<pre><code>
    const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
-   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', type: 'blur'});
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur'});
    const outputStream =  await filter.getOutput();
 
    var publisher = OT.initPublisher('publisher', {
@@ -1176,7 +1176,7 @@ canvas.style.height = desiredheight + "px";
 							 <code>
   const config = {
 	   token: '...',
-	   type: 'blur',
+	   background: 'blur',
 	   analyticsEnabled: true
    };
 
