@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Vectorly: AI Upscaling Documentation</title>
+    <title>Vectorly: AI Filters Documentation</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta content="Vectorly: AI Upscaling Documentation" property="og:title">
+	<meta content="Vectorly: AI Filters Documentation" property="og:title">
 	<meta
-			content="Vectorly's AI upscaler upscalens and your app's video content on users' devices as they watch it, letting them stream low resolution video and watch it in high definition."
+			content="Vectorly's SDK makes it easy to deploy AP Filters into WebRTC and video streaming applications"
 			name="description">
 	<meta content="https://vectorly.io/images/new/ai-compression-temporary.png" property="og:image">
 
-	<meta content="Vectorly: Realtime AI Upscaling" property="twitter:title">
+	<meta content="Vectorly: Realtime AI Filters" property="twitter:title">
 	<meta
-			content="Vectorly's AI enhancer upscales your app's video content on users' devices as they watch it, letting them stream low resolution video and watch it in high definition."
+			content="Vectorly's SDK makes it easy to deploy AP Filters into WebRTC and video streaming applications"
 			property="twitter:description">
 	<meta content="https://vectorly.io/images/new/ai-compression-temporary.png" property="twitter:image">
 
@@ -86,58 +86,107 @@
             </div>
 		    <nav id="docs-nav" class="docs-nav navbar">
 			    <ul class="section-items list-unstyled nav flex-column pb-3">
-				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Super resolution</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Upscaling libraries</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-2"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Getting Started</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-2-0">Installation</a></li>
-				      <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Hello world</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-usage">Basic usage</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-plugins">Plugins</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-electron">Electron</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-performance">Performance</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-events">Events</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-controls">Controls</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-styling">Styling and Scaling</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-ai-models">AI Models</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-low-level">Low level controls</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder mr-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Android</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">iOS</a></li>
-					<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-conferencing"><span class="theme-icon-holder mr-2"><i class="fas fa-phone-alt"></i></span>Video Conferencing</a></li>
+				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-intro"><span class="theme-icon-holder mr-2"><i class="fas fa-map-signs"></i></span>Introduction</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-installation">Installation</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-available-filters">Available Filters</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-background"><span class="theme-icon-holder mr-2"><i class="fas fa-file-code"></i></span>Background Filters</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-loading">Loading</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-basic-usage">Basic Usage</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-integration">Integration</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-images">Sample Images</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-events">Events</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-controls">Controls</a></li>
 
-					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-webrtc">WebRTC</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-jitsi">Jitsi</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-agora">Agora</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-twilio">Twilio</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#conferencing-daily">Daily.co</a></li>
-
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder mr-2"><i class="fas fa-chart-bar"></i></span>Benchmarks</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-1">Framerate</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-2">Quality</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-upscaling"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>AI Upscaling</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-loading">Loading</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-usage">Basic usage</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-integration">Integration</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-ott">HTML5 Players</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-events">Events</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-controls">Controls</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-styling">Styling and Scaling</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-models">AI Models</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-low-level">Low level controls</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-mobile">Mobile</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-demos"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-performance"><span class="theme-icon-holder mr-2"><i class="fas fa-chart-bar"></i></span>Performance</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-performance">Background</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-performance">Upscaling</a></li>
 			    </ul>
 
 		    </nav><!--//docs-nav-->
 	    </div><!--//docs-sidebar-->
 	    <div class="docs-content">
 		    <div class="container">
-			    <article class="docs-article" id="section-1">
+			    <article class="docs-article" id="section-intro">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-02-11</span></h1>
+					    <h1 class="docs-heading">Introduction <span class="docs-time">Last updated: 2021-06-11</span></h1>
 					    <section class="docs-intro" >
-						    <p>Vectorly's AI upscaler libraries convert low resolution video to HD in real-time on users' devices, enabling HD viewing experiences while using 50% to 90% less bandwidth ("AI Compression").</p>
+							<p>Vectorly's client-side SDK makes it easy to integrate AI filters, such as Background Filters (virtual backgrounds, background blur) as well as AI Upscaling, into WebRTC streaming applications</p>
 						</section><!--//docs-intro-->
 
 
-						<section class="docs-section" id="item-1-1">
-							<h2 class="section-heading">Super Resolution</h2>
+
+						<section class="docs-section" id="item-installation">
+							<h2 class="section-heading">Installation</h2>
 
 
-							<p>Vectorly's AI upscaling technology is based on a concept called <a href="https://en.wikipedia.org/wiki/Super-resolution_imaging">Super Resolution</a>, which uses AI to upscale and enhance images. Through Super Resolution, we can upscale and clean-up low-resolution video, making it look close to HD quality.</p>
 
-							<h5>Super Resolution Example:</h5>
+
+							<p>When you <a href="https://upscaler.vectorly.io" target="_blank"> sign up</a>, you'll get a <code>token</code> which, you will need to use the library. Next, you can install the ai-filters library via NPM or via CDN</p>
+
+
+							<p> <b>NPM</b>
+								<code><pre>npm -i @vectorly/ai-filters</pre></code>
+							</p>
+
+							<p><b>CDN</b>
+								<code><pre>https://cdn.vectorly.io/ai-filters/v1/latest/vectorly.filters.js</pre></code></p>
+						</section>
+
+
+						<section class="docs-section" id="item-available-filters">
+							<h2 class="section-heading">Available Filters</h2>
+							<p>We've compiled a set of AI filters from research & Academia, open source projects as well as our own custom AI filters, all of which are able to be accessed through the same Vectorly interface.</p>
+							<h4>Background Filter</h4>
+
+
+
+							<p>By using the Background Filter, you can implement features like Virtual Backgrounds or Background Blur, to give users additional privacy when calling from home. The AI model used for running background segmentation is the <code>meet</code> model, used by Google Meet.</p>
+
+							<div style="text-decoration: underline">Background Filters example:</div>
+							<figure class="figure docs-figure py-3">
+
+
+								<div class="table-responsive my-4">
+									<table class="table" style="border-color: white">
+
+										<tbody >
+										<tr>
+
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/videocall-original.png" alt="" style="width: 320px;"></td>
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/background-blur.png" alt="" style="width: 320px;"></td>
+											<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/virtual-background.png" alt="" style="width: 320px;"></td>
+										</tr>
+										<tr style="text-align: center">
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Original Video Stream</figcaption></td>
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Background Blur</figcaption></td>
+											<td style="border-top: white;"><figcaption class="figure-caption mt-3">Virtual Background</figcaption></td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+
+							</figure>
+
+							<p>See the <a href="#section-background"> Background Filters section</a> for more details</p>
+
+
+							<h4>Upscaling Filter</h4>
+							<p>Vectorly has built it's own AI Upscaling filter based on a technique called <a href="https://en.wikipedia.org/wiki/Super-resolution_imaging">Super Resolution</a>, which uses AI to upscale and enhance images. Through Super Resolution, we can upscale and clean-up low-resolution video, making it look close to HD quality.</p>
+
+
+							<div style="text-decoration: underline">Super Resolution Example:</div>
 							<figure class="figure docs-figure py-3">
 
 								<div class="table-responsive my-4">
@@ -161,130 +210,381 @@
 
 							</figure>
 
-
-							<p>While AI enhancement tasks normally require lots of computation, we've developed ultra-fast upscaling technology which can run in real time, even on low-end smartphones.</p>
+							<p>With AI Upscaling, you can improve the clarity & quality of video streams when the source resolution is of low quality.
+							</p>
 
 							<figure class="figure docs-figure py-3">
 								<img class="figure-img img-fluid" src="assets/images/ai-compression.svg" alt="" style="width: 800px;">
 								<!--<figcaption class="figure-caption mt-3"><i class="fas fa-info-circle mr-2"></i>Credit: the above screencast is taken from .</figcaption> -->
 							</figure>
 
-							<p>This lets you stream SD video streams to users, and upscale it to HD in real time as they're watching it, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (50 to 90% less data than for the HD video).</p>
+
+								<p>You can also stream SD content to users and upscale it to HD in real time as they're watching it, providing an HD viewing experience while only consuming the bandwidth for the low-resolution video (50 to 90% less data than for the HD video).</p>
+							<p>See the <a href="#section-upscaling"> AI Upscaling section</a> for more details</p>
 
 
-						</section>
+							<h4>Audio Denoise</h4>
 
 
+							<p>In Development</p>
+							<h4>Video Denoise</h4>
+
+							<p>In Development</p>
+
+							<h4>Lighting Correction</h4>
+
+							<p>In Development</p>
 
 
+						</section><!--//section-->
 
 
 				    </header>
-
-					<section class="docs-section" id="item-1-2">
-						<h2 class="section-heading">Upscaling libraries</h2>
-
-						<p>Vectorly's AI Upscaling libraries run entirely on the client side, within your website or app. They work as plugins to native or HTML5 video players, up-scaling and enhancing video content as your users watch it.
-						</p>
-
-
-						<h5>Basic Web Example:</h5>
-
-
-						<pre>
-							 <code>
-   const player = videojs('my-video')
-   videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
-   const vjsUpscaler = player.vectorlyPlugin({token: '...'});
-							 </code>
-						 </pre>
-
-						<p>
-							You can think of AI upscaling as a final, optional layer at the end of the video streaming pipeline. Upscaling happens after video is decoded and rendered by the browser, meaning that it is compatible with any codec, any streaming architecture (HLS/DASH etc…), and works equally well on live and video-on-demand content, as well as video conferencing.
-						</p>
-
-						<p>We are currently working on Android and iOS mobile SDKs.</p>
-
-					</section><!--//section-->
 
 
 			    </article>
 
-			    <article class="docs-article" id="section-2">
-				    <header class="docs-header">
-					    <h1 class="docs-heading">Getting Started</h1>
-				    </header>
+			    <article class="docs-article" id="section-background">
+
+					<h1 class="docs-heading">Background Filters</h1>
 
 
 
-					<p id="item-2-0">First,  sign up in the <a href="https://upscaler.vectorly.io"> dashboard </a>to get a  <code>token</code> which, you will need to use the library. Next, you can install the upscaler library via NPM or via CDN</p>
+						<h4 class="section-heading"  id="item-background-loading">Loading</h4>
+
+						<p>The basic API for loading the background filter via NPM is:
+							<code><pre>
+
+     import BackgroundFilter from @vectorly-io/ai-filters;
+					</pre></code>
+
+						</p>
 
 
-					<p> <b>NPM</b>
-					<code><pre>npm -i @vectorly-io/ai-upscaler</pre></code>
-					</p>
-
-					<p><b>CDN</b>
-					<code><pre>https://cdn.vectorly.io/upscaler/v2/latest/vectorly-upscaler.js</pre></code>
-
-					There are various versions available, including the <code>vectorly-upscaler.js</code> library, as well as plugins for different HTML5 video players. You can find version specific installation instructions <a href="https://cdn.vectorly.io/upscaler/docs/latest/">here</a>.
-
-				     <section class="docs-section" id="item-2-1">
-						<h2 class="section-heading">Hello World</h2>
-						 <p>The fastest way to get upscaling that "Just works" is to use the <code>vectorly-videojs.js</code> videoJS plugin. If you load the following code and you should be able to instantly see the video playing
-
-						<code><pre>
-
-   &lt;head&gt;
-       &lt;link href=&quot;https://vjs.zencdn.net/7.10.2/video-js.css&quot; rel=&quot;stylesheet&quot; /&gt;
-       &lt;script src=&quot;https://vjs.zencdn.net/7.10.2/video.min.js&quot;&gt;&lt;/script&gt;
-     &lt;script src=&quot;https://cdn.vectorly.io/upscaler/v2/latest/vectorly-videojs.js&quot;&gt;&lt;/script&gt;
-   &lt;/head&gt;
-
-   &lt;body&gt;
-   &lt;video id=&quot;my-video&quot; class=&quot;video-js&quot;  controls width=&quot;1280&quot;  height=&quot;720&quot;   data-setup=&quot;{}&quot; crossorigin=&quot;anonymous&quot;&gt;
-       &lt;source src=&quot;https://files.vectorly.io/demo/high-quality-240p/jellyfish-240p.mp4&quot; type=&quot;video/mp4&quot; /&gt;
-   &lt;/video&gt;
-     &lt;script&gt;
-
-         videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
-
-         const player = videojs('my-video');
-
-         const upscaler = player.vectorlyPlugin({token: '...'});
-
-         upscaler.addEventListener('load', function () {
-             console.log(&quot;Upscaler initialized&quot;);
-         });
-
-         upscaler.addEventListener('error', function () {
-             console.log(&quot;Failed to initialize&quot;);
-         });
-
-     &lt;/script&gt;
-   &lt;/body&gt;
-						 </pre></code></p>
-						 <p>Make sure you add your token, and verify that "Upscaler initialized" is being displayed in the console.log, in order to know that it's working. You can see a working example on <a href="https://codepen.io/sb2702/pen/ExZNLZG">Code Pen</a>.  </p>
+						<p>For loading via CDN, you can access the background filter from the <code>vectorly</code> object
 
 
-						 <p>For other players, scroll down to the <a class="scrollto" href="#section-3"> web section</a> or see the full API <a href="https://cdn.vectorly.io/upscaler/docs/latest/">here</a> </p>
+							<code><pre>
+
+     const BackgroundFilter = vectorly.BackgroundFilter;
+					</pre></code>
+
+					<section class="docs-section"  id="item-background-basic-usage">
+
+						<h4 class="section-heading">Basic Usage</h4>
+
+						<p>Vectorly's Background Filter takes as an input any  <code>MediaStream</code>  or <code>MediaStreamTrack</code> element, so for a WebRTC application, all you need to do is to instantiate the filter object with the  <code>MediaStream</code> or <code>MediaStreamTrack</code>  element you want to filter. The output is a <code>MediaStreamTrack</code>, which can be sent via WebRTC or loaded locally into a <code>video</code> element</p>
+
+
+
+
+						<p>The basic API for loading the background filter is:
+
+							<code><pre>
+
+   const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur'});
+   const outputStream =  await filter.getOutput();
+					</pre></code>
+						</p>
+
+
+						<p>The above example is for a Background Blur filter. For virtual backgrounds, where you replace the background with an image, the API is:
+
+							<code><pre>
+
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'my-image-url.png'});
+					</pre></code>
+						</p>
+
+
+
+
+
+					</section>
+
+					<section class="docs-section" id="item-background-integration">
+						<h2 class="section-heading">Integration</h2>
+
+						<p>
+							Integrating the filter with any specific Video Conferencing API or service just requires finding the <code>MediaStream</code> element associated with video stream you want to filter. The following sub-sections discuss how to integrate the filter with various conferencing services.
+						</p>
+
+
+
+
+						<p><b>Vanilla WebRTC</b></p>
+						<p>As shown above, the API for basic/general WebRTC is:</p>
+
+
+						<pre><code>
+   navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
+
+      const filter = new BackgroundFilter(stream, {token: 'insert-vectorly-token-here', background: 'blur'});
+      filter.getOutput().then(function(filteredStream){
+            //Video Stream Track
+      });
+   });
+
+</code></pre>
+
+						<p>You can find a demo repository for vanilla WebRTC background filtering <a href="https://files.vectorly.io/demo/background/webrtc/index.html">here</a></p>
+
+
+
+						<p><b>Jitsi</b></p>
+
+						<p>You can enable filters on any <code>VideoTrack</code> object by feeding into the Filter's Jitsi Plugin (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
+
+
+						<pre><code>
+   const room = connection.initJitsiConference('conference', confOptions);
+
+   JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
+      const filter = new BackgroundFilter(tracks[0], {token: 'insert-vectorly-token', background: 'blur'});
+
+	filter.getOutput().then(function(filteredStream){
+            room.addTrack(filteredStream);
+        });
+
+   });
+
+
+</code></pre>
+
+
+
+						<p><b>Agora</b></p>
+
+
+						<p>For Web deployments using <a href="https://www.agora.io">Agora</a> (specifically the 4.x API), you can just feed the video track to the Background filter, which will return a filtered video track which you can publish.</p>
+
+						<p>
+						<pre><code>
+    let videoTrack = AgoraRTC.createCameraVideoTrack();
+    let audioTrack = AgoraRTC.createMicrophoneAudioTrack();
+
+    const inputStream = new MediaStream([videoTrack._mediaStreamTrack]);
+
+
+    const filter = new BackgroundFilter(inputStream, {token: 'insert-vectorly-token-here', background: 'blur'});
+    filter.getOutput().then(function(filteredTrack ){
+
+       const filteredAgoraTrack = AgoraRTC.createCustomVideoTrack({
+         mediaStreamTrack: filteredStream.getVideoTracks()[0],
+       });
+      client.publish([filteredAgoraTrack, audioTrack], handleFail);
+    });
+
+						</code></pre>
+						</p>
+
+
+
+						<p><b>Twilio</b></p>
+
+						<p>You can enable filters on any <code>VideoTrack</code> object by extracting the raw <code>MediaStreamTrack</code>, running the filter on that, and creating a new <code>LocalVideoTrack</code>.
+
+
+						<pre><code>
+   const Twilio = require('twilio-video');
+
+   const localVideoTrack = await Twilio.createLocalVideoTrack();
+   const inputStream = new MediaStream([videoTrack.mediaStreamTrack]);
+   const filter = new BackgroundFilter(inputStream, {token: 'insert-vectorly-token', background: 'blur'});
+   const outputStream = await filter.getOutput();
+   const filteredTrack = new Twilio.LocalVideoTrack(outputStream.getVideoTracks()[0]);
+
+   room.localParticipant.publishTrack(filteredTrack);
+
+							</code></pre>
+
+
+
+
+
+						<p><b>Vonage / OpenTok</b></p>
+
+						<p>When you create a <code>Publisher</code> object, just feed the filtered video Track as the video Source
+
+
+						<pre><code>
+   const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur'});
+   const outputStream =  await filter.getOutput();
+
+   var publisher = OT.initPublisher('publisher', {
+      insertMode: 'append',
+      width: '100%',
+      height: '100%',
+      videoSource: outputStream.getVideoTracks()[0]
+   }, handleError);
+							</code></pre>
 
 					</section><!--//section-->
+
+<section>
+	<p>	<h2 class="section-heading" id="item-background-images">Starter Backgrounds</h2>
+	For convenience, if you're interested in adding a virtual backgrounds feature and need some starter images, here are a few:
+
+	</p>
+
+	<figure class="figure docs-figure py-3">
+
+		<div class="table-responsive my-4">
+			<table class="table" style="border-color: white">
+
+				<tbody >
+				<tr>
+
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/1.jpg" alt="" style="width: 300px;"></td>
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/2.jpg" alt="" style="width: 300px;"></td>
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/3.jpg" alt="" style="width: 300px;"></td>
+				</tr>
+				<tr style="text-align: center">
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/1.jpg</figcaption></td>
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/2.jpg</figcaption></td>
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/3.jpg</figcaption></td>
+				</tr>
+
+
+				<tr>
+
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/4.jpg" alt="" style="width: 300px;"></td>
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/5.jpg" alt="" style="width: 300px;"></td>
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/6.jpg" alt="" style="width: 300px;"></td>
+				</tr>
+				<tr style="text-align: center">
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/4.jpg</figcaption></td>
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/5.jpg</figcaption></td>
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/6.jpg</figcaption></td>
+				</tr>
+
+				<tr>
+
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/7.jpg" alt="" style="width: 300px;"></td>
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/8.jpg" alt="" style="width: 300px;"></td>
+					<td style="border-top: white;"><img class="figure-img img-fluid" src="https://demo.vectorly.io/virtual-backgrounds/9.jpg" alt="" style="width: 300px;"></td>
+				</tr>
+				<tr style="text-align: center">
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/7.jpg</figcaption></td>
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/8.jpg</figcaption></td>
+					<td style="border-top: white;"><figcaption class="figure-caption mt-3">https://demo.vectorly.io/virtual-backgrounds/9.jpg</figcaption></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</figure>
+
+
+</section>
+
+
+					<h2 class="section-heading" id="item-background-events">Events</h2>
+
+
+					<p>Once you have instantiated the filter object, you can access basic filter events, like onload and error handling.</p>
+
+					<pre>
+							 <code>
+   const filter = new BackgroundFilter(stream, config);
+
+   filter.on('load', function () {
+     console.log("filter initialized");
+   });
+
+   filter.on('start', function () {
+      console.log("Starting filter");
+   });
+
+   filter.on('stop', function () {
+      console.log("Stopping filter");
+   });
+
+   filter.on('error', function () {
+     console.log("Filter failed to initialize");
+   });
+							 </code>
+						 </pre>
+
+					<p>If the filter fails to load, then it will pass through the original video stream</p>
+
+
+					<h2 class="section-heading" id="item-background-controls">Controls </h2>
+
+					<p> You can enable and disable the filter programatically.</p>
+
+					<pre>
+							 <code>
+   const filter = new BackgroundFilter(video, config);
+
+   filter.disable();
+
+   filter.enable();
+							 </code>
+						 </pre>
+
+
+					<p> You can also change the inputs to the background filter dynamically</p>
+
+
+					<pre>
+							 <code>
+    //Change the background image, or set to "blur" to set a background blur
+   await filter.changeBackground("new-background-image.png");
+
+
+   //Change the source media stream
+   const devices = await navigator.mediaDevices.enumerateDevices();
+   const alternateWebCam = devices[1]; //Just an example, don't literally copy/paste this
+   const alternateWebCamStream  = navigator.getUserMedia({video: {deviceId: alternateWebCam.deviceId}});
+   await filter.changeInput(alternateWebCamStream);
+
+							 </code>
+						 </pre>
+
+
+					<p>You can see a full set of available methods in the <a href="https://cdn.vectorly.io/ai-filters/docs/latest/BackgroundFilter.html">API documentation</a> </p>
 
 			    </article><!--//docs-article-->
 
 
-			    <article class="docs-article" id="section-3">
+			    <article class="docs-article" id="section-upscaling">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Web</h1>
+					    <h1 class="docs-heading">AI Upscaling</h1>
+
+						<h4 class="section-heading"  id="item-upscale-loading">Loading</h4>
+
+						<p> The API for loading the Upscaler is</p>
+						<p><b>NPM</b>
+							<code><pre>
+
+     import vectorlyUpscaler from @vectorly-io/ai-upscaler;
+					</pre></code>
+
+
+						<p>
+
+							<b>CDN</b>
+							<code><pre>https://cdn.vectorly.io/v2/latest/vectorly-upscaler.js</pre></code></p>
+
+						</p>
+
+
+						<p>For loading via CDN, you can access the upscaling filter as the <code>vectorlyUpscaler</code> object, which will be available in the global scope
+
+
+
+
 
 						    <p>For web environments, we've packaged our upscaler as a standalone Javascript library, as well as as plugins to several popular HTML5 video players (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).</p>
 					</header>
 
-						<h4 class="section-heading" id="item-3-usage">Basic usage</h4>
+						<h4 class="section-heading" id="item-upscale-usage">Basic usage</h4>
 
 
-						 <p>For the <code>vectorly-upscaler.js</code> library, the basic API involves instantiating a <code>vectorlyUpscaler</code> object, and specifying a <code>video</code> element.</p>
+						 <p>For the <code>vectorlyUpscaler</code>, the basic API involves instantiating an <code>vectorlyUpscaler</code> object, and specifying a <code>video</code> element.</p>
 
 
 
@@ -301,13 +601,185 @@
 						 </pre>
 
 
-						 <p>This automatically upscales the video, by overlaying a <code>canvas</code> element with the upscaled video frames on top of the <code>video</code> element. When the <code>video</code> plays, the upscaler will automatically upscale each frame and update the <code>canvas</code> element. See the <a href="#item-3-styling"> styling</a> section for more detail.</p>
+						 <p>This automatically upscales the video, by overlaying a <code>canvas</code> element with the upscaled video frames on top of the <code>video</code> element. When the <code>video</code> plays, the upscaler will automatically upscale each frame and update the <code>canvas</code> element. See the <a href="#item-upscale-styling"> styling</a> section for more detail.</p>
 
 
 
 
-						<h4 class="section-heading" id="item-3-plugins">Plugins</h4>
-						Besides the <code>vectorly-upscaler.js</code> library, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
+					<section class="docs-section" id="item-upscale-integration">
+
+
+						<h4 class="section-heading">Integration</h4>
+
+						<p ><b>General WebRTC</b></p>
+
+
+							<p>The <code>vectorlyUpscaler</code> works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
+
+
+							<pre><code>
+   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
+
+</code></pre>
+
+							<p>We have an <a href="https://github.com/Vectorly/webrtc-demo"> example repository</a>, showing how Vectorly can be integrated with WebRTC, as well as a full working general WebRTC demo <a href="https://files.vectorly.io/demo/webrtc/index.html">here.</a> </p>
+
+
+							<p>
+								Integrating the upscaler with any specific Video Conferencing API or service just requires finding the video element associated with video stream you want to upscale.
+							</p>
+
+
+						<p ><b>Jitsi</b></p>
+
+							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
+
+
+							<pre><code>
+   const room = connection.initJitsiConference('conference', confOptions);
+   room.on(JitsiMeetJS.events.conference.TRACK_ADDED, function(track){
+
+      const videoElement = document.createElement('video');
+      document.body.appendChild(videoElement);
+      track.attach(videoElement);
+
+      const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+
+   });
+</code></pre>
+
+
+						<p ><b>Agora</b></p>
+
+
+							<p>For Web deployments using <a href="https://www.agora.io">Agora</a>, you can find the <code>video</code> element of the stream you want to upscale by using the stream's ID.</p>
+
+							<p>
+							<pre><code>
+    let stream = AgoraRTC.createStream({
+        streamID: uid,
+        audio: true,
+        video: true,
+        screen: false
+    });
+
+    stream.init(function() {
+
+        stream.play('target-div');
+        const video = document.getElementById("video" + stream.getId());
+        const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
+
+        client.publish(stream, handleFail);
+
+    },handleFail);
+						</code></pre>
+							</p>
+
+
+						<p ><b>Twilio</b></p>
+
+							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
+
+
+
+							<p>If you use the <code>track.attach()</code> method to create a <code>video</code> element:</p>
+
+
+							<pre><code>
+   const Video = require('twilio-video');
+
+   Video.createLocalVideoTrack().then(function(videoTrack) {
+     const videoElement = videoTrack.attach();
+     document.body.appendChild(videoElement);
+     const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+   });
+							</code></pre>
+
+
+
+							<p>If you specify your own <code>video</code> element:</p>
+
+
+							<pre><code>
+   const Video = require('twilio-video');
+
+   const videoElement = document.createElement('video');
+   document.body.appendChild(videoElement);
+
+   Video.createLocalVideoTrack().then(function(videoTrack) {
+     videoTrack.attach(videoElement);
+     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+   });
+							</code></pre>
+
+
+
+						<p ><b>OpenTok / Vonage</b></p>
+
+							<p>When a <code>Subscriber</code> or <code>Publisher</code> creates a <code>video</code> element you can intercept it and feed that video to the Vectorly Upscaler.
+
+
+
+							<p>You can use the <code>subscriber.element</code> property to intercept the video element</p>
+
+
+							<pre><code>
+    session.on('streamCreated', function(event) {
+
+        const subscriber = session.subscribe(event.stream, 'subscriber', {
+            insertMode: 'append',
+            width: '100%',
+            height: '100%'
+        }, handleError);
+
+        subscriber.on('videoElementCreated', function (){
+            const video = subscriber.element.querySelector('video');
+            const upscaler  = new vectorlyUpscaler(video, {token: '..your-token....'});
+
+        });
+
+    });
+							</code></pre>
+
+
+							<p>This also works with a publisher object. Refer to the <a href="https://tokbox.com/developer/guides/customize-ui/js/">Vonage documentation</a>  for styling - Vectorly's upscaler will fit within the styling defined by OpenTok.</p>
+
+							<p>See our example repistory for a <a href="https://github.com/Vectorly/ai-upscaler-examples/tree/master/vonage-demo"> working code example </a></p>
+
+						<p ><b>Daily.co</b></p>
+							<p>You can integrate Vectorly's AI upscaler with <a href="daily.co">Daily.co</a> if you're building a custom <a href="https://docs.daily.co/docs/build-a-custom-video-chat-interface">custom video chat interface </a>. Using the default React code sample from Daily, we've built a full working <a href="https://github.com/Vectorly/daily-call-object/">demo reference</a> </p>
+
+
+							<pre><code>
+   useEffect(() => {
+	videoEl.current &&
+	(videoEl.current.srcObject = new MediaStream([videoTrack]));
+	if (videoEl.current && props.isLarge) {
+	window.upscalers = window.upscalers || {}
+	window.upscalers[videoTrack.id] = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+	}
+   }, [videoTrack]);
+							</code></pre>
+
+							<p>You just need to make sure you intercept the <code>video</code> element associated with the video track you want to upscale.</p>
+
+							<p>Vectorly's AI upscaler is not compatible with the pre-built UI from Daily.co, as the pre-built UI is loaded via iframe, making it impossible to access the <code>video</code> element through a third party application.</p>
+
+
+						<p><b>Electron</b></p>
+
+
+						<p>If you're building an electron app, the Vectorly library is fairly plug and play, and will work with either CDN or NPM installation. </p>
+
+						<p>You can see a demo electron app repostory <a href="https://github.com/Vectorly/vectorly-electron-demo">here</a></p>
+
+
+
+
+					</section>
+
+						<h4 class="section-heading" id="item-upscale-ott">Plugins</h4>
+						Besides the <code>vectorlyUpscaler</code> module, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
 
 
 						<p>
@@ -356,11 +828,10 @@
 						</p>
 
 
-					<p id="item-3-custom-plugins">
 
 					<h4>Custom plugin</h4>
 
-					You can easily build a plugin for Vectorly for any HTML5 video player. All you really need is the <code>video</code> tag, and the video container <code>div</code>, which contains the video UI elements and which is used for <a href="#item-3-styling">styling and layout</a>. See a demo plugin code, off of which our other HMTL5 Player plugins are based
+					You can easily build a plugin for Vectorly for any HTML5 video player. All you really need is the <code>video</code> tag, and the video container <code>div</code>, which contains the video UI elements and which is used for <a href="#item-upscale-styling">styling and layout</a>. See a demo plugin code, off of which our other HMTL5 Player plugins are based
 					<pre>
 							 <code>
    import vectorlyUpscaler from '@vectorly-io/ai-upscaler';
@@ -399,105 +870,8 @@
 					</p>
 
 
-					<h4 class="section-heading" id="item-3-electron">Electron</h4>
-					<p>If you're building an electron app, the Vectorly library is fairly plug and play, and will work with either CDN or NPM installation. </p>
 
-					<p>You can see a demo electron app repostory <a href="https://github.com/Vectorly/vectorly-electron-demo">here</a></p>
-
-					<h4 class="section-heading" id="item-3-performance">Performance Considerations</h4>
-
-					<p>AI Upscaling does require some computational effort, however it is mostly on the graphics card, so AI Upscaling's impact on CPU is limited. The amount of computation (and therefore the framerate / performance) depends on the size of input video you are upscaling</p>
-
-					<p>The following table should give a rough idea performance for different input video resolutions. These results are only for Web environments. Our mobile SDKs will have access to more powerful native libraries, enabling significantly better performance.</p>
-
-					<div class="table-responsive my-4">
-						<table class="table table-striped">
-
-							<tr>
-								<th scope="col"></th>
-								<th scope="col">240p -> 480p/720p</th>
-								<th scope="col">360p -> 720p/1080p</th>
-								<th scope="col">480p -> 960p/1440p</th>
-							</tr>
-
-							<tbody>
-
-
-							<tr>
-								<th scope="row">High End Smartphone</th>
-								<td>120 fps</td>
-								<td>40 fps</td>
-								<td>14fps</td>
-							</tr>
-
-							<tr>
-								<th scope="row">Mid-range Smartphone</th>
-
-								<td>80 fps</td>
-								<td>28 fps</td>
-								<td>9 fps</td>
-							</tr>
-
-							<tr>
-								<th scope="row">Low-End Smartphone</th>
-
-								<td>20fps</td>
-								<td>6fps</td>
-								<td>3fps</td>
-							</tr>
-
-							<tr>
-
-								<th scope="row">Mid-range Laptop</th>
-
-								<td>100fps</td>
-								<td>35fps</td>
-								<td>8fps</td>
-							</tr>
-
-							<tr>
-
-								<th scope="row">GPU Desktop</th>
-
-								<td>200+fps</td>
-								<td>200+fps</td>
-								<td>80 fps</td>
-							</tr>
-
-
-							</tbody>
-						</table>
-					</div>
-
-
-					<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
-
-
-					<pre>
-							 <code>
-  const config = {
-	   token: '...',
-	   analyticsEnabled: true
-   };
-
-   const upscaler = new vectorlyUpscaler(video, config);
-							 </code>
-						 </pre>
-
-					</p>
-
-
-					<p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
-
-						<p>
-						It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-3-controls">disable upscaling</a>  if the fps gets too low.</p>
-
-
-
-
-					<p></p>
-
-						<h2 class="section-heading" id="item-3-events">Events</h2>
+						<h2 class="section-heading" id="item-upscale-events">Events</h2>
 
 
 						<p>Once you have instantiated the upscaler object, you can access basic upscaler events, like onload and error handling.</p>
@@ -525,7 +899,7 @@
 						 </pre>
 
 
-						<h2 class="section-heading" id="item-3-controls">Controls </h2>
+						<h2 class="section-heading" id="item-upscale-controls">Controls </h2>
 
 						<p> You can also enable and disable the upscaler programatically.</p>
 
@@ -542,7 +916,7 @@
 
 
 
-						<h2 class="section-heading" id="item-3-styling">Styling and Scaling</h2>
+						<h2 class="section-heading" id="item-upscale-styling">Styling and Scaling</h2>
 
 						<p>
 
@@ -596,7 +970,7 @@
 
 
 
-						<h2 class="section-heading" id="item-3-ai-models">Models</h2>
+						<h2 class="section-heading" id="item-upscale-models">Models</h2>
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
 						<pre><code>
@@ -610,7 +984,7 @@
 					<br></br>
 
 
-					<h2 class="section-heading" id="item-3-low-level">Low level controls</h2>
+					<h2 class="section-heading" id="item-upscale-low-level">Low level controls</h2>
 
 					<p>For use cases where lower level control is needed, such as upscaling indidual frames or images, using a custom decoder or upscaling as part of a broader image processing pipeline, you can use the <a href="https://cdn.vectorly.io/upscaler/docs/latest/vectorlyUpscalerCore.html">vectorly-core library</a>.</p>
 
@@ -624,13 +998,13 @@
 					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
 					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
 					<pre><code>
-const upscaler = new vectorlyUpscaler.core();
-upscaler.load({w: videoWidth,
-	       h: videoHeight,
-	       renderSize: {w: videoWidth*2, h: videoHeight*2},
-	       canvas: document.getElementById('your-canvas-element'),
-	       networkParams : {name: 'model-name', tag: 'model-tag', version: 'model-version'},
-	       token: "your-token"});
+   const upscaler = new vectorlyUpscaler.core();
+   upscaler.load({w: videoWidth,
+	          h: videoHeight,
+	          renderSize: {w: videoWidth*2, h: videoHeight*2},
+	          canvas: document.getElementById('your-canvas-element'),
+	          networkParams : {name: 'model-name', tag: 'model-tag', version: 'model-version'},
+	          token: "your-token"});
 					</code></pre>
 					<p>If you want to upscale multiple streams to different canvases, you will need to define a seperate upscaler for each <code>canvas</code> element.</p>
 					<p><strong>Setting an input</strong></p>
@@ -663,34 +1037,23 @@ canvas.style.height = desiredheight + "px";
 
 					<br></br>
 
-					<p>If you encounter any issues with these libraries, you can send us a message</p>
-					<a href="email:team@vectorly.io" class="btn btn-warning"><svg class="svg-inline--fa fa-bug fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bug" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M511.988 288.9c-.478 17.43-15.217 31.1-32.653 31.1H424v16c0 21.864-4.882 42.584-13.6 61.145l60.228 60.228c12.496 12.497 12.496 32.758 0 45.255-12.498 12.497-32.759 12.496-45.256 0l-54.736-54.736C345.886 467.965 314.351 480 280 480V236c0-6.627-5.373-12-12-12h-24c-6.627 0-12 5.373-12 12v244c-34.351 0-65.886-12.035-90.636-32.108l-54.736 54.736c-12.498 12.497-32.759 12.496-45.256 0-12.496-12.497-12.496-32.758 0-45.255l60.228-60.228C92.882 378.584 88 357.864 88 336v-16H32.666C15.23 320 .491 306.33.013 288.9-.484 270.816 14.028 256 32 256h56v-58.745l-46.628-46.628c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0L141.255 160h229.489l54.627-54.627c12.498-12.497 32.758-12.497 45.256 0 12.496 12.497 12.496 32.758 0 45.255L424 197.255V256h56c17.972 0 32.484 14.816 31.988 32.9zM257 0c-61.856 0-112 50.144-112 112h224C369 50.144 318.856 0 257 0z"></path></svg>Report Bugs</a>
-
-
-
-
-				</article><!--//docs-article-->
-
-			    <article class="docs-article" id="section-4">
-				    <header class="docs-header">
-					    <h1 class="docs-heading">Mobile</h1>
-				    </header>
-				     <section class="docs-section" id="item-4-1">
-						<h2 class="section-heading">Android</h2>
+					<section class="docs-section" id="item-upscale-mobile">
+						<h2 class="section-heading">Mobile</h2>
+						<h4 >Android</h4>
 
 
 
 
 
-						 <p>Our Android SDK works as a plugin to <a href="https://developer.android.com/guide/topics/media/exoplayer">ExoPlayer</a>. You will therefore need to use ExoPlayer, or an ExoPlayer derived player, in order upscale video.</p>
+						<p>Our Android SDK works as a plugin to <a href="https://developer.android.com/guide/topics/media/exoplayer">ExoPlayer</a>. You will therefore need to use ExoPlayer, or an ExoPlayer derived player, in order upscale video.</p>
 
 
 
-						 <p>First, you'll need to include our SDK into your app's gradle file. You can import it from our Maven repository, as shown below.</p>
+						<p>First, you'll need to include our SDK into your app's gradle file. You can import it from our Maven repository, as shown below.</p>
 
 
 
-						 <pre>
+						<pre>
 							 <code>
    repositories {
      google()
@@ -704,24 +1067,24 @@ canvas.style.height = desiredheight + "px";
 						 </pre>
 
 
-						 <p>
-							 You can then add the following imports into the activity which manages your ExoPlayer view
-						 </p>
+						<p>
+							You can then add the following imports into the activity which manages your ExoPlayer view
+						</p>
 
-						 <pre>
+						<pre>
 							 <code>
    import io.vectorly.glnnrender.GlPlayerView;
    import io.vectorly.glnnrender.networks.NetworkTypes;
 							 </code>
 						 </pre>
 
-						 <p>
-							 Once the ExoPlayer view is set up, you can call set up the Upscaler as in the following example. You'll need to feed your API key, which you can get from the <a href="https://dashboard.vectorly.io">Vectorly dashboard</a>.
-						 </p>
+						<p>
+							Once the ExoPlayer view is set up, you can call set up the Upscaler as in the following example. You'll need to feed your API key, which you can get from the <a href="https://dashboard.vectorly.io">Vectorly dashboard</a>.
+						</p>
 
 
 
-						 <pre>
+						<pre>
 							 <code>
    private GlPlayerView ePlayerView;
 
@@ -741,176 +1104,33 @@ canvas.style.height = desiredheight + "px";
 						 </pre>
 
 
-                         <p>We've created a full working example using our library, which you can find below</p>
+						<p>We've created a full working example using our library, which you can find below</p>
 
-                         <p>
-                             <a href="https://github.com/Vectorly/android-demo" class="btn btn-success"><svg class="svg-inline--fa fa-file-code fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>Example Repo</a>
-                         </p>
+						<p>
+							<a href="https://github.com/Vectorly/android-demo" class="btn btn-success"><svg class="svg-inline--fa fa-file-code fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>Example Repo</a>
+						</p>
 
 
 
-					</section><!--//section-->
-
-					<section class="docs-section" id="item-4-2">
-						<h2 class="section-heading">iOS</h2>
+						<h4 >iOS</h4>
 						<p>We plant to release an iOS SDK in Summer 2021</p>
+
+
 					</section><!--//section-->
-			    </article><!--//docs-article-->
 
-				<article class="docs-article" id="section-conferencing">
-					<header class="docs-header">
-						<h1 class="docs-heading">Video Conferencing</h1>
-						<section class="docs-intro">
-							<p>You can also use Vectorly's AI Upscaler for upscaling video streams in any WebRTC video conferencing system.</p>
-						</section><!--//docs-intro-->
-
-
-						<section class="docs-section" id="conferencing-webrtc">
-							<h2 class="section-heading">General WebRTC</h2>
-
-
-							<p>The <code>vectorlyUpscaler</code> object works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
-
-
-							<pre><code>
-   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
-
-</code></pre>
-
-							<p>We have an <a href="https://github.com/Vectorly/webrtc-demo"> example repository</a>, showing how Vectorly can be integrated with WebRTC, as well as a full working general WebRTC demo <a href="https://files.vectorly.io/demo/webrtc/index.html">here.</a> </p>
-
-
-<p>
-	Integrating the upscaler with any specific Video Conferencing API or service just requires finding the video element associated with video stream you want to upscale.
-</p>
-
-
-
-						</section><!--//section-->
-
-						<section class="docs-section" id="conferencing-jitsi">
-							<h2 class="section-heading">Jitsi</h2>
-
-							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ljm-api#jitsitrack">reference</a>).
-
-
-<pre><code>
-   const room = connection.initJitsiConference('conference', confOptions);
-   room.on(JitsiMeetJS.events.conference.TRACK_ADDED, function(track){
-
-      const videoElement = document.createElement('video');
-      document.body.appendChild(videoElement);
-      track.attach(videoElement);
-
-      const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
-
-   });
-</code></pre>
-
-
-						</section><!--//section-->
-
-
-						<section class="docs-section" id="conferencing-agora">
-							<h2 class="section-heading">Agora</h2>
-
-
-							<p>For Web deployments using <a href="https://www.agora.io">Agora</a>, you can find the <code>video</code> element of the stream you want to upscale by using the stream's ID.</p>
-
-							<p>
-								<pre><code>
-    let stream = AgoraRTC.createStream({
-        streamID: uid,
-        audio: true,
-        video: true,
-        screen: false
-    });
-
-    stream.init(function() {
-
-        stream.play('target-div');
-        const video = document.getElementById("video" + stream.getId());
-        const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
-
-        client.publish(stream, handleFail);
-
-    },handleFail);
-						</code></pre>
-							</p>
-
-						</section><!--//section-->
-
-						<section class="docs-section" id="conferencing-twilio">
-							<h2 class="section-heading">Twilio</h2>
-
-							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
-
-
-
-								<p>If you use the <code>track.attach()</code> method to create a <code>video</code> element:</p>
-
-
-							<pre><code>
-   const Video = require('twilio-video');
-
-   Video.createLocalVideoTrack().then(function(videoTrack) {
-     const videoElement = videoTrack.attach();
-     document.body.appendChild(videoElement);
-     const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
-   });
-							</code></pre>
-
-
-
-<p>If you specify your own <code>video</code> element:</p>
-
-
-							<pre><code>
-   const Video = require('twilio-video');
-
-   const videoElement = document.createElement('video');
-   document.body.appendChild(videoElement);
-
-   Video.createLocalVideoTrack().then(function(videoTrack) {
-     videoTrack.attach(videoElement);
-     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
-   });
-							</code></pre>
-
-
-						</section><!--//section-->
-
-						<section class="docs-section" id="conferencing-daily">
-							<h2 class="section-heading">Daily.co</h2>
-							<p>You can integrate Vectorly's AI upscaler with <a href="daily.co">Daily.co</a> if you're building a custom <a href="https://docs.daily.co/docs/build-a-custom-video-chat-interface">custom video chat interface </a>. Using the default React code sample from Daily, we've built a full working <a href="https://github.com/Vectorly/daily-call-object/">demo reference</a> </p>
-
-							<pre><code>
-   useEffect(() => {
-	videoEl.current &&
-	(videoEl.current.srcObject = new MediaStream([videoTrack]));
-	if (videoEl.current && props.isLarge) {
-	window.upscalers = window.upscalers || {}
-	window.upscalers[videoTrack.id] = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
-	}
-   }, [videoTrack]);
-							</code></pre>
-
-							<p>You just need to make sure you intercept the <code>video</code> element associated with the video track you want to upscale.</p>
-
-							<p>Vectorly's API upscaler is not compatible with the pre-built UI from Daily.co, as the pre-built UI is loaded via iframe, making it impossible to access the <code>video</code> element through a third party application.</p>
-
-
-						</section><!--//section-->
-
-
-					</header>
 				</article><!--//docs-article-->
 
-			    <article class="docs-article" id="section-5">
+
+			    <article class="docs-article" id="section-demos">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Demos</h1>
-					    <section class="docs-intro">
-						    <p>Below are a few demos of our upscaling technology.</p>
+					    <section class="docs-intro ">
+
+							<p><b>Virtual Background demo</b></p>
+							<p><a href="https://files.vectorly.io/demo/background/webrtc/index.html" target="_blank">Live Virtual Background Demo</a> </p>
+
+
+							<b>AI Upscaling demos</b>
 
 
 							<ul>
@@ -929,86 +1149,133 @@ canvas.style.height = desiredheight + "px";
 			    </article><!--//docs-article-->
 
 
-		        <article class="docs-article" id="section-6">
+		        <article class="docs-article" id="section-performance">
 				    <header class="docs-header">
-					    <h1 class="docs-heading">Benchmarks</h1>
+					    <h1 class="docs-heading">Performance</h1>
 					    <section class="docs-intro">
-						    <p>	For Super Resolution, the most practical challenge is client side performance, as it requires doing large numbers of computations. This can especially become an issue when dealing with low-end devices (such as entry-level smartphones).
+						    <p>When running AI filters on client-devices, the most practical challenge is client side performance, as it requires doing large numbers of computations. This can especially become an issue when dealing with low-end devices (such as entry-level smartphones).
 							</p>
 
 							<p>	Accordingly, we have focused a great deal on making our AI models as efficient as possible, to enable good quality outputs while still maintaining good client-side rendering performance on low-end devices.
 							</p>
-
-							<p>	Below, you can see the quality and performance metrics output for the demos outlined above. All of our performance results are for our generic upscaler model. We plan to make more models for different devices, and different qualities.
-							</p>
 						</section><!--//docs-intro-->
 				    </header>
-				     <section class="docs-section" id="item-6-1">
-						<h2 class="section-heading">Framerate</h2>
+
+					<section class="docs-section" id="item-background-performance">
+
+						<h2 class="section-heading">Background Segmentation</h2>
+						<p>Our background filter is based on the <a href="https://drive.google.com/file/d/1lnP1bRi9CSqQQXUHa13159vLELYDgDu0/preview">Google Meet model</a>, and run using <a href="https://google.github.io/mediapipe/" >Media Pipe</a> the same way it is run in Google Meet. Google Meet's background-segmentation model runs entirely on the CPU, which does require performance considerations.</p>
+
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/framerate-background.svg" alt="" style="width: 800px;">
+						</figure>
+
+
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
+						</figure>
+
+						<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
+
+
+						<pre>
+							 <code>
+  const config = {
+	   token: '...',
+	   background: 'blur',
+	   analyticsEnabled: true
+   };
+
+   const filter = BackgroundFilter(video, config);
+							 </code>
+						 </pre>
+
+						</p>
+						<h4  id="item-background-performance-considerations">Performance Considerations</h4>
+						<p>We recommend only running the Web Background filters library for desktop users. The performance is considerably worse on Mobile because because the overhead of communicating between the browser and GPU is much higher on mobile devices.</p>
+
+						<p>We expect the performance to rival or exceed desktop clients with a Native Android SDK, as is the case for our <a href="#item-upscale-performance" >AI Upscaler Android SDK</a>. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
+						<p>Additionally, we are working on a fully WebGL/OpenGL implementation of the Background Filter, which should greatly exceed the performance of Google's Meet model.</p>
+
+
+
+
+
+
+					</section><!--//section-->
+				     <section class="docs-section" id="item-upscale-performance">
+
+						 <h2 class="section-heading">AI Upscaling</h2>
+
 						<p>The primary "cost" to doing super-resolution is computational complexity. While we have put a lot of work into making super resolution feasible on client devices, it is still something which needs to be managed. Here, we provide some initial performance benchmarks for the same demos shown above, in the demos sections.</p>
 
 						 <figure class="figure docs-figure py-3">
-							 <img class="figure-img img-fluid" src="assets/images/upscaler-performance.svg" alt="" style="width: 800px;">
+							 <img class="figure-img img-fluid" src="assets/images/framerate-upscaling.svg" alt="" style="width: 800px;">
 						 </figure>
 
-						 <div class="callout-block callout-block-info">
 
-							 <div class="content">
-								 <h4 class="callout-title">
-	                                <span class="callout-icon-holder mr-1">
-		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
-		                            </span><!--//icon-holder-->
-									 Note
-								 </h4>
-								 <p>Upscaling time varies from frame to frame, so we provide average framerates. Framerates for desktop were over 500fps, but we capped the graph for clarity purposes.</p>
-							 </div><!--//content-->
-						 </div>
+						 <figure class="figure docs-figure py-3">
+							 <img class="figure-img img-fluid" src="assets/images/cpu-usage-upscaling.svg" alt="" style="width: 800px;">
+						 </figure>
 
-						 <p>For reference, below are the specs for the devices we tested on</p>
+						 <h4  id="item-upscale-performance-considerations">Performance Considerations</h4>
+
+						 <p>AI Upscaling does require some computational effort, however it is mostly on the graphics card, so AI Upscaling's impact on CPU is limited. The amount of computation (and therefore the framerate / performance) depends on the size of input video you are upscaling</p>
+
+						 <p>The following table should give a rough idea performance for different input video resolutions. These results are only for Web environments. Our mobile SDKs will have access to more powerful native libraries, enabling significantly better performance.</p>
+
 						 <div class="table-responsive my-4">
 							 <table class="table table-striped">
 
 								 <tr>
 									 <th scope="col"></th>
-									 <th scope="col">GPU Desktop</th>
-									 <th scope="col">Non-GPU Laptop</th>
-									 <th scope="col">High-end smartphone</th>
-									 <th scope="col">Low-end smartphone</th>
+									 <th scope="col">240p -> 480p/720p</th>
+									 <th scope="col">360p -> 720p/1080p</th>
+									 <th scope="col">480p -> 960p/1440p</th>
 								 </tr>
 
 								 <tbody>
 
 
 								 <tr>
-									 <th scope="row">Device</th>
-									 <td>Alientware Aurora R11</td>
-									 <td>Dell XPS 13</td>
-									 <td>Samsung Galaxy 8</td>
-									 <td>Samsung A2</td>
+									 <th scope="row">High End Smartphone</th>
+									 <td>120 fps</td>
+									 <td>40 fps</td>
+									 <td>14fps</td>
 								 </tr>
 
 								 <tr>
-									 <th scope="row">CPU</th>
-									 <td>Intel Core i5 x 6</td>
-									 <td>Intel Core i7  - 1.8GHz x8</td>
-									 <td>Exynos 1.9 GHz x8</td>
-									 <td>Exynos 1.6 GHz x8</td>
+									 <th scope="row">Mid-range Smartphone</th>
+
+									 <td>80 fps</td>
+									 <td>28 fps</td>
+									 <td>9 fps</td>
 								 </tr>
 
 								 <tr>
-									 <th scope="row">GPU</th>
-									 <td>NVIDIA GeForce GTX 1650</td>
-									 <td>Mesa Intel UHD Graphics 620</td>
-									 <td>Exynos Mali-G71 MP20</td>
-									 <td>ARM Mali - T830 MP1</td>
+									 <th scope="row">Low-End Smartphone</th>
+
+									 <td>20fps</td>
+									 <td>6fps</td>
+									 <td>3fps</td>
 								 </tr>
 
 								 <tr>
-									 <th scope="row">Retail Price ($ USD)</th>
-									 <td>$1200</td>
-									 <td>$1200</td>
-									 <td>$600</td>
-									 <td>$90</td>
+
+									 <th scope="row">Mid-range Laptop</th>
+
+									 <td>100fps</td>
+									 <td>35fps</td>
+									 <td>8fps</td>
+								 </tr>
+
+								 <tr>
+
+									 <th scope="row">GPU Desktop</th>
+
+									 <td>200+fps</td>
+									 <td>200+fps</td>
+									 <td>80 fps</td>
 								 </tr>
 
 
@@ -1016,10 +1283,31 @@ canvas.style.height = desiredheight + "px";
 							 </table>
 						 </div>
 
-					</section><!--//section-->
 
-					<section class="docs-section" id="item-6-2">
-						<h2 class="section-heading">Quality</h2>
+						 <p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
+
+
+						 <pre>
+							 <code>
+  const config = {
+	   token: '...',
+	   analyticsEnabled: true
+   };
+
+   const upscaler = vectorlyUpscaler(video, config);
+							 </code>
+						 </pre>
+
+						 </p>
+
+
+						 <p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
+
+						 <p>
+							 It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-upscale-controls">disable upscaling</a>  if the fps gets too low.</p>
+
+
+						<h4 >Quality</h4>
 						<p>The primary benefit of Super resolution is to increase video quality. Using the original high-resolution video as a reference, we can use traditional video quality metrics like VMAF to quantify the quality improvement of Super Resolution, when compared to normal bicubic upscaling of the downsampled / low-resolution video content.</p>
 
 
@@ -1028,7 +1316,7 @@ canvas.style.height = desiredheight + "px";
 						</figure>
 
 
-						<p>Our general AI upscaler filter generally achieves a 10 to 15 point VMAF improvement compared to bicubic scaling. With <a href="#item-1-3"> content-specific AI models</a>, or heavier models, we will likely be able to achieve further quality gains. We are currently working on releasing quality comparisons for content specific models.</p>
+						<p>Our general AI upscaler filter generally achieves a 10 to 15 point VMAF improvement compared to bicubic scaling. With <a href="#item-upscale-models"> content-specific AI models</a>, or heavier models, we will likely be able to achieve further quality gains. We are currently working on releasing quality comparisons for content specific models.</p>
 
 
 						<h5>Quality visualization</h5>
