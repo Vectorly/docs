@@ -403,17 +403,16 @@
 
 
 						<pre><code>
+   const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', type: 'blur'});
+   const outputStream =  await filter.getOutput();
+
    var publisher = OT.initPublisher('publisher', {
       insertMode: 'append',
       width: '100%',
-      height: '100%'
+      height: '100%',
+      videoSource: outputStream.getVideoTracks()[0]
    }, handleError);
-
-   const filter = new BackgroundFilter(publisher.getVideoSource(), {token: 'insert-vectorly-token', type: 'blur'});
-   filter.getOutput().then(function(filteredTrack){
-      publisher.setVideoSource(filteredTrack);
-   });
-
 							</code></pre>
 
 					</section><!--//section-->
