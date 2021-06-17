@@ -321,7 +321,7 @@
    navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
 
       const filter = new BackgroundFilter(stream, {token: 'insert-vectorly-token-here', type: 'blur'});
-      filter.getOutput(function(filteredStream){
+      filter.getOutput().then(function(filteredStream){
             //Video Stream Track
       });
    });
@@ -343,7 +343,7 @@
    JitsiMeetJS.createLocalTracks({devices: ['video']}).then(tracks => {
       const filter = new BackgroundFilter(tracks[0], {token: 'insert-vectorly-token', type: 'blur'});
 
-	filter.getOutput(function(filteredStream){
+	filter.getOutput().then(function(filteredStream){
             room.addTrack(filteredStream);
         });
 
@@ -366,7 +366,7 @@
 
 
     const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token-here', type: 'blur'});
-    filter.getOutput(function(filteredTrack ){
+    filter.getOutput().then(function(filteredTrack ){
       client.publish([filteredTrack, audioTrack], handleFail);
     });
 
@@ -386,7 +386,7 @@
    Video.createLocalVideoTrack().then(function(videoTrack) {
      const filter = new BackgroundFilter(videoTrack, {token: 'insert-vectorly-token', type: 'blur'});
 
-	 filter.getOutput(function(filteredTrack){
+	 filter.getOutput().then(function(filteredTrack){
 						//publish filteredTrack
 	 });
 
@@ -410,7 +410,7 @@
    }, handleError);
 
    const filter = new BackgroundFilter(publisher.getVideoSource(), {token: 'insert-vectorly-token', type: 'blur'});
-   filter.getOutput(function(filteredTrack){
+   filter.getOutput().then(function(filteredTrack){
       publisher.setVideoSource(filteredTrack);
    });
 
