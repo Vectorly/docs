@@ -249,6 +249,9 @@
 					<h1 class="docs-heading">Background Filters</h1>
 
 
+					<p>Our Background filters, based on the Google Meet background segmentaiton model, make it easy to implemet background blur and virtual background features</p>
+
+					<p>You can find a live demo of our virtual background filter <a href="https://files.vectorly.io/demo/background-filter/index.html" target="_blank">here</a></p>
 
 						<h4 class="section-heading"  id="item-background-loading">Loading</h4>
 
@@ -328,7 +331,7 @@
 
 </code></pre>
 
-						<p>You can find a demo repository for vanilla WebRTC background filtering <a href="https://files.vectorly.io/demo/background/webrtc/index.html">here</a></p>
+						<p>You can find a demo repository for vanilla WebRTC background filtering <a href="https://github.com/Vectorly/ai-filters-examples/tree/master/background/webrtc-demo">here</a></p>
 
 
 
@@ -373,11 +376,13 @@
        const filteredAgoraTrack = AgoraRTC.createCustomVideoTrack({
          mediaStreamTrack: filteredStream.getVideoTracks()[0],
        });
-      client.publish([filteredAgoraTrack, audioTrack], handleFail);
+      client.publish([filteredAgoraTrack, audioTrack]);
     });
 
 						</code></pre>
 						</p>
+
+						<p>You can find a working demo repo <a href="https://github.com/Vectorly/ai-filters-examples/tree/master/background/agora-demo" >here</a></p>
 
 
 
@@ -420,6 +425,9 @@
       videoSource: outputStream.getVideoTracks()[0]
    }, handleError);
 							</code></pre>
+
+
+						<p>You can find a working demo repo <a href="https://github.com/Vectorly/ai-filters-examples/tree/master/background/vonage-demo" >here</a></p>
 
 					</section><!--//section-->
 
@@ -669,9 +677,9 @@
         const video = document.getElementById("video" + stream.getId());
         const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
 
-        client.publish(stream, handleFail);
+        client.publish(stream);
 
-    },handleFail);
+    });
 						</code></pre>
 							</p>
 
@@ -1127,7 +1135,7 @@ canvas.style.height = desiredheight + "px";
 					    <section class="docs-intro ">
 
 							<p><b>Virtual Background demo</b></p>
-							<p><a href="https://files.vectorly.io/demo/background/webrtc/index.html" target="_blank">Live Virtual Background Demo</a> </p>
+							<p><a href="https://files.vectorly.io/demo/background-filter/index.html" target="_blank">Live Virtual Background Demo</a> </p>
 
 
 							<b>AI Upscaling demos</b>
