@@ -406,8 +406,28 @@
 
 
 
+						<p><b>Daily.co</b></p>
+
+						<p>If you're building a custom UI with Daily.co, you can use the Daily.co <code>callObject</code>'s  <code>setInputDevices </code> method to set the filtered video track as the upload stream.
 
 
+						<pre><code>
+   const sourceVideoTrack = callObject._participants.local.videoTrack;
+
+   const inputStream = new MediaStream([sourceVideoTrack]);
+
+   const filter = new vectorly.BackgroundFilter(inputStream, {token: 'your-vectorly-token', background: 'https://demo.vectorly.io/virtual-backgrounds/1.jpg'});
+
+   filter.getOutput().then(function(filteredTrack ){
+
+      callObject.setInputDevicesAsync({
+         videoSource: filteredTrack.getVideoTracks()[0],
+      });
+
+   });
+							</code></pre>
+
+						<p>You can find a working example repo <a href="https://github.com/Vectorly/ai-filters-examples/tree/master/background/daily-co-demo" >here</a></p>
 						<p><b>Vonage / OpenTok</b></p>
 
 						<p>When you create a <code>Publisher</code> object, just feed the filtered video Track as the video Source
