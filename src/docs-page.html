@@ -69,7 +69,7 @@
 			            <li class="list-inline-item"><a href="https://www.linkedin.com/company/vectorly"><i class="fab fa-linkedin fa-fw"></i></a></li>
 		                <li class="list-inline-item"><a href="https://angel.co/vectorly"><i class="fab fa-angellist fa-fw"></i></a></li>
 		            </ul><!--//social-list-->
-		            <a href="https://upscaler.vectorly.io/#/signup" class="btn btn-primary d-none d-lg-flex">Sign up</a>
+		            <a href="https://ai-filters.vectorly.io/#/signup" class="btn btn-primary d-none d-lg-flex">Sign up</a>
 					<a href="mailto:team@vectorly.io" class="btn btn-outline-primary d-none d-lg-flex" style="margin-left: 20px;">Contact</a>
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->
@@ -133,7 +133,7 @@
 
 
 
-							<p>When you <a href="https://upscaler.vectorly.io" target="_blank"> sign up</a>, you'll get a <code>token</code> which, you will need to use the library. Next, you can install the ai-filters library via NPM or via CDN</p>
+							<p>When you <a href="https://ai-filters.vectorly.io" target="_blank"> sign up</a>, you'll get a <code>token</code> which, you will need to use the library. Next, you can install the ai-filters library via NPM or via CDN</p>
 
 
 							<p> <b>NPM</b>
@@ -321,13 +321,9 @@
 
 
 						<pre><code>
-   navigator.mediaDevices.getUserMedia({video:true, audio:true}).then(function(stream) {
-
-      const filter = new BackgroundFilter(stream, {token: 'insert-vectorly-token-here', background: 'blur'});
-      filter.getOutput().then(function(filteredStream){
-            //Video Stream Track
-      });
-   });
+   const videoTrack = await navigator.mediaDevices.getUserMedia({video:true, audio:true}).getVideoTracks()[0];
+   const filter = new BackgroundFilter(videoTrack, { background: 'image.jpg'});
+   const virtualBackgroundTrack = await filter.getOutputTrack();
 
 </code></pre>
 
