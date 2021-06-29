@@ -640,6 +640,16 @@
 							 </code>
 						 </pre>
 
+					<p> You can also set the blur level (on a scale of 1 to 10) on initialization, or dynamically with <code>changeBlurRadius</code> method</p>
+
+					<pre>
+							 <code>
+
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur', blurRadius: 5});
+   filter.changeBlurRadius(3);  // 3/10 is less blurry than 5/10
+
+							 </code>
+						 </pre>
 
 					<p>You can see a full set of available methods in the <a href="https://cdn.vectorly.io/ai-filters/docs/latest/BackgroundFilter.html">API documentation</a> </p>
 
