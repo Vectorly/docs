@@ -367,6 +367,16 @@
 										<td style="border-top: white;background: #ffd7d7">No</td>
 									</tr>
 
+									<tr style="text-align: center">
+										<td style="border-top: white; font-weight: bold;">Offscreen Support</td>
+										<td style="border-top: white; background: #d3ffd8">Yes</td>
+										<td style="border-top: white; background: #ffeccf">No</td>
+										<td style="border-top: white;background: #ffeccf">No</td>
+										<td style="border-top: white;background: #d3ffd8">Yes</td>
+										<td style="border-top: white; background: #d3ffd8">Yes</td>
+										<td style="border-top: white;background: #ffd7d7">No</td>
+									</tr>
+
 									</tbody>
 								</table>
 							</div>
@@ -374,6 +384,26 @@
 						</figure>
 
 
+						<p>	<b>Offscreen Support</b>
+							<br/>
+							<a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" >Offscreen support</a> uses OffscreenCanvas to run video-processing workloads in a worker. This both has some performance benefits and is also necessary to continue running the AI filter when the current tab is hidden or minimized.
+						</p>
+
+
+						<div class="callout-block callout-block-info">
+
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+									Note
+								</h4>
+								<p>		For browsers that do not have Offscreen Support, the filtered stream will pause while the user's tab is hidden / minimized, and will resume again when the user's tab is active again..</p>
+							</div><!--//content-->
+						</div>
+
+						<b>SIMD acceleration</b>
 						<p>
 							Recent versions of Chrome, Firefox, Edge and Opera support SIMD acceleration since June 2021. SIMD acceleration enables much higher framerates and low CPU overhead.
 						</p>
