@@ -1358,16 +1358,24 @@ canvas.style.height = desiredheight + "px";
 					<section class="docs-section" id="item-background-performance">
 
 						<h2 class="section-heading">Background Segmentation</h2>
-						<p>Our background filter is based on the <a href="https://drive.google.com/file/d/1lnP1bRi9CSqQQXUHa13159vLELYDgDu0/preview">Google Meet model</a>, and run using <a href="https://google.github.io/mediapipe/" >Media Pipe</a> the same way it is run in Google Meet. Google Meet's background-segmentation model runs entirely on the CPU, which does require performance considerations.</p>
+						<p>Our background filter is based on the <a href="https://google.github.io/mediapipe/solutions/selfie_segmentation.html">Google Selfie model</a>, however it implemented and deployed with WebGL-based optimizations to obtain much more efficient usage than Google Meet itself and other background SDKs</p>
+
+
+
+						<figure class="figure docs-figure py-3">
+							<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
+						</figure>
+
+
+						<p>You can verify performance for yourself with a profiling tool like Google Chrome's <a href="https://developer.chrome.com/docs/devtools/evaluate-performance/reference/"> performance profiler</a></p>
+
+						<p>You can also see </p>
 
 						<figure class="figure docs-figure py-3">
 							<img class="figure-img img-fluid" src="assets/images/framerate-background.svg" alt="" style="width: 800px;">
 						</figure>
 
 
-						<figure class="figure docs-figure py-3">
-							<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
-						</figure>
 
 						<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
 
@@ -1388,10 +1396,7 @@ canvas.style.height = desiredheight + "px";
 						<h4  id="item-background-performance-considerations">Performance Considerations</h4>
 						<p>We recommend only running the Web Background filters library for desktop users. The performance is considerably worse on Mobile because because the overhead of communicating between the browser and GPU is much higher on mobile devices.</p>
 
-						<p>We expect the performance to rival or exceed desktop clients with a Native Android SDK, as is the case for our <a href="#item-upscale-performance" >AI Upscaler Android SDK</a>. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
-						<p>Additionally, we are working on a fully WebGL/OpenGL implementation of the Background Filter, which should greatly exceed the performance of Google's Meet model.</p>
-
-
+						<p>We expect the performance to rival or exceed desktop clients with native mobile SDKs, as is the case for our <a href="#item-upscale-performance" >AI Upscaler Android SDK</a>. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
 
 
 
