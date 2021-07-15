@@ -469,14 +469,12 @@
     let videoTrack = AgoraRTC.createCameraVideoTrack();
     let audioTrack = AgoraRTC.createMicrophoneAudioTrack();
 
-    const inputStream = new MediaStream([videoTrack._mediaStreamTrack]);
 
-
-    const filter = new BackgroundFilter(inputStream, {token: 'insert-vectorly-token-here', background: 'blur'});
-    filter.getOutput().then(function(filteredTrack ){
+    const filter = new BackgroundFilter(videoTrack._mediaStreamTrack, {token: 'insert-vectorly-token-here', background: 'blur'});
+    filter.getOutputTracj().then(function(filteredTrack ){
 
        const filteredAgoraTrack = AgoraRTC.createCustomVideoTrack({
-         mediaStreamTrack: filteredStream.getVideoTracks()[0],
+         mediaStreamTrack: filteredTrack
        });
       client.publish([filteredAgoraTrack, audioTrack]);
     });
@@ -497,10 +495,9 @@
    const Twilio = require('twilio-video');
 
    const localVideoTrack = await Twilio.createLocalVideoTrack();
-   const inputStream = new MediaStream([videoTrack.mediaStreamTrack]);
-   const filter = new BackgroundFilter(inputStream, {token: 'insert-vectorly-token', background: 'blur'});
-   const outputStream = await filter.getOutput();
-   const filteredTrack = new Twilio.LocalVideoTrack(outputStream.getVideoTracks()[0]);
+   const filter = new BackgroundFilter(videoTrack.mediaStreamTrack, {token: 'insert-vectorly-token', background: 'blur'});
+   const outputTrack = await filter.getOutputTrack();
+   const filteredTrack = new Twilio.LocalVideoTrack(outputTrack);
 
    room.localParticipant.publishTrack(filteredTrack);
 
@@ -516,14 +513,12 @@
 						<pre><code>
    const sourceVideoTrack = callObject._participants.local.videoTrack;
 
-   const inputStream = new MediaStream([sourceVideoTrack]);
+   const filter = new vectorly.BackgroundFilter(sourceVideoTrack, {token: 'your-vectorly-token', background: 'https://demo.vectorly.io/virtual-backgrounds/1.jpg'});
 
-   const filter = new vectorly.BackgroundFilter(inputStream, {token: 'your-vectorly-token', background: 'https://demo.vectorly.io/virtual-backgrounds/1.jpg'});
-
-   filter.getOutput().then(function(filteredTrack ){
+   filter.getOutputTrack().then(function(filteredTrack ){
 
       callObject.setInputDevicesAsync({
-         videoSource: filteredTrack.getVideoTracks()[0],
+         videoSource: filteredTrack
       });
 
    });
@@ -538,13 +533,13 @@
 						<pre><code>
    const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
    const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur'});
-   const outputStream =  await filter.getOutput();
+   const outputTrack =  await filter.getOutpuTrack();
 
    var publisher = OT.initPublisher('publisher', {
       insertMode: 'append',
       width: '100%',
       height: '100%',
-      videoSource: outputStream.getVideoTracks()[0]
+      videoSource: outputTrack
    }, handleError);
 							</code></pre>
 
