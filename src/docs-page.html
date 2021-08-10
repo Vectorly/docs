@@ -916,6 +916,47 @@
 							</p>
 
 
+						<p ><b>Amazon Chime SDK</b></p>
+
+
+						<p>For the Amazon Chime SDK, you'll need to use the low <a href="#item-upscale-low-level">level controls library</a>, in conjunction with the <a href="https://aws.github.io/amazon-chime-sdk-js/modules/videoprocessor.html"> Amazon Chime Video Processor API </a></p>
+
+						<p>
+						<pre><code>
+    if(!this.upscaler){
+
+        this.upscaler = new vectorlyUpscaler.core();
+
+        const config = {
+          w: frameWidth,
+          h: frameHeight,
+          renderSize: {w: frameWidth*3, h: frameHeight*3},
+          canvas: this.targetCanvas,
+          networkParams: {name: 'residual_5k_3x', tag: 'general', version: '0'},
+          token: "<your-token>"
+        }
+
+        this.upscaler.load(config);
+
+        this.upscaler.on('load', function(){
+          this.upscalerReady = true;
+        }.bind(this));
+
+    }
+
+    if(this.upscalerReady){
+      this.upscaler.setInput(canvas) // Sets input element
+      this.upscaler.render() // Renders to canvas
+    }
+
+						</code></pre>
+						</p>
+
+						<p>The Amazon Chime Video Processor API provides an canvas as your input, and provdes a destination canvas as your output. All you need to do is use the vectorly core library, configure it to render to the output canvas, and feed it the input canvas and render on each render cycle</p>
+
+						<p>The above is a code snipped taken from our full working demo repository, which you can find <a href="https://github.com/Vectorly/ai-filters-examples/tree/feature/ch5400/amazon-chime-integration-documentation/upscaler/amazon-chime-sdk-demo" >here</a> </p>
+
+
 						<p ><b>Twilio</b></p>
 
 							<p>You can enable upscaling on any <code>VideoTrack</code> object by intercepting the corresponding <code>video</code> element you attach it to (see <a href="https://media.twiliocdn.com/sdk/js/video/releases/2.13.1/docs/VideoTrack.html#attach">reference</a>).
