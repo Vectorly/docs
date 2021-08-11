@@ -97,6 +97,7 @@
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-images">Sample Images</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-events">Events</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-controls">Controls</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-webgl-model">WebGL Model</a></li>
 
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-upscaling"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>AI Upscaling</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-loading">Loading</a></li>
@@ -682,6 +683,56 @@
 
 					<p>You can see a full set of available methods in the <a href="https://cdn.vectorly.io/ai-filters/docs/latest/BackgroundFilter.html">API documentation</a> </p>
 
+
+					<h2 class="section-heading" id="item-webgl-model">WebGL Model</h2>
+
+					<div class="callout-block callout-block-warning">
+
+						<div class="content">
+							<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+								Note
+							</h4>
+							<p>This feature is experimental, and you may encounter bugs or issues when using it</p>
+
+
+
+						</div><!--//content-->
+					</div>
+					<p>While our default Background Filter model is the <a href="https://github.com/google/mediapipe/tree/master/mediapipe/graphs/selfie_segmentation"> Google Selfie model</a>, we are currently training our own WebGL native background segmentation model, which requires little to no CPU usage</p>
+
+
+
+					<figure class="figure docs-figure py-3">
+						<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
+					</figure>
+
+					<p>
+						While it is much more CPU-efficient, it is currently highly experimental and our first alpha version was released on August 6th, 2021.
+					Outstanding issues to be resolved before our WebGL model goes into Beta include:
+					</p>
+
+					<ul>
+						<li>Improving the quality, especially on edge-cases</li>
+						<li>Performance is abnormally slow on some graphics cards</li>
+					</ul>
+
+					<p>We are currently training our models more extensively and making improvements to the performance.</p>
+
+					<p>You can test our current WebGL model <a href="https://files.vectorly.io/demo/background/virtual-background-demo/unet-toggle/index.html">here</a>.</p>
+
+					<p>Once our WebGL model is in Beta, you will be able to enable it with the following API:
+	<code><pre>
+
+   const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur', model: 'webgl'});
+   const outputStream =  await filter.getOutput();
+					</pre></code>
+
+</p>
+
 			    </article><!--//docs-article-->
 
 
@@ -863,6 +914,47 @@
     });
 						</code></pre>
 							</p>
+
+
+						<p ><b>Amazon Chime SDK</b></p>
+
+
+						<p>For the Amazon Chime SDK, you'll need to use the low <a href="#item-upscale-low-level">level controls library</a>, in conjunction with the <a href="https://aws.github.io/amazon-chime-sdk-js/modules/videoprocessor.html"> Amazon Chime Video Processor API </a></p>
+
+						<p>
+						<pre><code>
+    if(!this.upscaler){
+
+        this.upscaler = new vectorlyUpscaler.core();
+
+        const config = {
+          w: frameWidth,
+          h: frameHeight,
+          renderSize: {w: frameWidth*3, h: frameHeight*3},
+          canvas: this.targetCanvas,
+          networkParams: {name: 'residual_5k_3x', tag: 'general', version: '0'},
+          token: "<your-token>"
+        }
+
+        this.upscaler.load(config);
+
+        this.upscaler.on('load', function(){
+          this.upscalerReady = true;
+        }.bind(this));
+
+    }
+
+    if(this.upscalerReady){
+      this.upscaler.setInput(canvas) // Sets input element
+      this.upscaler.render() // Renders to canvas
+    }
+
+						</code></pre>
+						</p>
+
+						<p>The Amazon Chime Video Processor API provides an canvas as your input, and provdes a destination canvas as your output. All you need to do is use the vectorly core library, configure it to render to the output canvas, and feed it the input canvas and render on each render cycle</p>
+
+						<p>The above is a code snipped taken from our full working demo repository, which you can find <a href="https://github.com/Vectorly/ai-filters-examples/tree/feature/ch5400/amazon-chime-integration-documentation/upscaler/amazon-chime-sdk-demo" >here</a> </p>
 
 
 						<p ><b>Twilio</b></p>
@@ -1353,7 +1445,7 @@ canvas.style.height = desiredheight + "px";
 					<section class="docs-section" id="item-background-performance">
 
 						<h2 class="section-heading">Background Segmentation</h2>
-						<p>Our background filter is based on the <a href="https://google.github.io/mediapipe/solutions/selfie_segmentation.html">Google Selfie model</a>, however it implemented and deployed with WebGL-based optimizations to use less CPU than Google Meet itself or other background SDKs, especially on the main thread.</p>
+						<p>Our background filter uses the <a href="https://google.github.io/mediapipe/solutions/selfie_segmentation.html">Google Selfie model</a> by default. We also have an experimental WebGL based background-segmentation model which has significantly less CPU usage than any existing alternatives (see <a href="#item-webgl-model">here</a> for more info).</p>
 
 
 
