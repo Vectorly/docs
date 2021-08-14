@@ -1487,7 +1487,34 @@ canvas.style.height = desiredheight + "px";
 
 
 
-						<p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
+
+						<p>For checking the performance on a given device, you can use the static <code>checkPerformance</code> method without actually instantiating it on a screen.</p>
+
+						<pre>
+							 <code>
+     const performanceResults  = await BackgroundFilter.checkPerformance();
+							 </code>
+						 </pre>
+
+
+
+						<p>This cycle through a 720p input for 2 seconds and return an object with the following fields</p>
+
+						<pre>
+							 <code>
+	{
+	  "inputSize": "1280x720",
+	  "frameCount": Number,
+	  "time": Number,
+	  "fps": Number
+	}
+							 </code>
+						 </pre>
+
+						<p>You can also measure the live fps on any given stream by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
+
+
+
 
 
 						<pre>
