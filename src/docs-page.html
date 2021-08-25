@@ -103,13 +103,12 @@
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-loading">Loading</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-usage">Basic usage</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-integration">Integration</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-ott">HTML5 Players</a></li>
+				<!--	<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-ott">HTML5 Players</a></li> -->
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-events">Events</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-controls">Controls</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-styling">Styling and Scaling</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-models">AI Models</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-low-level">Low level controls</a></li>
-					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-mobile">Mobile</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-demos"><span class="theme-icon-holder mr-2"><i class="fas fa-file-video"></i></span>Demos</a></li>
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-performance"><span class="theme-icon-holder mr-2"><i class="fas fa-chart-bar"></i></span>Performance</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-performance">Background</a></li>
@@ -772,19 +771,19 @@
 						<p><b>NPM</b>
 							<code><pre>
 
-     import vectorlyUpscaler from @vectorly-io/ai-upscaler;
+     import { UpscaleFilter } from '@vectorly-io/ai-filters';
 					</pre></code>
 
 
 						<p>
 
 							<b>CDN</b>
-							<code><pre>https://cdn.vectorly.io/v2/latest/vectorly-upscaler.js</pre></code></p>
+							<code><pre>https://cdn.vectorly.io/ai-filters/v1/latest/vectorly.UpscaleFilter.js</pre></code></p>
 
 						</p>
 
 
-						<p>For loading via CDN, you can access the upscaling filter as the <code>vectorlyUpscaler</code> object, which will be available in the global scope
+						<p>For loading via CDN, you can access the upscaling filter as the <code>UpscaleFilter</code> object, which will be available in the global scope
 
 
 
@@ -796,7 +795,7 @@
 						<h4 class="section-heading" id="item-upscale-usage">Basic usage</h4>
 
 
-						 <p>For the <code>vectorlyUpscaler</code>, the basic API involves instantiating an <code>vectorlyUpscaler</code> object, and specifying a <code>video</code> element.</p>
+						 <p>For the <code>UpscaleFilter</code>, the basic API involves instantiating an <code>UpscaleFilter</code> object, and specifying a <code>video</code> element.</p>
 
 
 
@@ -808,7 +807,7 @@
 	   token: '...'
    };
 
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 							 </code>
 						 </pre>
 
@@ -880,11 +879,11 @@
 						<p ><b>General WebRTC</b></p>
 
 
-							<p>The <code>vectorlyUpscaler</code> works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
+							<p>The <code>UpscaleFilter</code> works with any video tag, so for a WebRTC application, all you need to do is to instantiate the upscaler object with the <code>video</code> element you want to upscale.</p>
 
 
 							<pre><code>
-   const upscaler  = new vectorlyUpscaler(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
+   const upscaler  = new UpscaleFilter(document.getElementById("remoteVideo"), {token: 'insert-vectorly-token-here'});
 
 </code></pre>
 
@@ -909,7 +908,7 @@
       document.body.appendChild(videoElement);
       track.attach(videoElement);
 
-      const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+      const upscaler = new UpscaleFilter(videoElement.current, {token: 'insert-vectorly-token'});
 
    });
 </code></pre>
@@ -933,7 +932,7 @@
 
         stream.play('target-div');
         const video = document.getElementById("video" + stream.getId());
-        const upscaler = new vectorlyUpscaler(video, {token: 'insert-vectorly-token-here'});
+        const upscaler = new UpscaleFilter(video, {token: 'insert-vectorly-token-here'});
 
         client.publish(stream);
 
@@ -951,7 +950,7 @@
 						<pre><code>
     if(!this.upscaler){
 
-        this.upscaler = new vectorlyUpscaler.core();
+        this.upscaler = new UpscaleCoreFilter();
 
         const config = {
           w: frameWidth,
@@ -962,7 +961,7 @@
           token: "<your-token>"
         }
 
-        this.upscaler.load(config);
+       this.upscaler.load(config);
 
         this.upscaler.on('load', function(){
           this.upscalerReady = true;
@@ -998,7 +997,7 @@
    Video.createLocalVideoTrack().then(function(videoTrack) {
      const videoElement = videoTrack.attach();
      document.body.appendChild(videoElement);
-     const upscaler = new vectorlyUpscaler(videoElement.current, {token: 'insert-vectorly-token'});
+     const upscaler = new UpscaleFilter(videoElement.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
@@ -1015,7 +1014,7 @@
 
    Video.createLocalVideoTrack().then(function(videoTrack) {
      videoTrack.attach(videoElement);
-     const upscaler = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+     const upscaler = new UpscaleFilter(videoEl.current, {token: 'insert-vectorly-token'});
    });
 							</code></pre>
 
@@ -1041,7 +1040,7 @@
 
         subscriber.on('videoElementCreated', function (){
             const video = subscriber.element.querySelector('video');
-            const upscaler  = new vectorlyUpscaler(video, {token: '..your-token....'});
+            const upscaler  = new UpscaleFilter(video, {token: '..your-token....'});
 
         });
 
@@ -1063,7 +1062,7 @@
 	(videoEl.current.srcObject = new MediaStream([videoTrack]));
 	if (videoEl.current && props.isLarge) {
 	window.upscalers = window.upscalers || {}
-	window.upscalers[videoTrack.id] = new vectorlyUpscaler(videoEl.current, {token: 'insert-vectorly-token'});
+	window.upscalers[videoTrack.id] = new UpscaleFilter(videoEl.current, {token: 'insert-vectorly-token'});
 	}
    }, [videoTrack]);
 							</code></pre>
@@ -1084,9 +1083,9 @@
 
 
 					</section>
-
+<!--
 						<h4 class="section-heading" id="item-upscale-ott">Plugins</h4>
-						Besides the <code>vectorlyUpscaler</code> module, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
+						Besides the <code>UpscaleFilter</code> module, we have several plugins for specific HTML5 players. (see the <a href="https://cdn.vectorly.io/upscaler/docs/latest/">full API</a> for more detail).
 
 
 						<p>
@@ -1095,7 +1094,7 @@
 						<pre>
 							 <code>
    const player = videojs('my-video')
-   videojs.registerPlugin('vectorlyPlugin', vectorlyUpscaler.videoJSPlugin);
+   videojs.registerPlugin('vectorlyPlugin', UpscaleFilter.videoJSPlugin);
    const vjsUpscaler = player.vectorlyPlugin({token: '...'})
 							 </code>
 						 </pre>
@@ -1120,7 +1119,7 @@
        try {
            await player.load(url);
            // This runs if the asynchronous load is successful.
-           const upscaler = new vectorlyUpscaler.shakaPlugin(player,{
+           const upscaler = new UpscaleFilter.shakaPlugin(player,{
                 token: '...'
               });
        } catch (error) {
@@ -1141,14 +1140,14 @@
 					You can easily build a plugin for Vectorly for any HTML5 video player. All you really need is the <code>video</code> tag, and the video container <code>div</code>, which contains the video UI elements and which is used for <a href="#item-upscale-styling">styling and layout</a>. See a demo plugin code, off of which our other HMTL5 Player plugins are based
 					<pre>
 							 <code>
-   import vectorlyUpscaler from '@vectorly-io/ai-upscaler';
+   import {UpscaleFilter} from '@vectorly-io/ai-upscaler';
 
    class myPlugin {
 
      constructor(videoElement, config){
 
        const container = videoElement.parentNode; // Or whatever the video container div is
-       const upscaler = new vectorlyUpscaler(videoElement, config);
+       const upscaler = new UpscaleFilter(videoElement, config);
        this.upscaler = upscaler;
 
      }
@@ -1177,7 +1176,7 @@
 					</p>
 
 
-
+ -->
 						<h2 class="section-heading" id="item-upscale-events">Events</h2>
 
 
@@ -1185,7 +1184,7 @@
 
 						<pre>
 							 <code>
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 
    upscaler.on('load', function () {
      console.log("Upscaler initialized");
@@ -1212,7 +1211,7 @@
 
 						<pre>
 							 <code>
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 
    upscaler.disable();
 
@@ -1265,7 +1264,7 @@
 	   container:  div //Any div element,
    };
 
-   const upscaler = new vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 				</pre></code>
 
 					The output canvas will occupy the exact dimensions of the container div, and will dynamically resize and re-position whenever the container div is moved, resized or changed. To dynamically style and position the output therefore, you should style and position the container element.
@@ -1280,7 +1279,7 @@
 
 						<p>There are multiple AI models you can choose from. The default is 'residual_3k_3x', but you can specify a model when instantiating the upscaler object
 						<pre><code>
-   const upscaler = new vectorlyUpscaler(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
+   const upscaler = new UpscaleFilter(video, {token: '...', networkParams: { name: 'residual_3k_3x', tag: 'general', version: '2.1'}});
 							 </code></pre>
 						We are constantly releasing new models. You can find a comprehensive list of models <a href="https://cdn.vectorly.io/upscaler/docs/latest/global.html#NetworkParams" >here</a>
 
@@ -1304,14 +1303,19 @@
 					<p>Each Upscaler object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
 					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
 					<pre><code>
-   const upscaler = new vectorlyUpscaler.core();
-   upscaler.load({w: videoWidth,
+   const upscaler = new UpscaleCoreFilter();
+   await upscaler.load({w: videoWidth,
 	          h: videoHeight,
 	          renderSize: {w: videoWidth*2, h: videoHeight*2},
 	          canvas: document.getElementById('your-canvas-element'),
 	          networkParams : {name: 'model-name', tag: 'model-tag', version: 'model-version'},
 	          token: "your-token"});
 					</code></pre>
+
+					<p>The load function returns a promise, which is fulfilled when the upscaler loads, and is rejected when it fails to load.
+					This is **on top** of the regular <code>on('load')</code>  and <code>on('error')</code> behavior, so you can either use the promise or the load/error events for flow control and/or error handling
+					</p>
+
 					<p>If you want to upscale multiple streams to different canvases, you will need to define a seperate upscaler for each <code>canvas</code> element.</p>
 					<p><strong>Setting an input</strong></p>
 					<p>At any time, you can set the input of the upscaler via the <code>upscaler.setInput()</code> method</p>
@@ -1326,6 +1330,25 @@
 						<li><code>ImageBitmap</code></li>
 						<li>Anything else that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/texImage2D" rel="nofollow">texImage2d</a> function accepts</li>
 					</ul>
+
+					<div class="callout-block callout-block-info">
+
+						<div class="content">
+							<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+								Note
+							</h4>
+							<p>The architecture of the Neural Network is such that it will expect a fixed-side input (the one specified in the load function) during your render cycle. If you provide inputs different from the input size, the inputs will be resized to the fixed input resolution.
+
+							</p>
+						</div><!--//content-->
+					</div>
+
+
+
+
 					<p><strong>Rendering</strong></p>
 					<p>Finally, you can render using</p>
 					<pre><code>upscaler.render();
@@ -1341,88 +1364,7 @@ canvas.style.height = desiredheight + "px";
 					<p>The browser will still upscale the image from <code>wxh</code> to  <code>2*w x 2*h</code>, but will then use CSS styling &amp; scaling (bicubic scaling) to scale the final output to the  height/width you specify via CSS.</p>
 
 
-					<br></br>
 
-					<section class="docs-section" id="item-upscale-mobile">
-						<h2 class="section-heading">Mobile</h2>
-						<h4 >Android</h4>
-
-
-
-
-
-						<p>Our Android SDK works as a plugin to <a href="https://developer.android.com/guide/topics/media/exoplayer">ExoPlayer</a>. You will therefore need to use ExoPlayer, or an ExoPlayer derived player, in order upscale video.</p>
-
-
-
-						<p>First, you'll need to include our SDK into your app's gradle file. You can import it from our Maven repository, as shown below.</p>
-
-
-
-						<pre>
-							 <code>
-   repositories {
-     google()
-     jcenter()
-     maven { url "http://maven.vectorly.io/artifactory/libs-release-local" }
-   }
-   dependencies {
-      implementation 'io.vectorly.glnnrender:glnnrender:0.1.1'
-   }
-							 </code>
-						 </pre>
-
-
-						<p>
-							You can then add the following imports into the activity which manages your ExoPlayer view
-						</p>
-
-						<pre>
-							 <code>
-   import io.vectorly.glnnrender.GlPlayerView;
-   import io.vectorly.glnnrender.networks.NetworkTypes;
-							 </code>
-						 </pre>
-
-						<p>
-							Once the ExoPlayer view is set up, you can call set up the Upscaler as in the following example. You'll need to feed your API key, which you can get from the <a href="https://dashboard.vectorly.io">Vectorly dashboard</a>.
-						</p>
-
-
-
-						<pre>
-							 <code>
-   private GlPlayerView ePlayerView;
-
-   private void setupUpscalerView() {
-
-           String api_key = "...";
-           ePlayerView = new GlPlayerView(this, api_key);
-           ePlayerView.setSimpleExoPlayer(player);
-
-           ePlayerView.setNetwork(NetworkTypes.DEFAULT, getApplicationContext());
-            ePlayerView.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-           ((MovieWrapperView) findViewById(R.id.layout_movie_wrapper)).addView(ePlayerView);
-           ePlayerView.onResume();
-
-    }
-</code>
-						 </pre>
-
-
-						<p>We've created a full working example using our library, which you can find below</p>
-
-						<p>
-							<a href="https://github.com/Vectorly/android-demo" class="btn btn-success"><svg class="svg-inline--fa fa-file-code fa-w-16 mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-code" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>Example Repo</a>
-						</p>
-
-
-
-						<h4 >iOS</h4>
-						<p>We plant to release an iOS SDK in Summer 2021</p>
-
-
-					</section><!--//section-->
 
 				</article><!--//docs-article-->
 
@@ -1646,7 +1588,7 @@ canvas.style.height = desiredheight + "px";
 	   analyticsEnabled: true
    };
 
-   const upscaler = vectorlyUpscaler(video, config);
+   const upscaler = new UpscaleFilter(video, config);
 							 </code>
 						 </pre>
 
