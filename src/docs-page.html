@@ -348,7 +348,18 @@
 									</tr>
 
 									<tr style="text-align: center">
-										<td style="border-top: white; font-weight: bold;">Supported</td>
+										<td style="border-top: white; font-weight: bold;">WebGL model</td>
+										<td style="border-top: white;background: #d3ffd8">Yes</td>
+										<td style="border-top: white;background: #d3ffd8">Yes</td>
+										<td style="border-top: white;background: #d3ffd8">Yes</td>
+										<td style="border-top: white;background: #d3ffd8">Yes</td>
+										<td style="border-top: white;background: #d3ffd8">Yes</td>
+										<td style="border-top: white;background: #ffd7d7">No</td>
+									</tr>
+
+
+									<tr style="text-align: center">
+										<td style="border-top: white; font-weight: bold;">Selfie model</td>
 										<td style="border-top: white;background: #d3ffd8">Yes</td>
 										<td style="border-top: white;background: #d3ffd8">Yes</td>
 										<td style="border-top: white;background: #d3ffd8">Yes</td>
@@ -358,7 +369,7 @@
 									</tr>
 
 									<tr style="text-align: center">
-										<td style="border-top: white; font-weight: bold;">SIMD acceleration</td>
+										<td style="border-top: white; font-weight: bold;">SIMD acceleration*</td>
 										<td style="border-top: white; background: #d3ffd8">Yes, since 91</td>
 										<td style="border-top: white; background: #ffeccf">No</td>
 										<td style="border-top: white;background: #d3ffd8">Yes, since 89</td>
@@ -367,8 +378,10 @@
 										<td style="border-top: white;background: #ffd7d7">No</td>
 									</tr>
 
+
+
 									<tr style="text-align: center">
-										<td style="border-top: white; font-weight: bold;">Offscreen Support</td>
+										<td style="border-top: white; font-weight: bold;">Offscreen Support**</td>
 										<td style="border-top: white; background: #d3ffd8">Yes</td>
 										<td style="border-top: white; background: #ffeccf">No</td>
 										<td style="border-top: white;background: #ffeccf">No</td>
@@ -377,6 +390,7 @@
 										<td style="border-top: white;background: #ffd7d7">No</td>
 									</tr>
 
+
 									</tbody>
 								</table>
 							</div>
@@ -384,7 +398,17 @@
 						</figure>
 
 
-						<p>	<b>Offscreen Support</b>
+						<p><b>*SIMD acceleration</b></p>
+						<p>
+							The Google Selfie model uses the CPU. With SIMD acceleration (enabled by default on supported browsers), the CPU usage tends to be ~10% - 15%, whereas if SIMD is not supported, it will take ~30% CPU Usage.
+
+
+
+							Recent versions of Chrome, Firefox, Edge and Opera support SIMD acceleration since June 2021.
+						</p>
+
+
+						<p>	<b>**Offscreen Support</b>
 							<br/>
 							<a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" >Offscreen support</a> uses OffscreenCanvas to run video-processing workloads in a worker. This both has some performance benefits and is also necessary to continue running the AI filter when the current tab is hidden or minimized.
 						</p>
@@ -403,11 +427,18 @@
 							</div><!--//content-->
 						</div>
 
-						<b>SIMD acceleration</b>
-						<p>
-							Recent versions of Chrome, Firefox, Edge and Opera support SIMD acceleration since June 2021. SIMD acceleration enables much higher framerates and low CPU overhead. SIMD acceleration is enabled automatically by default, if it is supported by the browser.
-						</p>
 
+
+
+						<p><b>Checking support programatically</b></p>
+						<p>You can check if a user's browser supports SIMD acceleration or Offscreen processing via the <a href="https://cdn.vectorly.io/ai-filters/docs/latest/BackgroundFilter.html#.isSupported">`isSupported` API</a> </p>
+
+
+						<pre><code>
+   const isSupported = BackgroundFilter.isSupported(); // False if not supported.
+   //If supported, object showing which features are supported.
+
+</code></pre>
 
 
 					</section>
