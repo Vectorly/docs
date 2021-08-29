@@ -711,7 +711,23 @@
 
 					<h2 class="section-heading" id="item-webgl-model">WebGL Model</h2>
 
-					<div class="callout-block callout-block-warning">
+
+					<p>Vectorly's Background SDK provides two AI models for segmentation:  </p>
+					<ul>
+						<li><a href="https://google.github.io/mediapipe/solutions/selfie_segmentation.html">Google Selfie model</a> (default)</li>
+						<li> <a href="#item-webgl-model">Vectorly's own model</a> (beta)</li>
+					</ul>
+
+
+					<p>Our WebGL model is based on MobileNet V3 (similar to the Google Selfie model). While the Google Selfie model is implemented in Web Assembly (which runs on the CPU), Vectorly's model runs in WebGL, meaning the AI model runs on the user's integrated graphics card (or GPU).</p>
+
+					<p>This leads to significantly lower CPU usage for the same quality (see below):</p>
+
+					<figure class="figure docs-figure py-3">
+						<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
+					</figure>
+
+					<div class="callout-block callout-block-info">
 
 						<div class="content">
 							<h4 class="callout-title">
@@ -720,43 +736,36 @@
 		                            </span><!--//icon-holder-->
 								Note
 							</h4>
-							<p>This feature is experimental, and you may encounter bugs or issues when using it</p>
-
-
-
+							<p>The Vectorly WebGL model is currently in Beta, and not enabled by default</p>
 						</div><!--//content-->
 					</div>
-					<p>While our default Background Filter model is the <a href="https://github.com/google/mediapipe/tree/master/mediapipe/graphs/selfie_segmentation"> Google Selfie model</a>, we are currently training our own WebGL native background segmentation model, which requires little to no CPU usage</p>
 
 
+					<p>You can test see a demo of both models <a href="https://files.vectorly.io/demo/background-filter/index.html">here</a>.
 
-					<figure class="figure docs-figure py-3">
-						<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
-					</figure>
+						To use it yourself,you can enable it using the <code>model</code> parameter, which you can set to <code>webgl</code> or <code>selfie</code>.
 
-					<p>
-						While it is much more CPU-efficient, it is currently highly experimental and our first alpha version was released on August 6th, 2021.
-					Outstanding issues to be resolved before our WebGL model goes into Beta include:
-					</p>
 
-					<ul>
-						<li>Improving the quality, especially on edge-cases</li>
-						<li>Performance is abnormally slow on some graphics cards</li>
-					</ul>
-
-					<p>We are currently training our models more extensively and making improvements to the performance.</p>
-
-					<p>You can test our current WebGL model <a href="https://files.vectorly.io/demo/background/virtual-background-demo/unet-toggle/index.html">here</a>.</p>
-
-					<p>Once our WebGL model is in Beta, you will be able to enable it with the following API:
+					<p><b>Use the WebGL Model</b>
 	<code><pre>
 
-   const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
    const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur', model: 'webgl'});
-   const outputStream =  await filter.getOutput();
 					</pre></code>
 
 </p>
+
+					<p><b>Use the Selfie model</b></p>
+					<p>Although the Selfie model is loaded by default, you can manually specify the selfie model as so:
+
+						<code><pre>
+
+   const filter = new BackgroundFilter(stream, {token: 'vectorly-token', background: 'blur', model: 'selfie'});
+					</pre></code>
+
+					</p>
+
+
+
 
 			    </article><!--//docs-article-->
 
