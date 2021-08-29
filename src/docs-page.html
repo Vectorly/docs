@@ -1435,7 +1435,16 @@ canvas.style.height = desiredheight + "px";
 					<section class="docs-section" id="item-background-performance">
 
 						<h2 class="section-heading">Background Segmentation</h2>
-						<p>Our background filter uses the <a href="https://google.github.io/mediapipe/solutions/selfie_segmentation.html">Google Selfie model</a> by default. We also have an experimental WebGL based background-segmentation model which has significantly less CPU usage than any existing alternatives (see <a href="#item-webgl-model">here</a> for more info).</p>
+						<p>Vectorly's Background SDK provides two AI models for segmentation:  </p>
+							<ul>
+						<li>The		<a href="https://google.github.io/mediapipe/solutions/selfie_segmentation.html">Google Selfie model</a>, implemented in Media Pipe</li>
+								<li> <a href="#item-webgl-model">Vectorly's own model</a>, and implemented in WebGL</li>
+					</ul>
+
+
+
+						<p> Vectorly's <a href="#item-webgl-model">WebGL model</a> has uses significantly less CPU usage than any existing alternative, as the computation is done on the device's integrated graphics card (via WebGL).
+						</p>
 
 
 
@@ -1443,15 +1452,49 @@ canvas.style.height = desiredheight + "px";
 							<img class="figure-img img-fluid" src="assets/images/cpu-usage-background.svg" alt="" style="width: 800px;">
 						</figure>
 
+						<div class="callout-block callout-block-info">
 
-						<p>You can verify performance for yourself with a profiling tool like Google Chrome's <a href="https://developer.chrome.com/docs/devtools/evaluate-performance/reference/"> performance profiler</a></p>
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder mr-1">
+		                                <svg class="svg-inline--fa fa-info-circle fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg><!-- <i class="fas fa-info-circle"></i> Font Awesome fontawesome.com -->
+		                            </span><!--//icon-holder-->
+									Note
+								</h4>
+								<p>The Background SDK will use the Google Selfie model by default </p>
+							</div><!--//content-->
+						</div>
+
+
+
+						You can see sample profiling results for the Google Selfie model, and the Vectorly WebGL model run on the same input webcam at 30fps</p>
 
 						<figure class="figure docs-figure py-3">
-							<img class="figure-img img-fluid" src="assets/images/framerate-background.svg" alt="" style="width: 800px;">
+
+							<div class="table-responsive my-4">
+								<table class="table" style="border-color: white">
+
+									<tbody >
+									<tr>
+
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/selfie-perf.png" alt="" ></td>
+
+										<td style="border-top: white;"><img class="figure-img img-fluid" src="assets/images/vectorly-webg-perf.png" alt=""></td>
+									</tr>
+									<tr style="text-align: center">
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Google Selfie (with SIMD acceleration)</figcaption></td>
+										<td style="border-top: white;"><figcaption class="figure-caption mt-3">Vectorly WebGL</figcaption></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+
 						</figure>
 
+						<p>These tests were run on a 2021 Dell XPS 13, with 11th Generation Core i7 processors. You can verify performance for yourself on any deivce with a profiling tool like Google Chrome's <a href="https://developer.chrome.com/docs/devtools/evaluate-performance/reference/"> performance profiler</a>. </p>
 
 
+						<p id="item-performance-api"><b>Performance API</b></p>
 
 						<p>For checking the performance on a given device, you can use the static <code>checkPerformance</code> method without actually instantiating it on a screen.</p>
 
@@ -1514,7 +1557,7 @@ canvas.style.height = desiredheight + "px";
 						<h4  id="item-background-performance-considerations">Performance Considerations</h4>
 						<p>We recommend only running the Web Background filters library for desktop users. The performance is considerably worse on Mobile because because the overhead of communicating between the browser and GPU is much higher on mobile devices.</p>
 
-						<p>We expect the performance to rival or exceed desktop clients with native mobile SDKs, as is the case for our <a href="#item-upscale-performance" >AI Upscaler Android SDK</a>. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
+						<p>We expect the performance to rival or exceed desktop clients with native mobile SDKs, as there is no such overhead on native mobile platforms. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
 
 
 
