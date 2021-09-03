@@ -1595,12 +1595,197 @@ canvas.style.height = desiredheight + "px";
 
 
 						<h4  id="item-background-performance-considerations">Performance Considerations</h4>
-						<p>We recommend only running the Web Background filters library for desktop users. The performance is considerably worse on Mobile because because the overhead of communicating between the browser and GPU is much higher on mobile devices.</p>
 
-						<p>We expect the performance to rival or exceed desktop clients with native mobile SDKs, as there is no such overhead on native mobile platforms. We are planning to develop a Background Filters Android and iOS SDK in Q3 2021.</p>
+						<p>The performance of the Background Filter (whichever model) is largely dependant on the the following 2 factors</p>
+
+						<ul>
+							<li>Resolution</li>
+							<li>Framerate</li>
+						</ul>
+
+						<p>If you are seeing dropped frames or laggy performance, the main recommendations would be to keep the resolution low (360p or 480p), or to restrict the framerate. You can adjust these settings either directly in the source video <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia"> stream</a> or by specifying it in the Vectorly Filter Config:
+
+						<pre>
+							 <code>
+  const config = {
+	   token: '...',
+	   background: 'blur',
+	   width: ...,
+	   height: ...,
+	   frameRate: ...,
+	   segmentationFrameRate: ...
+   };
+
+   const filter = BackgroundFilter(video, config);
+							 </code>
+						 </pre>
+
+						</p>
 
 
+						<p>The framerate is the framerate at which the whole video filter is processed, whereas the segmentation Framerate controls how often the segmentation is done. You can do the segmentation less often (say, at 15fps) on a 30fps stream, without noticeable visual impact for the user.</p>
 
+						<p>You can find more information about config options in the <a href="https://cdn.vectorly.io/ai-filters/docs/latest/BackgroundFilter.html">API documentation</a></p>
+
+						<p><b>Performance Bottlenecks</b></p>
+						<p>As an explanation of where performance issues may arise, the Background filter consists of the following steps</p>
+
+						<ol>
+							<li>Capture Frame from Input Stream</li>
+							<li>Send Frame to WebGL</li>
+							<li>Run AI Inference</li>
+							<li>Post Processing</li>
+							<li>Write Frame to Canvas</li>
+							<li>Capture Frame from Input Stream</li>
+						</ol>
+
+
+						<p>The following table outlines what resources are being used by each step, and what that usage scales with:</p>
+
+
+						<h5 >Selfie Model</h5>
+						<div class="table-responsive my-4">
+							<table class="table" style="border-color: white">
+
+								<tbody >
+
+								<tr style="text-align: center; font-weight: bold;" >
+									<td style="border-top: white;"></td>
+									<td style="border-top: white;">Uses CPU?</td>
+									<td style="border-top: white;">Uses GPU?</td>
+									<td style="border-top: white;">Scales with Resolution?</td>
+									<td style="border-top: white;">Scales with Video FrameRate?</td>
+									<td style="border-top: white;">Scales with Segmentation Frame Rate?</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">1. Capture Frame from Input Stream</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">2. Send Frame to WebGL</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">3. Run AI Inference</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">4. Post Processing</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">5. Write frame to Canvas</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">6. Get Output Stream</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<h5 >WebGL Model</h5>
+						<div class="table-responsive my-4">
+							<table class="table" style="border-color: white">
+
+								<tbody >
+
+								<tr style="text-align: center; font-weight: bold;" >
+									<td style="border-top: white;"></td>
+									<td style="border-top: white;">Uses CPU?</td>
+									<td style="border-top: white;">Uses GPU?</td>
+									<td style="border-top: white;">Scales with Resolution?</td>
+									<td style="border-top: white;">Scales with Video FrameRate?</td>
+									<td style="border-top: white;">Scales with Segmentation Frame Rate?</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">1. Capture Frame from Input Stream</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">2. Send Frame to WebGL</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">3. Run AI Inference</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">4. Post Processing</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">5. Write frame to Canvas</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+
+								<tr style="text-align: center">
+									<td style="border-top: white; text-align: left; ">6. Get Output Stream</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background:#ffeccf">Yes</td>
+									<td style="border-top: white;background: #d3ffd8">No</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<p>While for some larger / slower models like Bodypix, the AI Inference itself used a lot of resources, Vectorly's AI-model implementations are light enough that the main sources of resource-consumption are the overhead of sending data to the canvas (2) and using <code>canvas.captureStream()</code>(6)</p>
 
 					</section><!--//section-->
 				     <section class="docs-section" id="item-upscale-performance">
