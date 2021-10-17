@@ -98,6 +98,7 @@
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-events">Events</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-controls">Controls</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-webgl-model">WebGL Model</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-background-low-level">Low level controls</a></li>
 
 				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-upscaling"><span class="theme-icon-holder mr-2"><i class="fas fa-laptop-code"></i></span>AI Upscaling</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-upscale-loading">Loading</a></li>
@@ -758,7 +759,78 @@
 
 </p>
 
-			    </article><!--//docs-article-->
+
+
+					<h2 class="section-heading" id="item-background-low-level">Low level controls</h2>
+
+					<p>If you are using the AWS Chime SDK, or require lower-level controls such as running the background individual frames/ images, you can use the <a href="https://cdn.vectorly.io/ai-filters/docs/1.6.1/BackgroundFilterCore.html">vectorly-core library</a>.</p>
+
+					<p>With the Background Filter Core SDK, you have control over</p>
+					<ul>
+						<li>The Input source</li>
+						<li>The destination</li>
+						<li>When rendering happens</li>
+					</ul>
+
+
+
+					<p>
+						<b>Loading</b></p>
+
+					<p> The API for loading the Core Background Core Filter is</p>
+					<p>NPM
+						<code><pre>
+
+     import { BackgroundCoreFilter } from '@vectorly-io/ai-filters';
+					</pre></code>
+
+
+					<p>
+
+						CDN
+						<code><pre>https://cdn.vectorly.io/ai-filters/v1/latest/vectorly.BackgroundFilterCore.js</pre></code></p>
+
+					</p>
+
+
+
+					<p><strong>Setting a destination</strong></p>
+					<p>Each Background object is tied to an individual <code>canvas</code> element, and renders to that <code>canvas</code> element.</p>
+					<p>You specify the <code>canvas</code> element you want to render the upscales to via the upscaler constructor</p>
+					<pre><code>
+   const filter = new BackgroundCoreFilter();
+   await filter.load({
+	          canvas: document.getElementById('your-canvas-element'),
+			  model: 'webgl_v2' || 'selfie_v2',
+	          token: "your-token"});
+					</code></pre>
+
+					<p>The load function returns a promise, which is fulfilled when the background filter loads, and is rejected when it fails to load.
+					</p>
+
+					<p><strong>Setting an input</strong></p>
+					<p>At any time, you can set the input of the filter via the <code>filter.setInput()</code> method</p>
+					<pre><code> filter.setInput(source); // Sets input element
+</code></pre>
+					<p>Accepted sources include</p>
+					<ul>
+						<li><code>HTMLImageElement</code></li>
+						<li><code>HTMLCanvasElement</code></li>
+						<li><code>HTMLVideoElement</code></li>
+						<li><code>ImageData</code></li>
+						<li><code>ImageBitmap</code></li>
+						<li>Anything else that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/texImage2D" rel="nofollow">texImage2d</a> function accepts</li>
+					</ul>
+
+
+
+					<p><strong>Rendering</strong></p>
+					<p>Finally, you can render using</p>
+					<pre><code>filter.render();
+</code></pre>
+					<p>Which will run the Background Filter on the current input, and render to the canvas</p>
+
+				</article><!--//docs-article-->
 
 
 			    <article class="docs-article" id="section-upscaling">
