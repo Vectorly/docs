@@ -70,7 +70,7 @@
 		                <li class="list-inline-item"><a href="https://angel.co/vectorly"><i class="fab fa-angellist fa-fw"></i></a></li>
 						<li class="list-inline-item"><a href="https://medium.com/vectorly"><i class="fab fa-medium fa-fw"></i></a></li>
 		            </ul><!--//social-list-->
-		            <a href="https://ai-filters.vectorly.io/#/signup" class="btn btn-primary d-none d-lg-flex">Sign up</a>
+
 					<a href="mailto:team@vectorly.io" class="btn btn-outline-primary d-none d-lg-flex" style="margin-left: 20px;">Contact</a>
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->
@@ -136,7 +136,7 @@
 
 
 
-							<p>When you <a href="https://ai-filters.vectorly.io" target="_blank"> sign up</a>, you'll get a <code>token</code> which, you will need to use the library. Next, you can install the ai-filters library via NPM or via CDN</p>
+							<p>When you <a href="https://vectorly.io/contact" target="_blank"> sign up</a>, you'll get a <code>token</code> which, you will need to use the library. Next, you can install the ai-filters library via NPM or via CDN</p>
 
 
 							<p> <b>NPM</b>
@@ -1660,24 +1660,9 @@ canvas.style.height = desiredheight + "px";
 						 </div>
 
 
-						 <p>You can measure the fps on any given device by adding the <code>analyticsEnabled</code> flag as <code>true</code> in the configuration parameters.
 
 
-						 <pre>
-							 <code>
-  const config = {
-	   token: '...',
-	   analyticsEnabled: true
-   };
-
-   const upscaler = new UpscaleFilter(video, config);
-							 </code>
-						 </pre>
-
-						 </p>
-
-
-						 <p>You can then measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
+						 <p>You can measure the fps at any time with <code>upscaler.metrics.fps</code> property. The fps number provided by <code>upscaler.metrics.fps</code> will not exceed the source video's frame rate because we only render when a video frame changes. </p>
 
 						 <p>
 							 It's recommended to stick to 240p or 360p inputs, as mid-range devices tend to struggle with larger inputs. You can also <a href="#item-upscale-controls">disable upscaling</a>  if the fps gets too low.</p>
